@@ -22,8 +22,8 @@ export default function Navbar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    // <Box sx={{ flexGrow: 1, }}>
+    //   <AppBar position="static">
         <Toolbar
         sx={{backgroundColor:'#FAFAFA'}}
         >
@@ -78,7 +78,7 @@ export default function Navbar() {
             </div>
           )}
         </Toolbar>
-      </AppBar>
-    </Box>
+    //   {/* </AppBar> */}
+    // {/* </Box> */}
   );
 }
