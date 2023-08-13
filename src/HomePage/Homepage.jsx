@@ -1,12 +1,13 @@
 import React from 'react'
-import {styled} from "mui/system"
-import BoxWrapper from '../components/BoxWrapper'
+// import {styled} from "mui/system"
 import Navbar from '../components/Navbar'
+import CustomizableButton from '../components/CustomizableButton'
 const Homepage = () => {
   return (
-    <BoxWrapper>
+    <>
       <Navbar/>
-    </BoxWrapper>
+      <CustomizableButton/>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 
 import { Route, Routes } from 'react-router-dom'
-import Home from '../components/Home'
+import Homepage from '../HomePage/Homepage'
 
 const Paths = [
     { path: '/', element: <Home /> },
@@ -9,6 +9,8 @@ const Paths = [
 const AllRoutes = () => {
     return (
         <Routes>
+            <Route exact path='/' element={<Homepage />}></Route>
+
             {
                 Paths.map(path => {
                     return <Route exact path={path.path} element={path.element}></Route>
