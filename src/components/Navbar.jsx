@@ -93,6 +93,7 @@ export default function Navbar() {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
+            sx={{marginTop: "50px"}}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
