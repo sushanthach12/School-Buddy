@@ -12,26 +12,24 @@ import Menu from "@mui/material/Menu";
 import { useLocation } from "react-router-dom";
 
 const PathName = {
-	'/' : 'Home',
+  '/': 'Home',
 }
 
 export default function Navbar() {
+
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-	const [auth, setAuth] = React.useState(true);
-	const [anchorEl, setAnchorEl] = React.useState(null);
-
-	const location = useLocation()
+  const location = useLocation()
 
 
-	const handleMenu = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     // <Box sx={{ flexGrow: 1, }}>
     //   <AppBar position="static">
@@ -56,8 +54,8 @@ export default function Navbar() {
       >
         <span style={{ color: "#1F2223" }}>
           {
-						Object.keys(PathName).includes(location.pathname) ? PathName[location.pathname] : ""
-					}</span>
+            Object.keys(PathName).includes(location.pathname) ? PathName[location.pathname] : ""
+          }</span>
       </div>
       {auth && (
         <div>
@@ -107,7 +105,7 @@ export default function Navbar() {
             }}
             open={Boolean(anchorEl)}
             onClose={handleClose}
-            sx={{marginTop: "50px"}}
+            sx={{ marginTop: "50px" }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
@@ -118,5 +116,5 @@ export default function Navbar() {
     //   {/* </AppBar> */}
     // {/* </Box> */}
   );
-	
+
 }

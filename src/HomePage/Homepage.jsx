@@ -5,7 +5,8 @@ import CustomizableButton from '../components/CustomizableButton'
 const Homepage = () => {
   return (
     <>
-      <Navbar/>
+      {/* <Navbar/> */}
+      Home
       <CustomizableButton/>
     </>
   )
