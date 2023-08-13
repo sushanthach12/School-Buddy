@@ -6,8 +6,8 @@ function App() {
   return (
     <>
       <div>
-        {/* <AllRoutes /> */}
-        <Navbar />
+        <AllRoutes />
+        {/* <Navbar /> */}
       </div>
     </>
   );
