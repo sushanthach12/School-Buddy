@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -8,19 +9,29 @@ import MenuIcon from "@mui/icons-material/Menu";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
+import { useLocation } from "react-router-dom";
+
+const PathName = {
+	'/' : 'Home',
+}
 
 export default function Navbar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+	const [auth, setAuth] = React.useState(true);
+	const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+	const location = useLocation()
 
+
+	const handleMenu = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
   return (
     // <Box sx={{ flexGrow: 1, }}>
     //   <AppBar position="static">
@@ -43,7 +54,10 @@ export default function Navbar() {
           fontSize: "30px",
         }}
       >
-        <span style={{ color: "#1F2223" }}>Home</span>
+        <span style={{ color: "#1F2223" }}>
+          {
+						Object.keys(PathName).includes(location.pathname) ? PathName[location.pathname] : ""
+					}</span>
       </div>
       {auth && (
         <div>
@@ -104,4 +118,5 @@ export default function Navbar() {
     //   {/* </AppBar> */}
     // {/* </Box> */}
   );
+	
 }
