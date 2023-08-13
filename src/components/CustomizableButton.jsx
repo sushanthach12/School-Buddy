@@ -26,6 +26,7 @@ export default function CustomizableButton() {
         cursor: "pointer",
         textTransform: "none",
         width: "100%",
+        fontFamily:"Lora"
      }}>
       Get Started</Typography>
     </Button>
