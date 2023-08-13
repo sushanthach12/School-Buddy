@@ -9,7 +9,7 @@ const BoxWrapper = styled('div')({
     justifyContent: 'center',
     flexDirection: 'row',
     marginTop: '50px',
-    backgroundColor: 'red',
+    // backgroundColor: 'red',
     
 }) 
 
@@ -20,7 +20,7 @@ const AuthBox = (props) => {
         sx= {{
             width: 'auto',
             height: 'auto',
-            backgroundColor: 'blue',
+            // backgroundColor: 'blue',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

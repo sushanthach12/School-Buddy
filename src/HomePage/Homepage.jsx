@@ -14,9 +14,10 @@ const Homepage = () => {
       style={{
         marginBottom: '10px',
         top:"200px",
+        left:"427px",
       }}
       >
-        <img src="thank" alt="Group-1" border="0" />
+        <img src="/images/homeSvg.svg" alt="Group-1" border="0" />
       </div>
       <Typography
       variant="h1"
@@ -42,6 +43,8 @@ const Homepage = () => {
         lineHeight: "25px",
         fontFamily: "Lora",
         top:"596px",
+        marginTop:"20px",
+        marginBottom:"20px",
       }}
       >
         Thank you for choosing School Buddy!! 
