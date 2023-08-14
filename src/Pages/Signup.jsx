@@ -1,8 +1,9 @@
 import { Container, FormControl, FormHelperText, FormLabel, Input, InputLabel, TextField, Button, Typography } from '@mui/material'
 import React from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-const Login = () => {
+const Signup = () => {
     return (
         <Container
             maxWidth="lg"
@@ -15,8 +16,8 @@ const Login = () => {
             }}
         >
             <img
-                src='/images/loginSvg.svg'
-                style={{ width: "439px", height: "439px" }}
+                src='/images/signupSvg.svg'
+                style={{ width: "440px", height: "391px" }}
             />
 
 
@@ -33,6 +34,8 @@ const Login = () => {
                         htmlFor="email"
                         sx={{
                             fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: '17.5px'
                         }}
                     >
                         Email
@@ -61,6 +64,8 @@ const Login = () => {
                         htmlFor="password"
                         sx={{
                             fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: '17.5px'
                         }}
                     >
                         Password
@@ -76,11 +81,71 @@ const Login = () => {
                             lineHeight: '24px',
                             width: "438px",
                             color: '#363939',
-                            
+
                         }}
                         placeholder='password'
                     />
-  
+
+                </FormControl>
+
+                <FormControl>
+                    <FormLabel
+                        shrink
+                        htmlFor="re-password"
+                        sx={{
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: '17.5px'
+                        }}
+                    >
+                        Re-enter your password
+                    </FormLabel>
+                    <TextField
+                        id="re-password"
+                        variant='outlined'
+                        sx={{
+                            fontSize: "16px",
+                            fontWeight: '400',
+                            marginTop: "3px",
+                            borderRadius: "6px",
+                            lineHeight: '24px',
+                            width: "438px",
+                            color: '#363939',
+
+                        }}
+                        placeholder='re-enter password'
+                    />
+                    <FormHelperText
+                        sx={{
+                            color: '#EA2A2A',
+                            fontWeight: '600',
+                            display: 'flex',
+                            justifyContent: 'start',
+                            alignItems: 'center',
+                            gap: '5px',
+                            margin: 0,
+                            padding: '3px 0'
+                        }}
+                    >
+                        <ErrorOutlineIcon
+                            sx={{
+                                height: '16px',
+                                width: '16px',
+                            }}
+                        />
+                        <Typography
+                            variant="h4"
+                            sx={{
+                                color: "#EA2A2A",
+                                fontSize: "12px",
+                                fontWeight: "500",
+                                lineHeight: "15px",
+                                width: "100%",
+                            }}>
+                            password doesn't match
+                        </Typography>
+                        
+                    </FormHelperText>
                 </FormControl>
 
                 <FormControl>
@@ -132,7 +197,7 @@ const Login = () => {
                                 textTransform: "none",
                                 width: "100%",
                             }}>
-                            Log In
+                            Sign Up
                         </Typography>
                     </Button>
 
@@ -143,4 +208,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Signup
