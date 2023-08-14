@@ -3,11 +3,13 @@ import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
 
 export default function CustomizableButton({
-  label
+  label,
+  link,
 }) {
   return (
     <Button
       variant="contained"
+      href={link}
       sx={{
         backgroundColor: "#FFE393",
         ":hover": { backgroundColor: "#ffe8a8" },

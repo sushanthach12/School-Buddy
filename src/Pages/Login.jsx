@@ -14,6 +14,7 @@ const Login = () => {
                 gap: '10px'
             }}
         >
+            
             <img
                 src='/images/loginSvg.svg'
                 style={{ width: "439px", height: "439px" }}
@@ -109,6 +110,7 @@ const Login = () => {
                         </span>
                     </FormLabel>
                     <Button
+                        href='/analytics'
                         variant="contained"
                         sx={{
                             backgroundColor: "#FFE393",

@@ -47,7 +47,7 @@ const Homepage = () => {
           Thank you for choosing School Buddy!!
 
         </Typography>
-        <CustomizableButton />
+        <CustomizableButton link="/signup" />
       </AuthBox>
     </>
   )
