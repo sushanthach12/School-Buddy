@@ -1,4 +1,4 @@
-import { Container, FormControl, FormHelperText, FormLabel, Input, InputLabel, TextField, Button, Typography } from '@mui/material'
+import { Container, FormControl, FormHelperText, FormLabel, Input, InputLabel, TextField, Button, Typography, Icon } from '@mui/material'
 import React from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 
@@ -76,11 +76,11 @@ const Login = () => {
                             lineHeight: '24px',
                             width: "438px",
                             color: '#363939',
-                            
+
                         }}
                         placeholder='password'
                     />
-  
+
                 </FormControl>
 
                 <FormControl>
@@ -100,11 +100,12 @@ const Login = () => {
                             forgot password
                             <HelpOutlineIcon
                                 sx={{
-                                    height: '16px',
                                     width: '16px',
+                                    height: '16px',
                                     color: '#81B5E9'
                                 }}
                             />
+
                         </span>
                     </FormLabel>
                     <Button

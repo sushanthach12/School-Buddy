@@ -13,6 +13,13 @@ import { useLocation } from "react-router-dom";
 import CustomizableButton from "./CustomizableButton";
 import { Button } from "@mui/material";
 
+const PathNames = new Map([
+  ["/", "Home"],
+  ["/dashboard", "Your Profile"],
+  ["/analytics", "Analytics"],
+  ["/link-generator", "Link Generator"],
+  ["/invoice-generator", "Invoice Generator"],
+])
 
 export default function Navbar() {
 
@@ -67,7 +74,10 @@ export default function Navbar() {
             }}
           >
             <span style={{ color: "#1F2223" }}>
-              Home</span>
+              {
+                PathNames.get(location.pathname)
+              }
+            </span>
           </div>
 
 

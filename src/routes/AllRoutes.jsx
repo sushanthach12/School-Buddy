@@ -4,6 +4,8 @@ import Homepage from '../HomePage/Homepage'
 
 import Login from '../Pages/Login'
 import Signup from '../Pages/Signup'
+import Profile from '../Pages/Dashboard/Profile'
+import Analytics from '../Pages/Analytics'
 
 
 
@@ -15,6 +17,9 @@ const AllRoutes = () => {
 
             <Route exact path='/login' element={<Login />}></Route>
             <Route exact path='/signup' element={<Signup />}></Route>
+            
+            <Route exact path='/dashboard' element={<Profile />}></Route>
+            <Route exact path='/analytics' element={<Analytics />}></Route>
 
         </Routes>
     )
