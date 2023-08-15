@@ -285,6 +285,7 @@ export default function Navbar() {
                   fontSize: "18px",
                   color: "#363939",
                   paddingTop: "4px",
+                  fontWeight: "600",
                 }}
               >
                 Analytics
@@ -330,6 +331,7 @@ export default function Navbar() {
                   fontSize: "18px",
                   color: "#363939",
                   paddingTop: "4px",
+                  fontWeight: "600",
                 }}
               >
                 Link Generator
@@ -376,6 +378,7 @@ export default function Navbar() {
                   fontSize: "18px",
                   color: "#363939",
                   paddingTop: "4px",
+                  fontWeight: "600",
                 }}
               >
                 Invoice Generator
@@ -422,6 +425,7 @@ export default function Navbar() {
                   fontSize: "18px",
                   color: "#363939",
                   paddingTop: "4px",
+                  fontWeight: "600",
                 }}
               >
                 Support
