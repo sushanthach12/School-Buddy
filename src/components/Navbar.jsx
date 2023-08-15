@@ -17,6 +17,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+
 const drawerWidth = 240;
 
 const PathNames = new Map([
@@ -69,6 +70,7 @@ export default function Navbar() {
         sx={{
           borderShadow: "none",
           boxShadow: "none",
+          width: '100%'
         }}
       >
         <Toolbar
@@ -80,7 +82,7 @@ export default function Navbar() {
             padding: "30px 57px 30px 57px",
           }}
         >
-          {auth ? (
+          {auth ?
             <>
               <IconButton
                 size="large"
@@ -161,7 +163,7 @@ export default function Navbar() {
                 </Menu>
               </div>
             </>
-          ) : (
+            :
             <>
               <div
                 style={{
@@ -217,13 +219,13 @@ export default function Navbar() {
                 </Typography>
               </Button>
             </>
-          )}
+          }
         </Toolbar>
       </AppBar>
 
       <Drawer
         sx={{
-          width: "500px",
+          // width: "500px",
           flexShrink: 0,
           "& .MuiDrawer-paper": {
             width: "400px",
@@ -348,7 +350,7 @@ export default function Navbar() {
           </Box>
 
           <Box
-          
+
             sx={{
               height: "48px",
               width: "350px",
@@ -395,7 +397,7 @@ export default function Navbar() {
           </Box>
 
           <Box
-          
+
             sx={{
               height: "48px",
               width: "350px",
