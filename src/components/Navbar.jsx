@@ -19,6 +19,9 @@ const PathNames = new Map([
   ["/analytics", "Analytics"],
   ["/link-generator", "Link Generator"],
   ["/invoice-generator", "Invoice Generator"],
+  ["/add-predefined", "Add Predefined"],
+  ["/view-predefined", "View Predefined"],
+  ["/edit-predefined", "Edit Predefined"],
 ])
 
 export default function Navbar() {
@@ -28,7 +31,7 @@ export default function Navbar() {
 
   const location = useLocation()
 
-
+  console.log(location.pathname)
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
