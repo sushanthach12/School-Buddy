@@ -31,7 +31,7 @@ export default function CustomizableButton({
           width: "100%",
           fontFamily: "Lora",
         }}>
-        Get Starteds
+        Get Started
       </Typography>
     </Button>
   );

@@ -25,16 +25,7 @@ const PathNames = new Map([
   ["/analytics", "Analytics"],
   ["/link-generator", "Link Generator"],
   ["/invoice-generator", "Invoice Generator"],
-]);
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
-}));
+])
 
 export default function Navbar() {
   const theme = useTheme();
@@ -51,7 +42,8 @@ export default function Navbar() {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const location = useLocation();
+  const location = useLocation()
+
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
