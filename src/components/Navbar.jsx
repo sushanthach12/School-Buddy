@@ -27,6 +27,15 @@ const PathNames = new Map([
   ["/invoice-generator", "Invoice Generator"],
 ])
 
+const DrawerHeader = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: 'flex-end',
+}));
+
 export default function Navbar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
