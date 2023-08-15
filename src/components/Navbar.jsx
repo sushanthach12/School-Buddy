@@ -16,7 +16,7 @@ import { Button } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
-import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import SideBar from "./SideBar";
 
 const drawerWidth = 240;
 
@@ -225,10 +225,9 @@ export default function Navbar() {
 
       <Drawer
         sx={{
-          // width: "500px",
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: "400px",
+            width: "494px",
             boxSizing: "border-box",
           },
         }}
@@ -238,249 +237,12 @@ export default function Navbar() {
       >
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
-            {/* {theme.direction === 'ltr' ? <CloseOutlinedIcon /> : <CloseOutlinedIcon />} */}
             <CloseOutlinedIcon />
           </IconButton>
         </DrawerHeader>
-        {/* <Divider /> */}
-        <Box
-          sx={{
-            marginTop: "30px",
-          }}
-        >
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))} */}
-          <Box
-            sx={{
-              height: "48px",
-              width: "350px",
-              border: "1px solid #363939",
-              borderRadius: "6px",
-              display: "flex",
-              flexDirection: "col",
-              paddingTop: "6px",
-              paddingLeft: "10px",
-              marginLeft: "20px",
-              paddingBottom: "6px",
-              cursor: "pointer",
-            }}
-          >
-            <Box
-              sx={{
-                width: "300px",
-              }}
-            >
-              <Typography
-                variant="h6 "
-                component="div"
-                sx={{
-                  marginRight: "140px",
-                  alignContent: "center",
-                  fontSize: "18px",
-                  color: "#363939",
-                  paddingTop: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                Analytics
-              </Typography>
-            </Box>
-            <ArrowForwardOutlinedIcon
-              sx={{
-                paddingTop: "6px",
-                height: "30px",
-                width: "30px",
-                color: "#1F2223",
-              }}
-            />
-          </Box>
 
-          <Box
-            sx={{
-              height: "48px",
-              width: "350px",
-              border: "1px solid #363939",
-              borderRadius: "6px",
-              display: "flex",
-              flexDirection: "col",
-              paddingTop: "6px",
-              paddingLeft: "10px",
-              marginLeft: "20px",
-              paddingBottom: "6px",
-              cursor: "pointer",
-              marginTop: "30px",
-            }}
-          >
-            <Box
-              sx={{
-                width: "300px",
-              }}
-            >
-              <Typography
-                variant="h6 "
-                component="div"
-                sx={{
-                  marginRight: "140px",
-                  alignContent: "center",
-                  fontSize: "18px",
-                  color: "#363939",
-                  paddingTop: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                Link Generator
-              </Typography>
-            </Box>
-            <ArrowForwardOutlinedIcon
-              sx={{
-                paddingTop: "6px",
-                height: "30px",
-                width: "30px",
-                color: "#1F2223",
-              }}
-            />
-          </Box>
+        <SideBar handleDrawerClose={handleDrawerClose}/>
 
-          <Box
-
-            sx={{
-              height: "48px",
-              width: "350px",
-              border: "1px solid #363939",
-              borderRadius: "6px",
-              display: "flex",
-              flexDirection: "col",
-              paddingTop: "6px",
-              paddingLeft: "10px",
-              marginLeft: "20px",
-              paddingBottom: "6px",
-              cursor: "pointer",
-              marginTop: "30px",
-            }}
-          >
-            <Box
-              sx={{
-                width: "300px",
-              }}
-            >
-              <Typography
-                variant="h6 "
-                component="div"
-                sx={{
-                  marginRight: "140px",
-                  alignContent: "center",
-                  fontSize: "18px",
-                  color: "#363939",
-                  paddingTop: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                Invoice Generator
-              </Typography>
-            </Box>
-            <ArrowForwardOutlinedIcon
-              sx={{
-                paddingTop: "6px",
-                height: "30px",
-                width: "30px",
-                color: "#1F2223",
-              }}
-            />
-          </Box>
-
-          <Box
-
-            sx={{
-              height: "48px",
-              width: "350px",
-              border: "1px solid #363939",
-              borderRadius: "6px",
-              display: "flex",
-              flexDirection: "col",
-              paddingTop: "6px",
-              paddingLeft: "10px",
-              marginLeft: "20px",
-              paddingBottom: "6px",
-              cursor: "pointer",
-              marginTop: "30px",
-            }}
-          >
-            <Box
-              sx={{
-                width: "300px",
-              }}
-            >
-              <Typography
-                variant="h6 "
-                component="div"
-                sx={{
-                  marginRight: "140px",
-                  alignContent: "center",
-                  fontSize: "18px",
-                  color: "#363939",
-                  paddingTop: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                Support
-              </Typography>
-            </Box>
-            <ArrowForwardOutlinedIcon
-              sx={{
-                paddingTop: "6px",
-                height: "30px",
-                width: "30px",
-                color: "#1F2223",
-              }}
-            />
-          </Box>
-
-          <Button
-            sx={{
-              width: "253px",
-              height: "48px",
-              backgroundColor: "#FFE393",
-              ":hover": { backgroundColor: "#ffe8a8" },
-              textColor: "#363939",
-              marginLeft: "20px",
-              marginTop: "200px",
-            }}
-          >
-            <Typography
-              variant="h4 "
-              component="div"
-              sx={{
-                color: "#363939",
-                fontSize: "18px",
-                weight: "600",
-                textTransform: "none",
-              }}
-            >
-              Log Out
-            </Typography>
-          </Button>
-        </Box>
-        {/* <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List> */}
       </Drawer>
     </Box>
   );
