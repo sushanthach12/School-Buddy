@@ -187,7 +187,6 @@ export default function Navbar() {
                     fontWeight: "500",
                     lineHeight: "40px",
                     textAlign: "start",
-                    cursor: "pointer",
                     textTransform: "none",
                     width: "100%",
                   }}
@@ -220,7 +219,6 @@ export default function Navbar() {
                           fontWeight: "500",
                           lineHeight: "20px",
                           textAlign: "center",
-                          cursor: "pointer",
                           textTransform: "none",
                           width: "100%",
                         }}
