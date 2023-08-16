@@ -1,8 +1,37 @@
-import { Container, FormControl, FormHelperText, FormLabel, Input, InputLabel, TextField, Button, Typography, Icon } from '@mui/material'
-import React from 'react'
+import {
+    Container,
+    FormControl,
+    FormLabel,
+    TextField,
+    Button,
+    Typography,
+    Input,
+} from '@mui/material'
+import React, { useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { useDispatch, useSelector } from 'react-redux';
+import { logginSuccess } from '../store/slices/userSlice';
+import { Router, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate()
+
+    const user = useSelector((state) => state.user)
+    const dispatch = useDispatch()
+
+    const [credentials, setCredentials] = useState({ email: "", password: "" })
+
+    const handleCredChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value })
+    }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        
+        dispatch(logginSuccess({email: credentials.email}))
+        navigate('/')
+    }
+
     return (
         <Container
             maxWidth="lg"
@@ -14,8 +43,9 @@ const Login = () => {
                 gap: '10px'
             }}
         >
-            
+
             <img
+                alt='profile'
                 src='/images/loginSvg.svg'
                 style={{ width: "439px", height: "439px" }}
             />
@@ -27,66 +57,83 @@ const Login = () => {
                     flexDirection: 'column',
                     gap: '30px'
                 }}
+                onSubmit={handleFormSubmit}
             >
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                         htmlFor="email"
-                        sx={{
+                        style={{
                             fontSize: "14px",
+                            fontWeight: '500',
+                            lineHeight: '17.5px',
+                            color: '#57595A',
                         }}
                     >
                         Email
                     </FormLabel>
-                    <TextField
+                    <Input
                         id='email'
-                        variant='outlined'
+                        type='email'
+                        name='email'
+                        disableUnderline
+                        required
                         sx={{
                             fontSize: "16px",
                             fontWeight: '400',
-                            marginTop: "3px",
                             borderRadius: "6px",
-                            border: '1px',
+                            border: '1px solid #D2D3D3',
+                            padding: '11px 12px',
                             lineHeight: '24px',
                             width: "438px",
                             color: '#363939'
                         }}
                         placeholder='example@gmail.com'
+                        value={credentials.email}
+                        onChange={handleCredChange}
                     />
 
                 </FormControl>
 
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                         htmlFor="password"
-                        sx={{
+                        style={{
                             fontSize: "14px",
+                            fontWeight: '500',
+                            lineHeight: '17.5px',
+                            color: '#57595A'
                         }}
                     >
                         Password
                     </FormLabel>
-                    <TextField
+                    <Input
                         id="password"
-                        variant='outlined'
+                        type='password'
+                        name='password'
+                        disableUnderline
+                        required
                         sx={{
                             fontSize: "16px",
                             fontWeight: '400',
-                            marginTop: "3px",
                             borderRadius: "6px",
+                            border: '1px solid #D2D3D3',
+                            padding: '11px 12px',
                             lineHeight: '24px',
                             width: "438px",
-                            color: '#363939',
-
+                            color: '#363939'
                         }}
                         placeholder='password'
+                        value={credentials.password}
+                        onChange={handleCredChange}
                     />
 
                 </FormControl>
 
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                     >
                         <span
                             style={{
@@ -110,7 +157,7 @@ const Login = () => {
                         </span>
                     </FormLabel>
                     <Button
-                        href='/analytics'
+                        type='submit'
                         variant="contained"
                         sx={{
                             backgroundColor: "#FFE393",

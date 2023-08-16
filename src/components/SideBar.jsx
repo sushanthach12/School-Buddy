@@ -13,7 +13,7 @@ const navLinks = [
 
 
 const SideBar = ({ handleDrawerClose }) => {
-    console.log(navLinks)
+
     return (
         <Box
             sx={{
@@ -28,7 +28,7 @@ const SideBar = ({ handleDrawerClose }) => {
 
             {
                 navLinks.map(navLink => (
-                    <Link to={`${navLink.link}`} onClick={handleDrawerClose}>
+                    <Link key={navLink.link} to={`${navLink.link}`} onClick={handleDrawerClose}>
                         <Box
                             sx={{
                                 display: 'flex',

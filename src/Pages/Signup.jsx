@@ -1,9 +1,40 @@
-import { Container, FormControl, FormHelperText, FormLabel, Input, InputLabel, TextField, Button, Typography } from '@mui/material'
-import React from 'react'
+import {
+    Container,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    Button,
+    Typography,
+    Input
+} from '@mui/material'
+import React, { useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 const Signup = () => {
+
+    const [showConfirmPassErr, setShowConfirmPassErr] = useState(false)
+
+    const [credentials, setCredentials] = useState({ email: "", password: "", confirmPass: "" })
+
+    const handleCredChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    }
+
+    const handleConfirmPassChange = (e) => {
+        setCredentials({ ...credentials, [e.target.name]: e.target.value });
+        setTimeout(() => {
+            (credentials.password === credentials.confirmPass) ? setShowConfirmPassErr(false) : setShowConfirmPassErr(true)
+        },150)
+    }
+
+    const showErr = (credentials.password === credentials.confirmPass) ? false : true
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault()
+        console.log("submit")
+    }
+
     return (
         <Container
             maxWidth="lg"
@@ -16,6 +47,7 @@ const Signup = () => {
             }}
         >
             <img
+                alt='signup'
                 src='/images/signupSvg.svg'
                 style={{ width: "440px", height: "391px" }}
             />
@@ -27,130 +59,154 @@ const Signup = () => {
                     flexDirection: 'column',
                     gap: '30px'
                 }}
+                onSubmit={handleFormSubmit}
             >
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                         htmlFor="email"
-                        sx={{
+                        style={{
                             fontSize: "14px",
-                            fontWeight: "500",
-                            lineHeight: '17.5px'
+                            fontWeight: '500',
+                            lineHeight: '17.5px',
+                            color: '#57595A',
                         }}
                     >
                         Email
                     </FormLabel>
-                    <TextField
+                    <Input
                         id='email'
-                        variant='outlined'
-                        sx={{
+                        type='email'
+                        disableUnderline
+                        style={{
                             fontSize: "16px",
+                            marginTop: '3px',
                             fontWeight: '400',
-                            marginTop: "3px",
                             borderRadius: "6px",
-                            border: '1px',
+                            border: '1px solid #D2D3D3',
+                            padding: '11px 12px',
                             lineHeight: '24px',
                             width: "438px",
                             color: '#363939'
                         }}
                         placeholder='example@gmail.com'
+                        required
+                        name='email'
+                        value={credentials.email}
+                        onChange={handleCredChange}
                     />
 
                 </FormControl>
 
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                         htmlFor="password"
-                        sx={{
+                        style={{
                             fontSize: "14px",
-                            fontWeight: "500",
-                            lineHeight: '17.5px'
+                            fontWeight: '500',
+                            lineHeight: '17.5px',
+                            color: '#57595A',
                         }}
                     >
                         Password
                     </FormLabel>
-                    <TextField
+                    <Input
                         id="password"
-                        variant='outlined'
-                        sx={{
+                        type='password'
+                        disableUnderline
+                        style={{
                             fontSize: "16px",
+                            marginTop: '3px',
                             fontWeight: '400',
-                            marginTop: "3px",
                             borderRadius: "6px",
+                            border: '1px solid #D2D3D3',
+                            padding: '11px 12px',
                             lineHeight: '24px',
                             width: "438px",
-                            color: '#363939',
-
+                            color: '#363939'
                         }}
                         placeholder='password'
+                        required
+                        name='password'
+                        value={credentials.password}
+                        onChange={handleCredChange}
                     />
 
                 </FormControl>
 
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                         htmlFor="re-password"
-                        sx={{
+                        style={{
                             fontSize: "14px",
-                            fontWeight: "500",
-                            lineHeight: '17.5px'
+                            fontWeight: '500',
+                            lineHeight: '17.5px',
+                            color: '#57595A',
                         }}
                     >
                         Re-enter your password
                     </FormLabel>
-                    <TextField
+                    <Input
                         id="re-password"
-                        variant='outlined'
-                        sx={{
+                        type='password'
+                        disableUnderline
+                        style={{
                             fontSize: "16px",
+                            marginTop: '3px',
                             fontWeight: '400',
-                            marginTop: "3px",
                             borderRadius: "6px",
+                            border: '1px solid #D2D3D3',
+                            padding: '11px 12px',
                             lineHeight: '24px',
                             width: "438px",
-                            color: '#363939',
-
+                            color: '#363939'
                         }}
                         placeholder='re-enter password'
+                        required
+                        name='confirmPass'
+                        value={credentials.confirmPass}
+                        onChange={handleConfirmPassChange}
                     />
-                    <FormHelperText
-                        sx={{
-                            color: '#EA2A2A',
-                            fontWeight: '600',
-                            display: 'flex',
-                            justifyContent: 'start',
-                            alignItems: 'center',
-                            gap: '5px',
-                            margin: 0,
-                            padding: '3px 0'
-                        }}
-                    >
-                        <ErrorOutlineIcon
+                    {
+                        showConfirmPassErr && showErr && <FormHelperText
                             sx={{
-                                height: '16px',
-                                width: '16px',
+                                color: '#EA2A2A',
+                                fontWeight: '600',
+                                display: 'flex',
+                                justifyContent: 'start',
+                                alignItems: 'center',
+                                gap: '5px',
+                                margin: 0,
+                                padding: '3px 0'
                             }}
-                        />
-                        <Typography
-                            variant="h4"
-                            sx={{
-                                color: "#EA2A2A",
-                                fontSize: "12px",
-                                fontWeight: "500",
-                                lineHeight: "15px",
-                                width: "100%",
-                            }}>
-                            password doesn't match
-                        </Typography>
-                        
-                    </FormHelperText>
+                        >
+                            <ErrorOutlineIcon
+                                style={{
+                                    height: '16px',
+                                    width: '16px',
+                                }}
+                            />
+                            <Typography
+                                variant="h4"
+                                sx={{
+                                    color: "#EA2A2A",
+                                    fontSize: "12px",
+                                    fontWeight: "500",
+                                    lineHeight: "15px",
+                                    width: "100%",
+                                }}>
+                                password doesn't match
+                            </Typography>
+
+                        </FormHelperText>
+                    }
                 </FormControl>
 
                 <FormControl>
                     <FormLabel
-                        shrink
+                        shrink="true"
                     >
                         <span
                             style={{
@@ -173,7 +229,7 @@ const Signup = () => {
                         </span>
                     </FormLabel>
                     <Button
-                    href='/login'
+                        type='submit'
                         variant="contained"
                         sx={{
                             backgroundColor: "#FFE393",
