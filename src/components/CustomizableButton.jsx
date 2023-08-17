@@ -8,7 +8,7 @@ export default function CustomizableButton({
   link,
 }) {
   return (
-    <Link to={link}>
+    <Link to={link} style={{ textDecoration: 'none'}}>
       <Button
         variant="contained"
         sx={{

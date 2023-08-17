@@ -106,7 +106,7 @@ const Predefined = () => {
                 display: "flex"
               }}
             >
-              <Link to={"/add-predefined"}>
+              <Link to={"/add-predefined"} style={{ textDecoration: 'none'}}>
                 <Box
                   // varient = "div"
                   sx={{
@@ -223,7 +223,7 @@ const Predefined = () => {
                 display: "flex"
               }}
             >
-              <Link to={"/view-predefined"}>
+              <Link to={"/view-predefined"} style={{ textDecoration: 'none'}}>
                 <Box
                   // varient = "div"
                   sx={{
