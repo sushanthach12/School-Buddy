@@ -187,6 +187,7 @@ const EditPredefined = () => {
                                 cursor: "pointer",
                                 textTransform: "none",
                                 width: "100%",
+                                fontFamily: 'Lora'
                             }}>
                             Update
                         </Typography>

@@ -4,6 +4,7 @@ import { Typography } from "@mui/material";
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import { Link } from "react-router-dom";
 const Predefined = () => {
   return (
     <Box
@@ -80,8 +81,8 @@ const Predefined = () => {
                   height: "30px",
                   width: "300px",
                   fontFamily: "Lora",
-                //   alignItems: "center",
-                //     justifyContent: "center",
+                  //   alignItems: "center",
+                  //     justifyContent: "center",
                 }}
               >
                 Add Predefined
@@ -97,48 +98,50 @@ const Predefined = () => {
                   width: "300px",
                 }}
               >
-                Add Predefined details of all the bill 
+                Add Predefined details of all the bill
               </Typography>
             </Box>
             <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
               sx={{
-                display: "flex",
-                width: "274px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
+                display: "flex"
               }}
             >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                Add
-              </Typography>
-              <AddBoxOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
+              <Link to={"/add-predefined"}>
+                <Box
+                  // varient = "div"
+                  sx={{
+                    display: "flex",
+                    width: "274px",
+                    height: "48px",
+                    backgroundColor: "#FFE393",
+                    borderRadius: "6px",
+                    marginLeft: "16px",
+                    marginTop: "32px",
+                    // padding:"10px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      weight: "600",
+                      fontSize: "18px",
+                      lineHeight: "22.5px",
+                      color: "#162320",
+                    }}
+                  >
+                    Add
+                  </Typography>
+                  <AddBoxOutlinedIcon
+                    sx={{
+                      color: "#162320",
+                      marginLeft: "10px",
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                </Box>
+              </Link>
             </Box>
           </Box>
         </Box>
@@ -216,53 +219,54 @@ const Predefined = () => {
               </Typography>
             </Box>
             <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
               sx={{
-                display: "flex",
-                width: "274px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
+                display: "flex"
               }}
             >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                View
-              </Typography>
-              <VisibilityOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
+              <Link to={"/view-predefined"}>
+                <Box
+                  // varient = "div"
+                  sx={{
+                    display: "flex",
+                    width: "274px",
+                    height: "48px",
+                    backgroundColor: "#FFE393",
+                    borderRadius: "6px",
+                    marginLeft: "16px",
+                    marginTop: "32px",
+                    // padding:"10px",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      weight: "600",
+                      fontSize: "18px",
+                      lineHeight: "22.5px",
+                      color: "#162320",
+                    }}
+                  >
+                    View
+                  </Typography>
+                  <VisibilityOutlinedIcon
+                    sx={{
+                      color: "#162320",
+                      marginLeft: "10px",
+                      width: "20px",
+                      height: "20px",
+                    }}
+                  />
+                </Box>
+              </Link>
 
-            
             </Box>
           </Box>
         </Box>
 
         {/* third */}
 
-        
+
       </Box>
     </Box>
   );

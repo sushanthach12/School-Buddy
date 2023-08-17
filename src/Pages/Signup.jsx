@@ -264,6 +264,7 @@ const Signup = () => {
                                 cursor: "pointer",
                                 textTransform: "none",
                                 width: "100%",
+                                fontFamily: 'Lora'
                             }}>
                             Sign Up
                         </Typography>

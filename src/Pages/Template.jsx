@@ -869,10 +869,12 @@ const Template = () => {
             backgroundColor: "#FFE393",
             width: "253px",
             height: "48px",
+            borderRadius: '6px',
             ":hover": { backgroundColor: "#ffe8a8" },
             textColor: "#363939",
           }}
           variant="contained"
+          disableElevation
         >
           <Typography
             variant="h4"

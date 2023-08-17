@@ -2,6 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
+import { Link } from "react-router-dom";
 
 const Invoicegenerator = () => {
   return (
@@ -95,40 +96,42 @@ const Invoicegenerator = () => {
                 Create a new invoice
               </Typography>
             </Box>
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
+            <Link to={"/create-invoice"}>
+              <Box
+                // varient = "div"
                 sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
+                  display: "flex",
+                  width: "140px",
+                  height: "48px",
+                  backgroundColor: "#FFE393",
+                  borderRadius: "6px",
+                  marginLeft: "16px",
+                  marginTop: "32px",
+                  // padding:"10px",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Open
-              </Typography>
-              <ArrowForwardOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
+                <Typography
+                  sx={{
+                    weight: "600",
+                    fontSize: "18px",
+                    lineHeight: "22.5px",
+                    color: "#162320",
+                  }}
+                >
+                  Open
+                </Typography>
+                <ArrowForwardOutlinedIcon
+                  sx={{
+                    color: "#162320",
+                    marginLeft: "10px",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </Box>
+            </Link>
           </Box>
         </Box>
 
@@ -187,7 +190,7 @@ const Invoicegenerator = () => {
                   fontFamily: "Lora",
                 }}
               >
-                Create New
+                Predefined
               </Typography>
               <Typography
                 varient="h3"
@@ -200,43 +203,45 @@ const Invoicegenerator = () => {
                   width: "300px",
                 }}
               >
-                Create a new invoice
+                Add Predefined details of the bill
               </Typography>
             </Box>
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
+            <Link to={"/predefined"}>
+              <Box
+                // varient = "div"
                 sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
+                  display: "flex",
+                  width: "140px",
+                  height: "48px",
+                  backgroundColor: "#FFE393",
+                  borderRadius: "6px",
+                  marginLeft: "16px",
+                  marginTop: "32px",
+                  // padding:"10px",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Open
-              </Typography>
-              <ArrowForwardOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
+                <Typography
+                  sx={{
+                    weight: "600",
+                    fontSize: "18px",
+                    lineHeight: "22.5px",
+                    color: "#162320",
+                  }}
+                >
+                  Open
+                </Typography>
+                <ArrowForwardOutlinedIcon
+                  sx={{
+                    color: "#162320",
+                    marginLeft: "10px",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </Box>
+            </Link>
           </Box>
         </Box>
       </Box>
@@ -302,7 +307,7 @@ const Invoicegenerator = () => {
                   fontFamily: "Lora",
                 }}
               >
-                Create New
+                History
               </Typography>
               <Typography
                 varient="h3"
@@ -315,43 +320,46 @@ const Invoicegenerator = () => {
                   width: "300px",
                 }}
               >
-                Create a new invoice
+                Check generated invoices
               </Typography>
             </Box>
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
+
+            <Link to={"/invoice-history"}>
+              <Box
+                // varient = "div"
                 sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
+                  display: "flex",
+                  width: "140px",
+                  height: "48px",
+                  backgroundColor: "#FFE393",
+                  borderRadius: "6px",
+                  marginLeft: "16px",
+                  marginTop: "32px",
+                  // padding:"10px",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Open
-              </Typography>
-              <ArrowForwardOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
+                <Typography
+                  sx={{
+                    weight: "600",
+                    fontSize: "18px",
+                    lineHeight: "22.5px",
+                    color: "#162320",
+                  }}
+                >
+                  Open
+                </Typography>
+                <ArrowForwardOutlinedIcon
+                  sx={{
+                    color: "#162320",
+                    marginLeft: "10px",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </Box>
+            </Link>
           </Box>
         </Box>
 
@@ -410,7 +418,7 @@ const Invoicegenerator = () => {
                   fontFamily: "Lora",
                 }}
               >
-                Create New
+                Template
               </Typography>
               <Typography
                 varient="h3"
@@ -423,43 +431,45 @@ const Invoicegenerator = () => {
                   width: "300px",
                 }}
               >
-                Create a new invoice
+                Add details about the school
               </Typography>
             </Box>
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
+            <Link to={"/template"}>
+              <Box
+                // varient = "div"
                 sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
+                  display: "flex",
+                  width: "140px",
+                  height: "48px",
+                  backgroundColor: "#FFE393",
+                  borderRadius: "6px",
+                  marginLeft: "16px",
+                  marginTop: "32px",
+                  // padding:"10px",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Open
-              </Typography>
-              <ArrowForwardOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
+                <Typography
+                  sx={{
+                    weight: "600",
+                    fontSize: "18px",
+                    lineHeight: "22.5px",
+                    color: "#162320",
+                  }}
+                >
+                  Open
+                </Typography>
+                <ArrowForwardOutlinedIcon
+                  sx={{
+                    color: "#162320",
+                    marginLeft: "10px",
+                    width: "20px",
+                    height: "20px",
+                  }}
+                />
+              </Box>
+            </Link>
           </Box>
         </Box>
       </Box>

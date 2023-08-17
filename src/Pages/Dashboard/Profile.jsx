@@ -1,5 +1,6 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Profile = () => {
     return (
@@ -53,6 +54,7 @@ const Profile = () => {
                         textAlign: "center",
                         textTransform: "none",
                         width: "100%",
+                        fontFamily: 'Lora'
                     }}>
                     School Name
                 </Typography>
@@ -68,37 +70,41 @@ const Profile = () => {
                     textAlign: "center",
                     textTransform: "none",
                     width: "100%",
+                    fontFamily: 'Lora'
                 }}>
                 HSR Layout, Bangalore
             </Typography>
 
-            <Button
-                variant="contained"
-                sx={{
-                    backgroundColor: "#FFE393",
-                    ":hover": { backgroundColor: "#ffe8a8" },
-                    width: "531px",
-                    height: "48px",
-                    padding: '0px 16px',
-                    borderRadius: '6px',
-                }}
-                disableElevation
-            >
-                <Typography
-                    variant="h4"
+            <Link to={"/template"}>
+                <Button
+                    variant="contained"
                     sx={{
-                        color: "#363939",
-                        fontSize: "18px",
-                        fontWeight: "600",
-                        lineHeight: "22.5px",
-                        textAlign: "center",
-                        cursor: "pointer",
-                        textTransform: "none",
-                        width: "100%",
-                    }}>
-                    Edit Profile
-                </Typography>
-            </Button>
+                        backgroundColor: "#FFE393",
+                        ":hover": { backgroundColor: "#ffe8a8" },
+                        width: "531px",
+                        height: "48px",
+                        padding: '0px 16px',
+                        borderRadius: '6px',
+                    }}
+                    disableElevation
+                >
+                    <Typography
+                        variant="h4"
+                        sx={{
+                            color: "#363939",
+                            fontSize: "18px",
+                            fontWeight: "600",
+                            lineHeight: "22.5px",
+                            textAlign: "center",
+                            cursor: "pointer",
+                            textTransform: "none",
+                            width: "100%",
+                            fontFamily: 'Lora'
+                        }}>
+                        Edit Profile
+                    </Typography>
+                </Button>
+            </Link>
 
         </Container>
     )

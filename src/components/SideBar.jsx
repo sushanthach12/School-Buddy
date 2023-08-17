@@ -67,6 +67,7 @@ const SideBar = ({ handleDrawerClose }) => {
                                         fontSize: "18px",
                                         lineHeight: '22.5px',
                                         fontWeight: "600",
+                                        fontFamily: 'Lora'
                                     }}
                                 >
                                     {navLink.name}
@@ -247,6 +248,7 @@ const SideBar = ({ handleDrawerClose }) => {
                         fontSize: "18px",
                         weight: "600",
                         textTransform: "none",
+                        fontFamily: 'Lora'
                     }}
                 >
                     Log Out

@@ -234,6 +234,7 @@ const Analytics = () => {
                             cursor: "pointer",
                             textTransform: "none",
                             width: "100%",
+                            fontFamily: 'Lora'
                         }}>
                         Download Report
                     </Typography>
@@ -288,6 +289,7 @@ const Analytics = () => {
                             textAlign: "center",
                             textTransform: "none",
                             width: "100%",
+                            fontFamily: 'Lora'
                         }}>
                         School Name
                     </Typography>

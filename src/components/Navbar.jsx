@@ -23,8 +23,13 @@ const PathNames = new Map([
 	["/analytics", "Analytics"],
 	["/link-generator", "Link Generator"],
 	["/invoice-generator", "Invoice Generator"],
+	["/invoice-history", "Invoice History"],
 	["/add-predefined", "Add Predefined"],
 	["/edit-predefined", "Edit Predefined"],
+	["/view-predefined", "View Predefined"],
+	["/predefined", "Predefined"],
+	["/template", "Template"],
+	["/create-invoice", "Invoice Gen Create"],
 ])
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -39,8 +44,10 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 export default function Navbar() {
 
 	const user = useSelector((state) => state.user)
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
+
+	const location = useLocation()
 
 	// const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -56,7 +63,6 @@ export default function Navbar() {
 	// const [auth, setAuth] = React.useState(true);
 	const [anchorEl, setAnchorEl] = React.useState(null);
 
-	const location = useLocation()
 
 
 	const handleMenu = (event) => {
@@ -105,10 +111,12 @@ export default function Navbar() {
 									alignItems: "center",
 									flexGrow: 1,
 									justifyContent: "center",
-									fontSize: "30px",
+									fontSize: "40px",
+									lineHeight: '50px',
+									fontWeight: '600'
 								}}
 							>
-								<span style={{ color: "#1F2223" }}>
+								<span style={{ color: "#1F2223", fontFamily: 'Lora' }}>
 									{PathNames.get(location.pathname)}
 								</span>
 							</div>
@@ -162,7 +170,7 @@ export default function Navbar() {
 									onClose={handleClose}
 									sx={{ marginTop: "50px" }}
 								>
-									<MenuItem onClick={handleClose}>Profile</MenuItem>
+									<Link to={"/dashboard"} style={{ textDecoration: "none" }}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
 									<MenuItem onClick={handleClose}>My account</MenuItem>
 									<MenuItem onClick={() => dispatch(logout())}>Logout</MenuItem>
 								</Menu>
@@ -188,6 +196,7 @@ export default function Navbar() {
 										textAlign: "start",
 										textTransform: "none",
 										width: "100%",
+										fontFamily: 'Lora'
 									}}
 								>
 									School Buddy
