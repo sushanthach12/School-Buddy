@@ -7,11 +7,28 @@ import {
     Input,
     Typography
 } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import ClearIcon from "@mui/icons-material/Clear";
 
 
 const EditPredefined = () => {
+
+    const [formField, setFormField] = useState({
+        title: "",
+        description: ""
+    })
+
+    const handleChange = (e) => {
+        setFormField({ ...formField, [e.target.name]: e.target.value })
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const formData = new FormData(e.target)
+        console.log(formData)
+    }
+
     return (
         <Container
             maxWidth='lg'
@@ -26,6 +43,7 @@ const EditPredefined = () => {
         >
             <Box>
                 <form
+                    onSubmit={handleSubmit}
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
@@ -34,7 +52,7 @@ const EditPredefined = () => {
                 >
                     <FormControl>
                         <FormLabel
-                            shrink
+                            shrink="true"
                             htmlFor="title"
                             style={{
                                 fontSize: "14px",
@@ -70,6 +88,9 @@ const EditPredefined = () => {
                                     fontSize: "16px",
                                     fontWeight: '400'
                                 }}
+                                name='title'
+                                value={formField.title}
+                                onChange={handleChange}
                             />
                             <Box>
                                 <ClearIcon
@@ -87,7 +108,7 @@ const EditPredefined = () => {
 
                     <FormControl>
                         <FormLabel
-                            shrink
+                            shrink="true"
                             htmlFor="description"
                             style={{
                                 fontSize: "14px",
@@ -123,6 +144,9 @@ const EditPredefined = () => {
                                     fontSize: "16px",
                                     fontWeight: '400'
                                 }}
+                                name='description'
+                                value={formField.description}
+                                onChange={handleChange}
                             />
                             <Box>
                                 <ClearIcon

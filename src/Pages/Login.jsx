@@ -7,7 +7,7 @@ import {
     Typography,
     Input,
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useDispatch, useSelector } from 'react-redux';
 import { logginSuccess } from '../store/slices/userSlice';
@@ -31,6 +31,12 @@ const Login = () => {
         dispatch(logginSuccess({email: credentials.email}))
         navigate('/')
     }
+
+    useEffect(() => {
+        if(user.loggedIn) {
+            navigate('/')
+        }
+    }, [])
 
     return (
         <Container
