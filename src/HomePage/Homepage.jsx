@@ -12,7 +12,7 @@ const Homepage = () => {
   return (
     <>
       {
-        // user.loggedIn ?
+        user.loggedIn ?
           <AuthBox>
             <div
               style={{
@@ -56,8 +56,8 @@ const Homepage = () => {
             </Typography>
             <CustomizableButton link="/signup" label={"Get Started"} />
           </AuthBox>
-          // :
-          // <LoginScreen />
+          :
+          <LoginScreen />
       }
     </>
   )

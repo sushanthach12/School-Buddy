@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SideBar from "./SideBar";
@@ -41,13 +41,13 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 	justifyContent: 'flex-end',
 }));
 
-export default function Navbar() {
+export default function Navbar({ hideNav }) {
 
 	const user = useSelector((state) => state.user)
 	const dispatch = useDispatch();
 
-
-	const location = useLocation()
+	const location = useLocation();
+	const navigate = useNavigate()
 
 	// const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -73,8 +73,17 @@ export default function Navbar() {
 		setAnchorEl(null);
 	};
 
+	const handleLogOut = () => {
+		dispatch(logout())
+		navigate('/login')
+	}
+
 	return (
-		<Box sx={{ display: "flex" }}>
+		<Box
+			sx={{
+				display: hideNav? "none" : "flex",
+			}}
+		>
 			<AppBar
 				position="static"
 				sx={{
@@ -172,7 +181,7 @@ export default function Navbar() {
 								>
 									<Link to={"/dashboard"} style={{ textDecoration: "none" }}><MenuItem onClick={handleClose}>Profile</MenuItem></Link>
 									<MenuItem onClick={handleClose}>My account</MenuItem>
-									<MenuItem onClick={() => dispatch(logout())}>Logout</MenuItem>
+									<MenuItem onClick={handleLogOut}>Logout</MenuItem>
 								</Menu>
 							</div>
 						</>
