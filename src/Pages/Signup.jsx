@@ -7,14 +7,19 @@ import {
     Typography,
     Input
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Signup = () => {
+    
+    const navigate = useNavigate()
+    const user = useSelector((state) => state.user)
+
 
     const [showConfirmPassErr, setShowConfirmPassErr] = useState(false)
-
     const [credentials, setCredentials] = useState({ email: "", password: "", confirmPass: "" })
 
     const handleCredChange = (e) => {
@@ -34,6 +39,12 @@ const Signup = () => {
         e.preventDefault()
         console.log("submit")
     }
+
+    useEffect(() => {
+        if(user.loggedIn) {
+            navigate('/')
+        }
+    }, [])
 
     return (
         <Container
