@@ -12,7 +12,7 @@ import InvoiceHistory from '../Pages/InvoiceHistory'
 import Template from '../Pages/Template'
 import AddPredefined from '../Pages/AddPredefined'
 import EditPredefined from '../Pages/EditPredefined'
-
+import InvoiceCreate from '../Pages/InvoiceCreate'
 const AllRoutes = () => {
     return (
         <Routes>
@@ -29,6 +29,8 @@ const AllRoutes = () => {
 
             <Route exact path='/add-predefined' element={<AddPredefined />}></Route>
             <Route exact path='/edit-predefined' element={<EditPredefined />}></Route>
+            <Route exact path='/invoice-create' element={<InvoiceCreate />}></Route>
+            
 
         </Routes>
     )
