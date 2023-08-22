@@ -7,6 +7,7 @@ const initialState = {
     status: 'idle'
 }
 
+
 const userSlice = createSlice({
     name: 'user',
     initialState,
