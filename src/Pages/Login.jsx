@@ -12,6 +12,7 @@ import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import { useDispatch, useSelector } from 'react-redux';
 import { logginSuccess } from '../store/slices/userSlice';
 import { Router, useNavigate } from 'react-router-dom';
+import Box from "@mui/material/Box";
 
 const Login = () => {
     const navigate = useNavigate()
@@ -40,21 +41,34 @@ const Login = () => {
 
     return (
         <Container
-            maxWidth="lg"
-            style={{
-                height: "80vh",
+            sx={{
+                height: "auto",
                 display: "flex",
-                justifyContent: "space-evenly",
                 alignItems: "center",
-                gap: '10px'
+                flexDirection: 'column',
+                marginTop: '50px',
+                width:"auto",
+                marginBottom: '50px'
             }}
         >
-
-            <img
+            <Box
+            sx={{
+                width:{
+                    xs:'250px',
+                    sm:'500px',
+                    md:'400px',
+                    lg:'400px',
+                    xl:'400px',
+                }
+            }}
+            >
+                <img
                 alt='profile'
                 src='/images/loginSvg.svg'
-                style={{ width: "439px", height: "439px" }}
+                style={{ width: "100%", height: "auto" }}
             />
+            </Box>
+            
 
 
             <form
@@ -69,11 +83,18 @@ const Login = () => {
                     <FormLabel
                         shrink="true"
                         htmlFor="email"
-                        style={{
+                        sx={{
                             fontSize: "14px",
                             fontWeight: '500',
                             lineHeight: '17.5px',
                             color: '#57595A',
+                            width: {
+                                xs: "auto",
+                                sm: "auto",
+                                md: "100%",
+                                lg: "100%",
+                                xl: "100%",
+                            }
                         }}
                     >
                         Email
@@ -91,7 +112,13 @@ const Login = () => {
                             border: '1px solid #D2D3D3',
                             padding: '11px 12px',
                             lineHeight: '24px',
-                            width: "438px",
+                            width:{
+                                xs:"250px",
+                                sm:"300px",
+                                md:"400px",
+                                lg:"400px",
+                                xl:"500px",
+                            },
                             color: '#363939'
                         }}
                         placeholder='example@gmail.com'
@@ -127,7 +154,7 @@ const Login = () => {
                             border: '1px solid #D2D3D3',
                             padding: '11px 12px',
                             lineHeight: '24px',
-                            width: "438px",
+                            width: "auto",
                             color: '#363939'
                         }}
                         placeholder='password'

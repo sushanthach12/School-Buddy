@@ -8,12 +8,13 @@ const LoginScreen = () => {
         <>
             <Container
                 maxWidth='lg'
-                style={{
+                sx={{
                     display: 'flex',
                     height: '100vh',
                     flexDirection: 'column',
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    width: '100%',
                 }}
             >
                 <div
@@ -33,7 +34,13 @@ const LoginScreen = () => {
                         fontWeight: "600",
                         lineHeight: "50px",
                         fontFamily: "Lora",
-                        width: "696px",
+                        width: {
+                            xs: "auto",
+                            sm: "auto",
+                            md: "100%",
+                            lg: "100%",
+                            xl: "100%",
+                        },
                         height: "50px",
                         textAlign: "center",
                         marginBottom: '10px'
@@ -51,6 +58,7 @@ const LoginScreen = () => {
                         top: "596px",
                         marginTop: "20px",
                         marginBottom: "20px",
+                        textAlign: "center",
                     }}
                 >
                     Few steps to begin!!

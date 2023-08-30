@@ -25,6 +25,13 @@ const AuthBox = (props) => {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
+            paddingBottom:{
+                xs:'50px',
+                sm:'50px',
+                md:'50px',
+                lg:'50px',
+                xl:'50px',
+            }
 
         }}
         >

@@ -14,7 +14,13 @@ export default function CustomizableButton({
         sx={{
           backgroundColor: "#FFE393",
           ":hover": { backgroundColor: "#ffe8a8" },
-          width: "531px",
+          width: {
+            xs:"300px",
+            sm:"300px",
+            md:"400px",
+            lg:"400px",
+            xl:"400px",
+          },
           height: "48px",
         }}
         disableElevation
@@ -23,7 +29,7 @@ export default function CustomizableButton({
           variant="h4"
           sx={{
             color: "#363939",
-            fontSize: "18px",
+            fontSize: "25px",
             fontWeight: "600",
             lineHeight: "22.5px",
             textAlign: "center",
