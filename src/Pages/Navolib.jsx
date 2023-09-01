@@ -12,10 +12,8 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import CallIcon from '@mui/icons-material/Call';
 import Button from '@mui/material/Button';
-
-const LinkGenerator = () => {
-
-	const [formField, setFormField] = useState({
+const Navolib = () => {
+    const [formField, setFormField] = useState({
 		gmaplink: "",
 		otherlink: "",
 		text: "",
@@ -50,9 +48,6 @@ const LinkGenerator = () => {
 					marginBottom: "10px",
 				}}
 			>
-				{/* <form
-					onSubmit={handleFormSubmit}
-				> */}
 					<Box
 						variant="div"
 						sx={{
@@ -87,19 +82,13 @@ const LinkGenerator = () => {
 
 							}}
 						>
-
-							<Box
-								sx={{
-									marginLeft: '5px'
-								}}
-							>
 								<LocationOnOutlinedIcon
 									sx={{
 										color: "#B1B2B2",
 										marginTop: "8px",
+                                        marginLeft: '5px'
 									}}
 								/>
-							</Box>
 							<Input
 								disableUnderline
 								id="gmaplink"
@@ -114,7 +103,6 @@ const LinkGenerator = () => {
 								value={formField.gmaplink}
 								onChange={handleChange}
 							/>
-							<Box>
 								<ClearIcon
 									sx={{
 										color: "#B1B2B2",
@@ -125,7 +113,7 @@ const LinkGenerator = () => {
 										cursor: "pointer",
 									}}
 								/>
-							</Box>
+							
 						</Box>
 					</Box>
 
@@ -597,4 +585,4 @@ const LinkGenerator = () => {
 	);
 };
 
-export default LinkGenerator;
+export default Navolib

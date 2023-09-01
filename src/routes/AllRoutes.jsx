@@ -15,6 +15,7 @@ import EditPredefined from '../Pages/EditPredefined'
 import InvoiceCreate from '../Pages/InvoiceCreate'
 import Predefined from '../Pages/Predefined'
 import ViewPredefined from '../Pages/ViewPredefined'
+import Navolib from '../Pages/Navolib'
 const AllRoutes = () => {
     return (
         <Routes>
@@ -34,8 +35,7 @@ const AllRoutes = () => {
             <Route exact path='/view-predefined' element={<ViewPredefined />}></Route>
             <Route exact path='/edit-predefined' element={<EditPredefined />}></Route>
             <Route exact path='/create-invoice' element={<InvoiceCreate />}></Route>
-            
-
+            <Route exact path='/navolib' element={<Navolib />}></Route>
         </Routes>
     )
 }
