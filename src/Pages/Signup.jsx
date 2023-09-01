@@ -16,25 +16,23 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { loggedInFailed, logginSuccess } from '../store/slices/userSlice';
 import { toast } from 'react-hot-toast';
-import { useHelloMutation, useRegisterUserMutation } from '../store/api/userApi';
+import { useRegisterUserMutation } from "../store/api/authApi";
 
 const Signup = () => {
-
-
-  const handleCredChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
-  };
 
   const navigate = useNavigate()
   const user = useSelector((state) => state.users)
   const dispatch = useDispatch()
-
+  
   const [registerUser] = useRegisterUserMutation();
-
+  
   const [showConfirmPassErr, setShowConfirmPassErr] = useState(false)
-  const [credentials, setCredentials] = useState({ email: "", password: "", confirmPass: "" })
+  const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmPass: "" })
   const [loading, setLoading] = useState(false)
-
+  
+  const handleCredChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
   const handleConfirmPassChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
     setTimeout(() => {
@@ -50,8 +48,8 @@ const Signup = () => {
       setLoading(true);
       const data = await registerUser(credentials).unwrap();
       toast.success("Success", { duration: 900, position: 'top-center' })
-      dispatch(logginSuccess(data))
       setTimeout(() => {
+        dispatch(logginSuccess(data))
         navigate('/')
       }, 1000);
 
@@ -71,11 +69,11 @@ const Signup = () => {
 
   return (
     <Container
-      //   maxWidth="lg"
+      maxWidth="lg"
       sx={{
-        height: "auto",
+        height: "84vh",
         display: "flex",
-        // justifyContent: "space-evenly",
+        justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: {
           xs: "column",
@@ -84,16 +82,15 @@ const Signup = () => {
           lg: "row",
           xl: "row",
         },
-        marginTop: "50px",
-        width: "auto",
-        marginBottom: "50px",
+        gap: "10px",
+        margionTop: "50px"
       }}
     >
       <Box
         sx={{
           width: {
             xs: "250px",
-            sm: "500px",
+            sm: "300px",
             md: "400px",
             lg: "400px",
             xl: "400px",
@@ -120,19 +117,21 @@ const Signup = () => {
         style={{
           display: "flex",
           flexDirection: "column",
+          width: "40%",
           gap: "30px",
         }}
         onSubmit={handleFormSubmit}
       >
+
+
         <FormControl>
           <FormLabel
             shrink="true"
-            htmlFor="email"
-            sx={{
+            htmlFor="names"
+            style={{
               fontSize: "14px",
               fontWeight: "500",
               lineHeight: "17.5px",
-              color: "#57595A",
               width: {
                 xs: "auto",
                 sm: "auto",
@@ -140,9 +139,70 @@ const Signup = () => {
                 lg: "100%",
                 xl: "100%",
               },
+              color: "#57595A",
+            }}
+          >
+            Name
+          </FormLabel>
+          <Input
+            id="name"
+            type="text"
+            disableUnderline
+            style={{
+              fontSize: "16px",
+              marginTop: "3px",
+              fontWeight: "400",
+              borderRadius: "6px",
+              border: "1px solid #D2D3D3",
+              padding: "11px 12px",
+              lineHeight: "24px",
+              width: "auto",
+              color: "#363939",
+            }}
+            placeholder="name"
+            required
+            name="name"
+            value={credentials.name}
+            onChange={handleCredChange}
+          />
+        </FormControl>
+        <FormControl>
+          <FormLabel
+            shrink="true"
+            htmlFor="email"
+            style={{
+              fontSize: "14px",
+              fontWeight: "500",
+              lineHeight: "17.5px",
+              width: {
+                xs: "auto",
+                sm: "auto",
+                md: "100%",
+                lg: "100%",
+                xl: "100%",
+              },
+              color: "#57595A",
+            }}
+          >
+            Email
+          </FormLabel>
+          <Input
+            id="email"
+            type="email"
+            disableUnderline
+            style={{
+              fontSize: "16px",
+              marginTop: "3px",
+              fontWeight: "400",
+              borderRadius: "6px",
+              border: "1px solid #D2D3D3",
+              padding: "11px 12px",
+              lineHeight: "24px",
+              width: "auto",
               color: "#363939",
             }}
             placeholder="example@gmail.com"
+            autoComplete={false}
             required
             name="email"
             value={credentials.email}
@@ -167,7 +227,7 @@ const Signup = () => {
             id="password"
             type="password"
             disableUnderline
-            sx={{
+            style={{
               fontSize: "16px",
               marginTop: "3px",
               fontWeight: "400",

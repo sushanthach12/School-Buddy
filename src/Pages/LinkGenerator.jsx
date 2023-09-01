@@ -19,9 +19,8 @@ import { onDetailFailed, onDetailSuccess } from "../store/slices/detailSlice";
 
 const LinkGenerator = () => {
 
-	const User = useSelector((state) => state.users.user)
+	const user = useSelector((state) => state.users.user)
 	const dispatch = useDispatch();
-	console.log(User)
 	
 	const [createDetail] = useCreateDetailMutation();
 
@@ -44,8 +43,8 @@ const LinkGenerator = () => {
 			// const form = new FormData(e.target);
 			// console.log(form)
 			const body = {
-				user: User?.token,
-				school_name: User?.user?.name,
+				user: user?.token,
+				school_name: user?.name,
 				map_link: formField.gmaplink,
 				other_link: formField.otherlink,
 				brochure_link: "sdvcsdv",
@@ -595,7 +594,7 @@ const LinkGenerator = () => {
 							fontFamily: "Lora",
 							width: "100%",
 						}}>
-						{User?.user.name || "School Name"}
+						{user?.name || "School Name"}
 					</Typography>
 
 					<Box

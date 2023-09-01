@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
@@ -9,8 +9,42 @@ import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import Button from "@mui/material/Button";
+import { useSelector } from "react-redux";
+import UploadImageModal from "../components/UploadImageModal";
 
 const Template = () => {
+  const user = useSelector((state) => state.users.user);
+
+  const imageRef = useRef();
+  const [imageFile, setImageFile] = useState(null)
+
+  const [loading, setLoading] = useState(false);
+
+  const [openImageModal, setOpenImageModal] = useState(false)
+
+  const handleImageModal = () => {
+    setOpenImageModal(!openImageModal);
+  }
+  const checkFileSize = () => {
+    const MAX_FILE_SIZE = 10 //10 MB
+
+    const uploadedFileSize = Number((imageFile?.size / 1048576).toFixed(2)); // MB
+
+    if (uploadedFileSize > MAX_FILE_SIZE) {
+      console.log("File Size Exceeded 10MB")
+    } else {
+      console.log("Success")
+    }
+  }
+
+  const handleImageInput = (e) => {
+    setImageFile(imageRef.current?.files[0])
+
+    setTimeout(() => {
+      checkFileSize()
+    }, 200)
+  }
+
   return (
     <Box
       variant="div"
@@ -22,6 +56,7 @@ const Template = () => {
         marginTop: "50px",
       }}
     >
+
       <Box
         variant="div"
         sx={{
@@ -29,6 +64,17 @@ const Template = () => {
           width: "533px",
         }}
       >
+
+        <input
+          id="pic"
+          name="pic"
+          type="file"
+          accept="image/jpeg, image/svg, image.png"
+          style={{ display: 'none' }}
+          ref={input => (imageRef.current = input)}
+          onInput={handleImageInput}
+        />
+
         <Box
           variant="div"
           sx={{
@@ -56,32 +102,28 @@ const Template = () => {
               width: "254px",
               height: "48px",
               display: "flex",
-              flexDirection: "col",
-              paddingTop: "4px",
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: "0 4px",
+              gap: '2px'
               //   ":hover": {border: "2px solid "},
               //   transition:'all 0.2s ease-in-out',
               //   ":hover":{borderColor:"#8E9090"},
             }}
           >
-            <Box
-              sx={{
-                marginLeft: "5px",
-              }}
-            >
+            <Box>
               <LocationOnOutlinedIcon
                 sx={{
                   color: "#B1B2B2",
-                  marginTop: "8px",
                 }}
               />
             </Box>
             <Input
               disableUnderline
-              placeholder="Placeholder"
+              placeholder={user.email || "email"}
               sx={{
                 width: "366px",
                 height: "24px",
-                marginTop: "8px",
                 fontSize: "16px",
               }}
             />
@@ -89,8 +131,6 @@ const Template = () => {
               <ClearIcon
                 sx={{
                   color: "#B1B2B2",
-                  marginTop: "8px",
-                  marginLeft: "15px",
                   height: "20px",
                   width: "20px",
                   cursor: "pointer",
@@ -136,23 +176,19 @@ const Template = () => {
                 width: "254px",
                 height: "48px",
                 display: "flex",
-                flexDirection: "col",
-                paddingTop: "4px",
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: "0 4px",
+                gap: '2px'
                 //   ":hover": {border: "2px solid "},
                 //   transition:'all 0.2s ease-in-out',
                 //   ":hover":{borderColor:"#8E9090"},
               }}
             >
-              <Box
-                sx={{
-                  marginLeft: "5px",
-                }}
-              >
+              <Box>
                 <AddLinkIcon
                   sx={{
                     color: "#B1B2B2",
-                    marginTop: "8px",
-                    marginRight: "5px",
                   }}
                 />
               </Box>
@@ -162,7 +198,6 @@ const Template = () => {
                 sx={{
                   width: "366px",
                   height: "24px",
-                  marginTop: "8px",
                   fontSize: "16px",
                 }}
               />
@@ -170,8 +205,6 @@ const Template = () => {
                 <ClearIcon
                   sx={{
                     color: "#B1B2B2",
-                    marginTop: "8px",
-                    marginLeft: "10px",
                     height: "20px",
                     width: "20px",
                     cursor: "pointer",
@@ -209,8 +242,10 @@ const Template = () => {
                 width: "254px",
                 height: "48px",
                 display: "flex",
-                flexDirection: "col",
-                paddingTop: "4px",
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: "0 4px",
+                gap: '2px'
                 //   ":hover": {border: "2px solid "},
                 //   transition:'all 0.2s ease-in-out',
                 //   ":hover":{borderColor:"#8E9090"},
@@ -224,8 +259,6 @@ const Template = () => {
                 <AddLinkIcon
                   sx={{
                     color: "#B1B2B2",
-                    marginTop: "8px",
-                    marginRight: "5px",
                   }}
                 />
               </Box>
@@ -235,7 +268,6 @@ const Template = () => {
                 sx={{
                   width: "366px",
                   height: "24px",
-                  marginTop: "8px",
                   fontSize: "16px",
                 }}
               />
@@ -243,8 +275,6 @@ const Template = () => {
                 <ClearIcon
                   sx={{
                     color: "#B1B2B2",
-                    marginTop: "8px",
-                    marginLeft: "10px",
                     height: "20px",
                     width: "20px",
                     cursor: "pointer",
@@ -289,32 +319,30 @@ const Template = () => {
               width: "533px",
               height: "48px",
               display: "flex",
-              flexDirection: "col",
-              // paddingTop: "4px",
-              padding: "8px",
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: "0 5px",
               //   ":hover": {border: "2px solid "},
               //   transition:'all 0.2s ease-in-out',
               //   ":hover":{borderColor:"#8E9090"},
             }}
           >
             <Box
-              sx={
-                {
-                  // marginLeft: '5px',
-                  // Padding: '8px'
-                }
-              }
+              sx={{
+                display: "flex",
+                justifyContent: 'start',
+                alignItems: 'center'
+              }}
             >
               <DescriptionOutlinedIcon
                 sx={{
                   color: "#B1B2B2",
                   // marginTop: "8px",
                   // marginRight: '5px'
-                  margin: "5px",
-                  padding: "0px",
                 }}
               />
             </Box>
+
             <Input
               disableUnderline
               placeholder="Placeholder"
@@ -324,47 +352,14 @@ const Template = () => {
                 // marginTop: "8px",
                 fontSize: "16px",
                 color: "#B1B2B2",
-                marginRight: "15px",
                 padding: "3px",
               }}
             />
-            {/* <Box
-            sx={{
-                width:"88px",
-                height:"36px",
-                backgroundColor:"#3B4744",
-                alignItems:"center",
-                justifyContent:"center",
-                padding:"0px",
-                display:"flex",
-                borderRadius:"4px",
-                padding:"0px 10px",
-                cursor:"pointer",
-            }}
-            >
-            <IosShareOutlinedIcon
-                        sx={{
-                            color:"#1F2223",
-                            // width:"48px",
-                            // height:"48px",
-                            weight:"200",
-                            color:"white"
-                        }}
-                        />
-              <Typography
-              sx={{
-                color:"white"
-              }}
-              >
-                Upload
-                </Typography>          
-            </Box> */}
+
             <Box>
               <ClearIcon
                 sx={{
                   color: "#B1B2B2",
-                  marginTop: "8px",
-                  marginLeft: "10px",
                   height: "20px",
                   width: "20px",
                   cursor: "pointer",
@@ -375,15 +370,11 @@ const Template = () => {
         </Box>
 
         {/* fourth */}
-
         <Box
           variant="div"
           sx={{
             alignContent: "center",
-            marginTop: "10px",
-            // border: "1px 0px 0px 0px",
-            // borderTop: "1px solid #EAEAEA",
-            paddingTop: "25px",
+            marginTop: "25px",
           }}
         >
           <Typography
@@ -406,32 +397,30 @@ const Template = () => {
               width: "533px",
               height: "48px",
               display: "flex",
-              flexDirection: "col",
-              // paddingTop: "4px",
-              padding: "8px",
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: "0 5px",
               //   ":hover": {border: "2px solid "},
               //   transition:'all 0.2s ease-in-out',
               //   ":hover":{borderColor:"#8E9090"},
             }}
           >
             <Box
-              sx={
-                {
-                  // marginLeft: '5px',
-                  // Padding: '8px'
-                }
-              }
+              sx={{
+                display: "flex",
+                justifyContent: 'start',
+                alignItems: 'center'
+              }}
             >
               <DescriptionOutlinedIcon
                 sx={{
                   color: "#B1B2B2",
                   // marginTop: "8px",
                   // marginRight: '5px'
-                  margin: "5px",
-                  padding: "0px",
                 }}
               />
             </Box>
+
             <Input
               disableUnderline
               placeholder="Placeholder"
@@ -441,16 +430,14 @@ const Template = () => {
                 // marginTop: "8px",
                 fontSize: "16px",
                 color: "#B1B2B2",
-                marginRight: "15px",
                 padding: "3px",
               }}
             />
+
             <Box>
               <ClearIcon
                 sx={{
                   color: "#B1B2B2",
-                  marginTop: "8px",
-                  marginLeft: "10px",
                   height: "20px",
                   width: "20px",
                   cursor: "pointer",
@@ -492,32 +479,30 @@ const Template = () => {
               width: "533px",
               height: "48px",
               display: "flex",
-              flexDirection: "col",
-              // paddingTop: "4px",
-              padding: "8px",
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: "0 5px",
               //   ":hover": {border: "2px solid "},
               //   transition:'all 0.2s ease-in-out',
               //   ":hover":{borderColor:"#8E9090"},
             }}
           >
             <Box
-              sx={
-                {
-                  // marginLeft: '5px',
-                  // Padding: '8px'
-                }
-              }
+              sx={{
+                display: "flex",
+                justifyContent: 'start',
+                alignItems: 'center'
+              }}
             >
               <DescriptionOutlinedIcon
                 sx={{
                   color: "#B1B2B2",
                   // marginTop: "8px",
                   // marginRight: '5px'
-                  margin: "5px",
-                  padding: "0px",
                 }}
               />
             </Box>
+
             <Input
               disableUnderline
               placeholder="Placeholder"
@@ -527,16 +512,14 @@ const Template = () => {
                 // marginTop: "8px",
                 fontSize: "16px",
                 color: "#B1B2B2",
-                marginRight: "15px",
                 padding: "3px",
               }}
             />
+
             <Box>
               <ClearIcon
                 sx={{
                   color: "#B1B2B2",
-                  marginTop: "8px",
-                  marginLeft: "10px",
                   height: "20px",
                   width: "20px",
                   cursor: "pointer",
@@ -942,7 +925,7 @@ const Template = () => {
               width: "100%",
             }}
           >
-            School Name
+            {user.name || "School Name"}
           </Typography>
 
           <Box
@@ -955,28 +938,53 @@ const Template = () => {
               marginTop: "30px",
             }}
           >
-            <IosShareOutlinedIcon
-              sx={{
-                color: "#1F2223",
-                width: "48px",
-                height: "48px",
-                weight: "200",
-                margin: "0px 15px",
+            <Button
+              style={{
+                margin: 0,
+                padding: 0,
+                backgroundColor: 'white',
               }}
-            />
-            <DeleteOutlineOutlinedIcon
-              sx={{
-                color: "#1F2223",
-                width: "48px",
-                height: "48px",
-                weight: "200",
-                margin: "0px 15px",
+              disableElevation
+              disableTouchRipple
+              onClick={handleImageModal}
+            >
+              <IosShareOutlinedIcon
+                sx={{
+                  color: "#1F2223",
+                  width: "48px",
+                  height: "48px",
+                  weight: "200",
+                  margin: "0px 15px",
+                }}
+
+              />
+            </Button>
+            <Button
+              style={{
+                margin: 0,
+                padding: 0,
+                backgroundColor: 'white',
               }}
-            />
+              disableElevation
+              disableTouchRipple
+
+            >
+              <DeleteOutlineOutlinedIcon
+                sx={{
+                  color: "#1F2223",
+                  width: "48px",
+                  height: "48px",
+                  weight: "200",
+                  margin: "0px 15px",
+                }}
+              />
+            </Button>
           </Box>
         </Box>
       </Box>
-    </Box>
+
+      {openImageModal && <UploadImageModal openModalOrNot={openImageModal} setOpenModalOrNot={setOpenImageModal} imageRef={imageRef} />}
+    </Box >
   );
 };
 

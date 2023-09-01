@@ -25,6 +25,7 @@ const userSlice = createSlice({
             state.status = "error"
         },
         logout: (state) => {
+            localStorage.removeItem('persist:root')
             state.user = initialState.user
             state.loggedIn = initialState.loggedIn
             state.error = initialState.error

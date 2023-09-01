@@ -170,7 +170,7 @@ export default function Navbar({ hideNav }) {
 										vertical: "top",
 										horizontal: "right",
 									}}
-									keepMounted
+									// keepMounted
 									transformOrigin={{
 										vertical: "top",
 										horizontal: "right",

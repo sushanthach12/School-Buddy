@@ -7,9 +7,9 @@ import { FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE } from "redux-persist
 
 import userReducer from "./slices/userSlice";
 import { setupListeners } from "@reduxjs/toolkit/dist/query";
-import { userApi } from "./api/userApi";
 import detailReducer from "./slices/detailSlice";
 import { detailApi } from "./api/detailApi";
+import { authApi } from "./api/authApi";
 
 const persistConfig = {
     key: 'root',
@@ -19,7 +19,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     users: userReducer,
     details: detailReducer,
-    [userApi.reducerPath]: userApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
     [detailApi.reducerPath]: detailApi.reducer
 })
 
@@ -32,7 +32,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(userApi.middleware, detailApi.middleware)
+        }).concat(authApi.middleware, detailApi.middleware)
 })
 
 setupListeners(store.dispatch)

@@ -20,10 +20,10 @@ const Homepage = () => {
               top: "200px",
               left: "427px",
               width: {
-                xs: "auto",
-                sm: "500px",
-                md: "700px",
-                lg: "auto",
+                xs: "200px",
+                sm: "300px",
+                md: "400px",
+                lg: "500px",
                 xl: "auto",
               },
             }}
@@ -41,9 +41,9 @@ const Homepage = () => {
               color: "#363939",
               fontSize: {
                 xs: "40px",
-                sm: "70px",
-                md: "60px",
-                lg: "50px",
+                sm: "40px",
+                md: "40px",
+                lg: "40px",
                 xl: "40px",
               },
               fontWeight: "600",
@@ -67,10 +67,10 @@ const Homepage = () => {
             sx={{
               color: "#363939",
               fontSize: {
-                xs: "20px",
-                sm: "30px",
-                md: "30px",
-                lg: "25px",
+                xs: "17px",
+                sm: "20px",
+                md: "20px",
+                lg: "20px",
                 xl: "20px",
               },
               fontWeight: "400",
@@ -85,7 +85,7 @@ const Homepage = () => {
           >
             Thank you for choosing School Buddy!!
           </Typography>
-          <CustomizableButton link="/signup" label={"Get Started"} />
+          <CustomizableButton link="/invoice-generator" label={"Get Started"} />
         </AuthBox>
       ) : (
         <LoginScreen />
