@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Container,
   FormControl,
@@ -7,20 +8,24 @@ import {
   Typography,
   Input,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import { useDispatch, useSelector } from "react-redux";
-import { logginSuccess } from "../store/slices/userSlice";
-import { Router, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
+
+import { loggedInFailed, logginSuccess } from '../store/slices/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import { useLoginUserMutation } from '../store/api/userApi';
 
 const Login = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.users)
+  const dispatch = useDispatch()
 
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+  const [loginUser] = useLoginUserMutation()
 
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({ email: "", password: "" })
+  const [loading, setLoading] = useState(false)
 
   const handleCredChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -45,12 +50,12 @@ const Login = () => {
         height: "auto",
         display: "flex",
         alignItems: "center",
-        flexDirection:{
-            xs: "column",
-            sm: "column",
-            md: "row",
-            lg: "row",
-            xl: "row",
+        flexDirection: {
+          xs: "column",
+          sm: "column",
+          md: "row",
+          lg: "row",
+          xl: "row",
         },
         marginTop: "50px",
         width: "auto",
@@ -66,13 +71,13 @@ const Login = () => {
             lg: "400px",
             xl: "400px",
           },
-          marginRight:{
+          marginRight: {
             xs: "0px",
             sm: "0px",
             md: "50px",
             lg: "50px",
             xl: "50px",
-          },      
+          },
         }}
       >
         <img

@@ -12,9 +12,20 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import CallIcon from '@mui/icons-material/Call';
 import Button from '@mui/material/Button';
+import { useCreateDetailMutation } from "../store/api/detailApi";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import { onDetailFailed, onDetailSuccess } from "../store/slices/detailSlice";
 
 const LinkGenerator = () => {
 
+	const User = useSelector((state) => state.users.user)
+	const dispatch = useDispatch();
+	console.log(User)
+	
+	const [createDetail] = useCreateDetailMutation();
+
+	const [loading, setLoading] = useState(false);
 	const [formField, setFormField] = useState({
 		gmaplink: "",
 		otherlink: "",
@@ -26,9 +37,30 @@ const LinkGenerator = () => {
 		setFormField({ ...formField, [e.target.name]: e.target.value })
 	}
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
-		const form = new FormData(e.target)
+		try {
+			setLoading(true)
+			// const form = new FormData(e.target);
+			// console.log(form)
+			const body = {
+				user: User?.token,
+				school_name: User?.user?.name,
+				map_link: formField.gmaplink,
+				other_link: formField.otherlink,
+				brochure_link: "sdvcsdv",
+				phone: formField.phoneNumber,
+				pic: "sdjbcvsidvb"
+			}
+			const data = await createDetail(body).unwrap()
+			console.log(data)
+			dispatch(onDetailSuccess(data))
+		} catch (error) {
+			toast.error("Something went Wrong", { duration: 900, position: 'top-center' })
+			dispatch(onDetailFailed)
+		} finally {
+			setLoading(false)
+		}
 	}
 
 	return (
@@ -113,6 +145,7 @@ const LinkGenerator = () => {
 								name="gmaplink"
 								value={formField.gmaplink}
 								onChange={handleChange}
+								required={true}
 							/>
 							<Box>
 								<ClearIcon
@@ -192,6 +225,7 @@ const LinkGenerator = () => {
 								name="otherlink"
 								value={formField.otherlink}
 								onChange={handleChange}
+								required={true}
 							/>
 							<Box>
 								<ClearIcon
@@ -273,6 +307,7 @@ const LinkGenerator = () => {
 								name="text"
 								value={formField.text}
 								onChange={handleChange}
+								required={true}
 							/>
 							<Box>
 								<ClearIcon
@@ -456,6 +491,7 @@ const LinkGenerator = () => {
 								name="phoneNumber"
 								value={formField.phoneNumber}
 								onChange={handleChange}
+								required={true}
 							/>
 							<Box>
 								<ClearIcon
@@ -473,7 +509,8 @@ const LinkGenerator = () => {
 					</Box>
 
 					<Button
-						disableElevation
+						disableElevation={true}
+						disabled={loading}
 						type="submit"
 						sx={{
 							marginTop: '25px',
@@ -558,7 +595,7 @@ const LinkGenerator = () => {
 							fontFamily: "Lora",
 							width: "100%",
 						}}>
-						School Name
+						{User?.user.name || "School Name"}
 					</Typography>
 
 					<Box

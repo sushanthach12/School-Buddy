@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
@@ -17,66 +17,25 @@ const userSlice = createSlice({
             state.loggedIn = true;
             state.user = action.payload;
             state.error = false
+            state.status = "fullfilled"
         },
         loggedInFailed: (state) => {
             state.loggedIn = false;
             state.error = true;
+            state.status = "error"
         },
         logout: (state) => {
             state.user = initialState.user
             state.loggedIn = initialState.loggedIn
             state.error = initialState.error
+            state.status = initialState.status
         }
     },
-    extraReducers(builder) {
-        builder
-            //register user
-            .addCase(registerUser.pending, (state, action) => {
-                state.status = 'loading'
-            })
-            .addCase(registerUser.fulfilled, (state, action) => {
-                state.status = 'succeeded'
-                state.user = action.payload
-                state.loggedIn = true
-            })
-            .addCase(registerUser.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message
-            })
-
-            //login user
-            .addCase(loginUser.pending, (state, action) => {
-                state.status = 'loading'
-            })
-            .addCase(loginUser.fulfilled, (state, action) => {
-                state.status = 'succeeded'
-                state.user = action.payload
-                state.loggedIn = true
-            })
-            .addCase(loginUser.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message
-            })
-    }
 })
+
+export const getUser = (state) => state.users.user
+export const getToken = (state) => state.users.user.token
 
 export const { logginSuccess, loggedInFailed, logout } = userSlice.actions;
 
 export default userSlice.reducer;
-
-
-export const registerUser = createAsyncThunk('user/register', async () => {
-    try {
-        // req to backend
-    } catch (error) {
-        return error.message
-    }
-})
-
-export const loginUser = createAsyncThunk('user/login', async () => {
-    try {
-        // req to backend
-    } catch (error) {
-        return error.message
-    }
-})

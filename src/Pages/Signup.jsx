@@ -7,65 +7,82 @@ import {
   Typography,
   Input,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 import Box from "@mui/material/Box";
+import React, { useEffect, useState } from 'react'
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { loggedInFailed, logginSuccess } from '../store/slices/userSlice';
+import { toast } from 'react-hot-toast';
+import { useHelloMutation, useRegisterUserMutation } from '../store/api/userApi';
 
 const Signup = () => {
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
 
-  const [showConfirmPassErr, setShowConfirmPassErr] = useState(false);
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-    confirmPass: "",
-  });
 
   const handleCredChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.users)
+  const dispatch = useDispatch()
+
+  const [registerUser] = useRegisterUserMutation();
+
+  const [showConfirmPassErr, setShowConfirmPassErr] = useState(false)
+  const [credentials, setCredentials] = useState({ email: "", password: "", confirmPass: "" })
+  const [loading, setLoading] = useState(false)
+
   const handleConfirmPassChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
     setTimeout(() => {
-      credentials.password === credentials.confirmPass
-        ? setShowConfirmPassErr(false)
-        : setShowConfirmPassErr(true);
-    }, 150);
-  };
+      (credentials.password === credentials.confirmPass) ? setShowConfirmPassErr(false) : setShowConfirmPassErr(true)
+    }, 150)
+  }
 
-  const showErr =
-    credentials.password === credentials.confirmPass ? false : true;
+  const showErr = (credentials.password === credentials.confirmPass) ? false : true
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("submit");
-  };
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      setLoading(true);
+      const data = await registerUser(credentials).unwrap();
+      toast.success("Success", { duration: 900, position: 'top-center' })
+      dispatch(logginSuccess(data))
+      setTimeout(() => {
+        navigate('/')
+      }, 1000);
+
+    } catch (error) {
+      toast.error("Something went wrong" + error, { duration: 1000 })
+      dispatch(loggedInFailed());
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
     if (user.loggedIn) {
-      navigate("/");
+      navigate('/')
     }
-  }, []);
+  }, [])
 
   return (
     <Container
-    //   maxWidth="lg"
+      //   maxWidth="lg"
       sx={{
         height: "auto",
         display: "flex",
         // justifyContent: "space-evenly",
         alignItems: "center",
         flexDirection: {
-            xs: "column",
-            sm: "column",
-            md: "row",
-            lg: "row",
-            xl: "row",
+          xs: "column",
+          sm: "column",
+          md: "row",
+          lg: "row",
+          xl: "row",
         },
         marginTop: "50px",
         width: "auto",
@@ -94,7 +111,7 @@ const Signup = () => {
           alt="signup"
           src="/images/signupSvg.svg"
           width="100%"
-            height="auto"
+          height="auto"
         //   style={{ width: "100%", height: "auto" }}
         />
       </Box>
@@ -122,29 +139,6 @@ const Signup = () => {
                 md: "100%",
                 lg: "100%",
                 xl: "100%",
-              },
-            }}
-          >
-            Email
-          </FormLabel>
-          <Input
-            id="email"
-            type="email"
-            disableUnderline
-            sx={{
-              fontSize: "16px",
-              marginTop: "3px",
-              fontWeight: "400",
-              borderRadius: "6px",
-              border: "1px solid #D2D3D3",
-              padding: "11px 12px",
-              lineHeight: "24px",
-             width: {
-                xs: "250px",
-                sm: "300px",
-                md: "400px",
-                lg: "400px",
-                xl: "500px",
               },
               color: "#363939",
             }}

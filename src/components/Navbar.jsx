@@ -1,5 +1,5 @@
 import * as React from "react";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import Drawer from "@mui/material/Drawer";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -43,7 +43,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function Navbar({ hideNav }) {
 
-	const user = useSelector((state) => state.user)
+	const user = useSelector((state) => state.users)
 	const dispatch = useDispatch();
 
 	const location = useLocation();

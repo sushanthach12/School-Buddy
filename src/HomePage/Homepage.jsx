@@ -7,7 +7,8 @@ import LoginScreen from "../Pages/LoginScreen";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Box from "@mui/material/Box";
 const Homepage = () => {
-  const user = useSelector((state) => state.user);
+
+  const user = useSelector((state) => state.users)
 
   return (
     <>
