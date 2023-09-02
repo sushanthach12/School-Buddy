@@ -269,6 +269,13 @@ const Analytics = () => {
           flexDirection: "column",
           alignItems: "center",
           gap: "8px",
+          marginTop:{
+            xs:"70px",
+            sm:"20px",
+            md:"0px",
+            lg:"0px",
+            xl:"0px",
+          }
           
           // width: '530px'
         }}

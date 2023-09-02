@@ -23,15 +23,36 @@ const Invoicegenerator = () => {
       <Box
         sx={{
           display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+            xl: "row",
+          },
           marginBottom: "20px",
         }}
       >
+        {/* first */}
         <Box
           // varient="div"
           sx={{
             width: "349px",
             height: "355px",
-            marginRight: "20px",
+            marginRight: {
+              xs: "0px",
+              sm: "0px",
+              md: "20px",
+              lg: "20px",
+              xl: "20px",
+            },
+            marginBottom: {
+              xs: "20px",
+              sm: "20px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },
           }}
         >
           <Box
@@ -93,10 +114,11 @@ const Invoicegenerator = () => {
                   width: "300px",
                 }}
               >
-                Create a new invoice
+                Create a new invoices
               </Typography>
             </Box>
-            <Link to={"/create-invoice"} style={{ textDecoration: 'none'}}>
+
+            <Link to={"/invoice-history"} style={{ textDecoration: 'none'}}>
               <Box
                 // varient = "div"
                 sx={{
@@ -206,7 +228,7 @@ const Invoicegenerator = () => {
                 Add Predefined details of the bill
               </Typography>
             </Box>
-            <Link to={"/predefined"} style={{ textDecoration: 'none'}}>
+            <Link to={"/template"} style={{ textDecoration: 'none'}}>
               <Box
                 // varient = "div"
                 sx={{
@@ -246,10 +268,19 @@ const Invoicegenerator = () => {
         </Box>
       </Box>
 
+
+
       {/* second row */}
       <Box
         sx={{
           display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+            xl: "row",
+          }
         }}
       >
         {/* first */}
@@ -258,7 +289,20 @@ const Invoicegenerator = () => {
           sx={{
             width: "349px",
             height: "355px",
-            marginRight: "20px",
+            marginRight: {
+              xs: "0px",
+              sm: "0px",
+              md: "20px",
+              lg: "20px",
+              xl: "20px",
+            },
+            marginBottom: {
+              xs: "20px",
+              sm: "20px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },
           }}
         >
           <Box

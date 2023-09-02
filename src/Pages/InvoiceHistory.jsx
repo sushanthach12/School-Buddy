@@ -1,12 +1,12 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 const InvoiceHistory = () => {
-  return (
+  return (  
     <Box
-      // varient="div"
+      varient="div"
       sx={{
         width: "auto",
         height: "auto",
@@ -14,857 +14,125 @@ const InvoiceHistory = () => {
         alignItems: "center",
         justifyContent: "center",
         display: "flex",
-        flexDirection: "column",
+        // flexDirection: "",
+        flexWrap: "wrap",
         marginTop: "50px",
+        paddingLeft:{
+          xs:"0px",
+          sm:"0px",
+          md:"400px",
+          lg:"400px",
+          xl:"400px"
+          
+        },
+        paddingRight:{
+          xs:"0px",
+          sm:"0px",
+          md:"400px",
+          lg:"400px",
+          xl:"400px"
+        }
       }}
     >
-      {/* first */}
       <Box
+        varient="div"
         sx={{
-          display: "flex",
+          width: "200px",
+          height: "auto",
+          marginRight: "20px",
           marginBottom: "20px",
         }}
       >
         <Box
-          // varient="div"
+          varient = "div"
           sx={{
-            width: "349px",
-            height: "355px",
-            marginRight: "20px",
+            width: "auto",
+            height: "auto",
           }}
         >
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "193px",
-              borderRadius: "10px",
+          <img
+            style={{
+              borderRadius: "10px 10px 0px 0px",
+              marginBottom: "0px",
             }}
-          >
-            <img
-              style={{
-                borderRadius: "10px 10px 0px 0px",
-              }}
-              src="/images/media.svg"
-              alt=""
-            />
-          </Box>
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "162px",
-              backgroundColor: "#1F2223",
-              borderRadius: "0px 0px 10px 10px",
-              paddingTop: "12px",
-            }}
-          >
-            <Box
-              // varient = "div"
-              sx={{
-                width: "317px",
-                height: "50px",
-                marginLeft: "16px",
-              }}
-            >
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "600",
-                  fontSize: "24px",
-                  lineHeight: "30px",
-                  color: "#FFFFFF",
-                  height: "30px",
-                  width: "300px",
-                  fontFamily: "Lora",
-                }}
-              >
-                Create New
-              </Typography>
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "400",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "#FFFFFF",
-                  height: "20px",
-                  width: "300px",
-                }}
-              >
-                Create a new invoice
-              </Typography>
-            </Box>
-            <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                View
-              </Typography>
-              <VisibilityOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                Download
-              </Typography>
-              <FileDownloadOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* second */}
-
-        <Box
-          // varient="div"
-          sx={{
-            width: "349px",
-            height: "355px",
-            marginRight: "20px",
-          }}
-        >
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "193px",
-              borderRadius: "10px",
-            }}
-          >
-            <img
-              style={{
-                borderRadius: "10px 10px 0px 0px",
-              }}
-              src="/images/media.svg"
-              alt=""
-            />
-          </Box>
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "162px",
-              backgroundColor: "#1F2223",
-              borderRadius: "0px 0px 10px 10px",
-              paddingTop: "12px",
-            }}
-          >
-            <Box
-              // varient = "div"
-              sx={{
-                width: "317px",
-                height: "50px",
-                marginLeft: "16px",
-              }}
-            >
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "600",
-                  fontSize: "24px",
-                  lineHeight: "30px",
-                  color: "#FFFFFF",
-                  height: "30px",
-                  width: "300px",
-                  fontFamily: "Lora",
-                }}
-              >
-                Create New
-              </Typography>
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "400",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "#FFFFFF",
-                  height: "20px",
-                  width: "300px",
-                }}
-              >
-                Create a new invoice
-              </Typography>
-            </Box>
-            <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                View
-              </Typography>
-              <VisibilityOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                Download
-              </Typography>
-              <FileDownloadOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* third */}
-
-        <Box
-          // varient="div"
-          sx={{
-            width: "349px",
-            height: "355px",
-          }}
-        >
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "193px",
-              borderRadius: "10px",
-            }}
-          >
-            <img
-              style={{
-                borderRadius: "10px 10px 0px 0px",
-              }}
-              src="/images/media.svg"
-              alt=""
-            />
-          </Box>
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "162px",
-              backgroundColor: "#1F2223",
-              borderRadius: "0px 0px 10px 10px",
-              paddingTop: "12px",
-            }}
-          >
-            <Box
-              // varient = "div"
-              sx={{
-                width: "317px",
-                height: "50px",
-                marginLeft: "16px",
-              }}
-            >
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "600",
-                  fontSize: "24px",
-                  lineHeight: "30px",
-                  color: "#FFFFFF",
-                  height: "30px",
-                  width: "300px",
-                  fontFamily: "Lora",
-                }}
-              >
-                Create New
-              </Typography>
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "400",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "#FFFFFF",
-                  height: "20px",
-                  width: "300px",
-                }}
-              >
-                Create a new invoice
-              </Typography>
-            </Box>
-            <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                View
-              </Typography>
-              <VisibilityOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                Download
-              </Typography>
-              <FileDownloadOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-            </Box>
-          </Box>
-        </Box>
-      </Box>
-
-      {/* second row */}
-      <Box
-        sx={{
-          display: "flex",
-        }}
-      >
-        {/* first */}
-        <Box
-          // varient="div"
-          sx={{
-            width: "349px",
-            height: "355px",
-            marginRight: "20px",
-          }}
-        >
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "193px",
-              borderRadius: "10px",
-            }}
-          >
-            <img
-              style={{
-                borderRadius: "10px 10px 0px 0px",
-              }}
-              src="/images/media.svg"
-              alt=""
-            />
-          </Box>
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "162px",
-              backgroundColor: "#1F2223",
-              borderRadius: "0px 0px 10px 10px",
-              paddingTop: "12px",
-            }}
-          >
-            <Box
-              // varient = "div"
-              sx={{
-                width: "317px",
-                height: "50px",
-                marginLeft: "16px",
-              }}
-            >
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "600",
-                  fontSize: "24px",
-                  lineHeight: "30px",
-                  color: "#FFFFFF",
-                  height: "30px",
-                  width: "300px",
-                  fontFamily: "Lora",
-                }}
-              >
-                Create New
-              </Typography>
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "400",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "#FFFFFF",
-                  height: "20px",
-                  width: "300px",
-                }}
-              >
-                Create a new invoice
-              </Typography>
-            </Box>
-            <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                View
-              </Typography>
-              <VisibilityOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                Download
-              </Typography>
-              <FileDownloadOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-            </Box>
-          </Box>
-        </Box>
-
-        {/* second */}
-
-        <Box
-          // varient="div"
-          sx={{
-            width: "349px",
-            height: "355px",
-            marginRight: "20px",
-
-          }}
-        >
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "193px",
-              borderRadius: "10px",
-            }}
-          >
-            <img
-              style={{
-                borderRadius: "10px 10px 0px 0px",
-              }}
-              src="/images/media.svg"
-              alt=""
-            />
-          </Box>
-          <Box
-            // varient = "div"
-            sx={{
-              width: "349px",
-              height: "162px",
-              backgroundColor: "#1F2223",
-              borderRadius: "0px 0px 10px 10px",
-              paddingTop: "12px",
-            }}
-          >
-            <Box
-              // varient = "div"
-              sx={{
-                width: "317px",
-                height: "50px",
-                marginLeft: "16px",
-              }}
-            >
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "600",
-                  fontSize: "24px",
-                  lineHeight: "30px",
-                  color: "#FFFFFF",
-                  height: "30px",
-                  width: "300px",
-                  fontFamily: "Lora",
-                }}
-              >
-                Create New
-              </Typography>
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "400",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "#FFFFFF",
-                  height: "20px",
-                  width: "300px",
-                }}
-              >
-                Create a new invoice
-              </Typography>
-            </Box>
-            <Box
-            sx={{
-                display:"flex"
-            }}
-            >
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                View
-              </Typography>
-              <VisibilityOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-
-            <Box
-              // varient = "div"
-              sx={{
-                display: "flex",
-                width: "140px",
-                height: "48px",
-                backgroundColor: "#FFE393",
-                borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
-                // padding:"10px",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{
-                  weight: "600",
-                  fontSize: "18px",
-                  lineHeight: "22.5px",
-                  color: "#162320",
-                }}
-              >
-                Download
-              </Typography>
-              <FileDownloadOutlinedIcon
-                sx={{
-                  color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
-                  height: "20px",
-                }}
-              />
-            </Box>
-            </Box>
-          </Box>
+            width="100%"
+            height="100%"
+            src="/images/media.svg"
+            alt=""
+          />
         </Box>
         <Box
-          // varient="div"
+          varient = "div"
           sx={{
-            width: "349px",
-            height: "355px",
+            width: "auto",
+            height: "auto",
+            backgroundColor: "#1F2223",
+            borderRadius: "0px 0px 10px 10px",
+            paddingTop: "12px",
           }}
         >
           <Box
-            // varient = "div"
+            varient = "div"
             sx={{
-              width: "349px",
-              height: "193px",
-              borderRadius: "10px",
+              // width: "1/2",  
+              height: "auto",
+              paddingLeft: "16px",
+              paddingRight: "16px",
             }}
           >
-            <img
-              style={{
-                borderRadius: "10px 10px 0px 0px",
+            <Typography
+              varient="h3"
+              sx={{
+                weight: "600",
+                fontSize: "24px",
+                lineHeight: "30px",
+                color: "#FFFFFF",
+                height: "auto",
+                // width: "300px",
+                fontFamily: "Lora",
               }}
-              src="/images/media.svg"
-              alt=""
-            />
+            >
+              Create New
+            </Typography>
+            <Typography
+              varient="h3"
+              sx={{
+                weight: "400",
+                fontSize: "14px",
+                lineHeight: "20px",
+                color: "#FFFFFF",
+                height: "20px",
+                // width: "300px",
+              }}
+            >
+              Create a new invoice
+            </Typography>
           </Box>
           <Box
-            // varient = "div"
             sx={{
-              width: "349px",
-              height: "162px",
-              backgroundColor: "#1F2223",
-              borderRadius: "0px 0px 10px 10px",
-              paddingTop: "12px",
+              display: "flex",
+              alignItems: "center",
+              paddingBottom: "5px",
+              justifyContent: "center",
+              paddingRight:"5px",
+              paddingLeft:"5px"
             }}
           >
-            <Box
-              // varient = "div"
-              sx={{
-                width: "317px",
-                height: "50px",
-                marginLeft: "16px",
-              }}
-            >
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "600",
-                  fontSize: "24px",
-                  lineHeight: "30px",
-                  color: "#FFFFFF",
-                  height: "30px",
-                  width: "300px",
-                  fontFamily: "Lora",
-                }}
-              >
-                Create New
-              </Typography>
-              <Typography
-                varient="h3"
-                sx={{
-                  weight: "400",
-                  fontSize: "14px",
-                  lineHeight: "20px",
-                  color: "#FFFFFF",
-                  height: "20px",
-                  width: "300px",
-                }}
-              >
-                Create a new invoice
-              </Typography>
-            </Box>
-            <Box
-            sx={{
-                display:"flex"
-            }}
-            >
             <Box
               // varient = "div"
               sx={{
                 display: "flex",
-                width: "140px",
-                height: "48px",
+                // width: "140px",
+                height: "auto",
                 backgroundColor: "#FFE393",
                 borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
+                // marginLeft: "16px",
+                // marginTop: "32px",
                 // padding:"10px",
+                padding: "5px",
                 alignItems: "center",
                 justifyContent: "center",
+                marginRight: "5px",
               }}
             >
               <Typography
@@ -880,8 +148,8 @@ const InvoiceHistory = () => {
               <VisibilityOutlinedIcon
                 sx={{
                   color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
+                  marginLeft: "5px",
+                  width: "auto",
                   height: "20px",
                 }}
               />
@@ -891,13 +159,14 @@ const InvoiceHistory = () => {
               // varient = "div"
               sx={{
                 display: "flex",
-                width: "140px",
-                height: "48px",
+                // width: "140px",
+                height: "auto",
                 backgroundColor: "#FFE393",
                 borderRadius: "6px",
-                marginLeft: "16px",
-                marginTop: "32px",
+                // marginLeft: "16px",
+                // marginTop: "32px",
                 // padding:"10px",
+                padding: "5px",
                 alignItems: "center",
                 justifyContent: "center",
               }}
@@ -915,16 +184,15 @@ const InvoiceHistory = () => {
               <FileDownloadOutlinedIcon
                 sx={{
                   color: "#162320",
-                  marginLeft: "10px",
-                  width: "20px",
+                  marginLeft: "5px",
+                  width: "auto",
                   height: "20px",
                 }}
               />
             </Box>
-            </Box>
           </Box>
         </Box>
-      </Box>
+      </Box>          
     </Box>
   );
 };
