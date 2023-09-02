@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    userTemplates: null,
+    userTemplates: [],
     template: null,
     error: null,
 }
@@ -13,7 +13,7 @@ const templateSlice = createSlice({
     initialState,
     reducers: {
         addUserTemplates: (state, action) => {
-            state.userTemplates = action.payload;
+            state.userTemplates.push(action.payload)
             state.error = false
         },
         addTemplate: (state, action) => {
@@ -29,6 +29,6 @@ const templateSlice = createSlice({
     },
 })
 
-export const { onDetailSuccess, onDetailFailed } = templateSlice.actions;
+export const { addTemplate, addUserTemplates, onTemplateFailed, resetTemplate } = templateSlice.actions;
 
 export default templateSlice.reducer;

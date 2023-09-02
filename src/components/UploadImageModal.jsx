@@ -23,7 +23,7 @@ const style = {
     p: 4,
 };
 
-const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, imageRef }) => {
+const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
     const handleClose = () => setOpenModalOrNot(!openModalOrNot);
 
     return (
@@ -101,7 +101,7 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, imageRef }) => {
                                 borderRadius: '6px',
                                 backgroundColor: '#FFE393'
                             }}
-                            onClick={() => imageRef.current.click()}
+                            onClick={() => fileRef.current.click()}
                         >
                             <Typography
                                 variant="h4"

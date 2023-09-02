@@ -11,6 +11,12 @@ export const templateApi = createApi({
                 headers: { 'Content-type': 'application/json' },
                 body: template
             })
+            ,
+            transformResponse: (response) => {
+                response['id'] = response?._id;
+                delete response?._id
+                return response
+            }
         }),
         getTemplate: builder.query({
             query: (id) => ({

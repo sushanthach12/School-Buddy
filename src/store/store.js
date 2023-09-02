@@ -10,6 +10,7 @@ import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import detailReducer from "./slices/detailSlice";
 import { detailApi } from "./api/detailApi";
 import { authApi } from "./api/authApi";
+import { templateApi } from "./api/templateApi";
 
 const persistConfig = {
     key: 'root',
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
     users: userReducer,
     details: detailReducer,
     [authApi.reducerPath]: authApi.reducer,
-    [detailApi.reducerPath]: detailApi.reducer
+    [detailApi.reducerPath]: detailApi.reducer,
+    [templateApi.reducerPath]: templateApi.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -32,7 +34,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(authApi.middleware, detailApi.middleware)
+        }).concat(authApi.middleware, detailApi.middleware, templateApi.middleware)
 })
 
 setupListeners(store.dispatch)
