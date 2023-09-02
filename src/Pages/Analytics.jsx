@@ -5,8 +5,12 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import CachedIcon from "@mui/icons-material/Cached";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import { useSelector } from "react-redux";
 
 const Analytics = () => {
+
+  const user = useSelector((state) => state.users.user)
+
   return (
     <Container
       sx={{
@@ -316,7 +320,7 @@ const Analytics = () => {
               fontFamily: "Lora",
             }}
           >
-            School Name
+            {user.name || "School Name"}
           </Typography>
         </Box>
       </Box>
