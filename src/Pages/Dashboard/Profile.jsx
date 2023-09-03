@@ -1,8 +1,12 @@
 import { Box, Button, Container, Typography } from '@mui/material'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Profile = () => {
+
+    const user = useSelector((state) => state.users.user)
+
     return (
         <Container
             maxWidth='lg'
@@ -28,11 +32,13 @@ const Profile = () => {
             >
                 <img
                     fill
-                    src='/images/profile.svg'
+                    src={user?.profile_img || '/images/profile.svg'}
                     alt='profile'
                     style={{
                         width: '284px',
-                        height: '284px'
+                        height: '284px',
+                        borderRadius: '50%',
+                        border: user?.profile_img && '4px solid #F9D262'
                     }}
                 />
             </Box>
@@ -56,7 +62,7 @@ const Profile = () => {
                         width: "100%",
                         fontFamily: 'Lora'
                     }}>
-                    School Name
+                    {user?.name || "School Name"}
                 </Typography>
             </Box>
 

@@ -14,7 +14,7 @@ export const authApi = createApi({
             transformResponse: (response) => {
                 return {
                     ...response?.user,
-                    token: response?.token
+                    token: response?.token,
                 }
             }
         }),
@@ -28,6 +28,7 @@ export const authApi = createApi({
             transformResponse: (response) => {
                 return {
                     ...response?.user,
+                    ...response?.upload,
                     token: response?.token
                 }
             }

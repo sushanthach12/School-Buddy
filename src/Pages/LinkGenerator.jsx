@@ -41,7 +41,6 @@ const LinkGenerator = () => {
 
 	const [openImageModal, setOpenImageModal] = useState(false)
 	const [openFileModal, setOpenFileModal] = useState(false)
-	const reader = new FileReader();
 
 	const handleChange = (e) => {
 		setFormField({ ...formField, [e.target.name]: e.target.value })
@@ -61,6 +60,7 @@ const LinkGenerator = () => {
 		setOpenImageModal(!openImageModal);
 	}
 	const handleImageInput = (e) => {
+		const reader = new FileReader();
 
 		reader.onload = (e) => {
 			setImageFile(e.target.result);
@@ -84,6 +84,7 @@ const LinkGenerator = () => {
 	}
 
 	const handleFileInput = (e) => {
+		const reader = new FileReader();
 		reader.onload = (e) => {
 			setFileInp(e.target.result)
 			console.log(e.target.result)
@@ -95,31 +96,33 @@ const LinkGenerator = () => {
 
 		reader.readAsDataURL(fileRef.current?.files[0]);
 		setTimeout(() => {
-			checkFileSize(imageFile)
+			checkFileSize(fileInp)
 		}, 200)
 	}
 
+	console.log(typeof imageFile)
 	const handleFormSubmit = async (e) => {
-		e.preventDefault();
 		try {
+			e.preventDefault();
 			setLoading(true)
 			// const form = new FormData(e.target);
 			// console.log(form)
 			const body = {
-				user: user?.token,
+				user: user?._id,
 				school_name: user?.name,
 				map_link: formField.gmaplink,
 				other_link: formField.otherlink,
-				brochure_link: "sdvcsdv",
+				brochure_link: fileInp,
 				phone: formField.phoneNumber,
-				pic: "sdjbcvsidvb"
+				pic: imageFile
 			}
-			const data = await createDetail(body).unwrap()
+
+			const data = await createDetail({ body, token: user.token }).unwrap()
 			console.log(data)
 			dispatch(onDetailSuccess(data))
 		} catch (error) {
 			toast.error("Something went Wrong", { duration: 900, position: 'top-center' })
-			dispatch(onDetailFailed)
+			dispatch(onDetailFailed())
 		} finally {
 			setLoading(false)
 		}
@@ -138,489 +141,488 @@ const LinkGenerator = () => {
 			}}
 		>
 			<Box
-				onSubmit={handleFormSubmit}
 				variant="div"
 				sx={{
 					marginBottom: "10px",
 				}}
 			>
-				{/* <form
+				<form
 					onSubmit={handleFormSubmit}
-				> */}
-				<Box
-					variant="div"
-					sx={{
-						alignContent: "center",
-					}}
 				>
-					<Typography
-						sx={{
-							width: "438px",
-							height: "18px",
-							fontSize: "14px",
-							fontWeight: "500",
-							lineHeight: "17.5px",
-							fontFamily: "Inter",
-							color: "#57595A",
-						}}
-					>
-						Google Map Link
-					</Typography>
 					<Box
+						variant="div"
 						sx={{
-							border: "2px solid #D2D3D3",
-							borderRadius: "6px",
-							width: "438px",
-							height: "48px",
-							display: "flex",
-							flexDirection: "col",
-							paddingTop: "4px",
-							//   ":hover": {border: "2px solid "},
-							//   transition:'all 0.2s ease-in-out',
-							//   ":hover":{borderColor:"#8E9090"},
-
-						}}
-					>
-
-						<Box
-							sx={{
-								marginLeft: '5px'
-							}}
-						>
-							<LocationOnOutlinedIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-								}}
-							/>
-						</Box>
-						<Input
-							disableUnderline
-							id="gmaplink"
-							placeholder="Placeholder"
-							sx={{
-								width: "366px",
-								height: "24px",
-								marginTop: "8px",
-								fontSize: "16px",
-							}}
-							name="gmaplink"
-							value={formField.gmaplink}
-							onChange={handleChange}
-							required={true}
-						/>
-						<Box>
-							<ClearIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginLeft: "15px",
-									height: "20px",
-									width: "20px",
-									cursor: "pointer",
-								}}
-							/>
-						</Box>
-					</Box>
-				</Box>
-
-				{/* first input done */}
-				<Box
-					variant="div"
-					sx={{
-						alignContent: "center",
-						marginTop: "25px",
-					}}
-				>
-					<Typography
-						sx={{
-							width: "438px",
-							height: "18px",
-							fontSize: "14px",
-							fontWeight: "500",
-							lineHeight: "17.5px",
-							fontFamily: "Inter",
-							color: "#57595A",
-						}}
-					>
-						Other link
-					</Typography>
-					<Box
-						sx={{
-							border: "2px solid #D2D3D3",
-							borderRadius: "6px",
-							width: "438px",
-							height: "48px",
-							display: "flex",
-							flexDirection: "col",
-							paddingTop: "4px",
-							//   ":hover": {border: "2px solid "},
-							//   transition:'all 0.2s ease-in-out',
-							//   ":hover":{borderColor:"#8E9090"},
-
-						}}
-					>
-
-						<Box
-							sx={{
-								marginLeft: '5px'
-							}}
-						>
-							<AddLinkIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginRight: '5px'
-								}}
-							/>
-						</Box>
-						<Input
-							disableUnderline
-							id="otherlink"
-							placeholder="Placeholder"
-							sx={{
-								width: "366px",
-								height: "24px",
-								marginTop: "8px",
-								fontSize: "16px",
-							}}
-							name="otherlink"
-							value={formField.otherlink}
-							onChange={handleChange}
-							required={true}
-						/>
-						<Box>
-							<ClearIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginLeft: "10px",
-									height: "20px",
-									width: "20px",
-									cursor: "pointer",
-								}}
-							/>
-						</Box>
-					</Box>
-				</Box>
-
-				{/* second */}
-
-				<Box
-					variant="div"
-					sx={{
-						alignContent: "center",
-						marginTop: "25px",
-					}}
-				>
-					<Typography
-						sx={{
-							width: "438px",
-							height: "18px",
-							fontSize: "14px",
-							fontWeight: "500",
-							lineHeight: "17.5px",
-							fontFamily: "Inter",
-							color: "#57595A",
-						}}
-					>
-						Text
-					</Typography>
-					<Box
-						sx={{
-							border: "2px solid #D2D3D3",
-							borderRadius: "6px",
-							width: "438px",
-							height: "117px",
-							display: "flex",
-							flexDirection: "col",
 							alignContent: "center",
-							justifyContent: "center",
-							paddingTop: "30px",
-							//   ":hover": {border: "2px solid "},
-							//   transition:'all 0.2s ease-in-out',
-							//   ":hover":{borderColor:"#8E9090"},
-
 						}}
 					>
-
-						<Box
-							sx={{
-								marginLeft: '5px'
-							}}
-						>
-							<FormatUnderlinedIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-								}}
-							/>
-						</Box>
-						<Input
-							disableUnderline
-							id="text"
-							placeholder="Placeholder"
-							sx={{
-								width: "366px",
-								height: "24px",
-								marginTop: "8px",
-								fontSize: "16px",
-							}}
-							name="text"
-							value={formField.text}
-							onChange={handleChange}
-							required={true}
-						/>
-						<Box>
-							<ClearIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginLeft: "10px",
-									height: "20px",
-									width: "20px",
-									cursor: "pointer",
-								}}
-							/>
-						</Box>
-					</Box>
-				</Box>
-				{/* third */}
-
-				<Box
-					variant="div"
-					sx={{
-						alignContent: "center",
-						marginTop: "25px",
-					}}
-				>
-					<Typography
-						sx={{
-							width: "438px",
-							height: "18px",
-							fontSize: "14px",
-							fontWeight: "500",
-							lineHeight: "17.5px",
-							fontFamily: "Inter",
-							color: "#57595A",
-						}}
-					>
-						School Brochure
-					</Typography>
-					<Box
-						sx={{
-							border: "2px solid #D2D3D3",
-							borderRadius: "6px",
-							width: "438px",
-							height: "48px",
-							display: "flex",
-							flexDirection: "col",
-							paddingTop: "4px",
-							//   ":hover": {border: "2px solid "},
-							//   transition:'all 0.2s ease-in-out',
-							//   ":hover":{borderColor:"#8E9090"},
-
-						}}
-					>
-
-						<Box
-							sx={{
-								marginLeft: '5px'
-							}}
-						>
-							<DescriptionOutlinedIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginRight: '5px'
-								}}
-							/>
-						</Box>
-						<input
-							id="file"
-							name="file"
-							type="file"
-							accept=".pdf, .doc, .docx"
-							style={{ display: 'none' }}
-							ref={input => (fileRef.current = input)}
-							onInput={handleFileInput}
-						/>
 						<Typography
 							sx={{
-								width: "260px",
-								height: "24px",
-								marginTop: "8px",
-								fontSize: "16px",
-								color: '#B1B2B2',
-								marginRight: '15px'
-							}}
-						>Placeholder</Typography>
-						<Box
-							sx={{
-								width: "88px",
-								height: "36px",
-								backgroundColor: "#3B4744",
-								alignItems: "center",
-								justifyContent: "center",
-								display: "flex",
-								borderRadius: "4px",
-								padding: "0px 10px",
-								cursor: "pointer",
+								width: "438px",
+								height: "18px",
+								fontSize: "14px",
+								fontWeight: "500",
+								lineHeight: "17.5px",
+								fontFamily: "Inter",
+								color: "#57595A",
 							}}
 						>
-							<Button
-								disableElevation
-								disableTouchRipple
-								onClick={handleFileModal}
+							Google Map Link
+						</Typography>
+						<Box
+							sx={{
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: "438px",
+								height: "48px",
+								display: "flex",
+								flexDirection: "col",
+								paddingTop: "4px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
 
+							}}
+						>
+
+							<Box
+								sx={{
+									marginLeft: '5px'
+								}}
 							>
-								<IosShareOutlinedIcon
+								<LocationOnOutlinedIcon
 									sx={{
-										// width:"48px",
-										// height:"48px",
-										weight: "200",
-										color: "white"
+										color: "#B1B2B2",
+										marginTop: "8px",
 									}}
 								/>
-								<Typography
-									sx={{
-										color: "white",
-										textTransform: 'none'
-									}}
-
-								>
-									Upload
-								</Typography>
-							</Button>
-						</Box>
-						<Box>
-							<ClearIcon
+							</Box>
+							<Input
+								disableUnderline
+								id="gmaplink"
+								placeholder="Placeholder"
 								sx={{
-									color: "#B1B2B2",
+									width: "366px",
+									height: "24px",
 									marginTop: "8px",
-									marginLeft: "10px",
-									height: "20px",
-									width: "20px",
-									cursor: "pointer",
+									fontSize: "16px",
 								}}
+								name="gmaplink"
+								value={formField.gmaplink}
+								onChange={handleChange}
+								required={true}
 							/>
+							<Box>
+								<ClearIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginLeft: "15px",
+										height: "20px",
+										width: "20px",
+										cursor: "pointer",
+									}}
+								/>
+							</Box>
 						</Box>
 					</Box>
-				</Box>
 
-				{/* fourth */}
-				<Box
-					variant="div"
-					sx={{
-						alignContent: "center",
-						marginTop: "25px",
-					}}
-				>
-					<Typography
-						sx={{
-							width: "438px",
-							height: "18px",
-							fontSize: "14px",
-							fontWeight: "500",
-							lineHeight: "17.5px",
-							fontFamily: "Inter",
-							color: "#57595A",
-						}}
-					>
-						Phone Number
-					</Typography>
+					{/* first input done */}
 					<Box
+						variant="div"
 						sx={{
-							border: "2px solid #D2D3D3",
-							borderRadius: "6px",
-							width: "438px",
-							height: "48px",
-							display: "flex",
-							flexDirection: "col",
-							paddingTop: "4px",
-							//   ":hover": {border: "2px solid "},
-							//   transition:'all 0.2s ease-in-out',
-							//   ":hover":{borderColor:"#8E9090"},
-
+							alignContent: "center",
+							marginTop: "25px",
 						}}
 					>
-
-						<Box
+						<Typography
 							sx={{
-								marginLeft: '5px'
+								width: "438px",
+								height: "18px",
+								fontSize: "14px",
+								fontWeight: "500",
+								lineHeight: "17.5px",
+								fontFamily: "Inter",
+								color: "#57595A",
 							}}
 						>
-							<CallIcon
-								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginRight: '5px'
-								}}
-							/>
-						</Box>
-						<Input
-							disableUnderline
-							placeholder="Placeholder"
-							id="phoneNumber"
+							Other link
+						</Typography>
+						<Box
 							sx={{
-								width: "366px",
-								height: "24px",
-								marginTop: "8px",
-								fontSize: "16px",
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: "438px",
+								height: "48px",
+								display: "flex",
+								flexDirection: "col",
+								paddingTop: "4px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+
 							}}
-							name="phoneNumber"
-							value={formField.phoneNumber}
-							onChange={handleChange}
-							required={true}
-						/>
-						<Box>
-							<ClearIcon
+						>
+
+							<Box
 								sx={{
-									color: "#B1B2B2",
-									marginTop: "8px",
-									marginLeft: "10px",
-									height: "20px",
-									width: "20px",
-									cursor: "pointer",
+									marginLeft: '5px'
 								}}
+							>
+								<AddLinkIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginRight: '5px'
+									}}
+								/>
+							</Box>
+							<Input
+								disableUnderline
+								id="otherlink"
+								placeholder="Placeholder"
+								sx={{
+									width: "366px",
+									height: "24px",
+									marginTop: "8px",
+									fontSize: "16px",
+								}}
+								name="otherlink"
+								value={formField.otherlink}
+								onChange={handleChange}
+								required={true}
 							/>
+							<Box>
+								<ClearIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginLeft: "10px",
+										height: "20px",
+										width: "20px",
+										cursor: "pointer",
+									}}
+								/>
+							</Box>
 						</Box>
 					</Box>
-				</Box>
 
-				<Button
-					disableElevation={true}
-					disabled={loading}
-					type="submit"
-					sx={{
-						marginTop: '25px',
-						backgroundColor: "#FFE393",
-						width: '253px',
-						height: '48px',
-						":hover": { backgroundColor: "#ffe8a8" },
-						textColor: "#363939",
-						borderRadius: '6px'
-					}}
-					variant="contained"
+					{/* second */}
 
-				>
-					<Typography
-						variant="h4"
+					<Box
+						variant="div"
 						sx={{
-							color: "#363939",
-							fontSize: "18px",
-							fontWeight: "600",
-							lineHeight: "22.5px",
-							textAlign: "center",
-							cursor: "pointer",
-							textTransform: "none",
-							width: "100%",
-							fontFamily: "Lora",
-						}}>
-						Update
-					</Typography>
-				</Button>
-				{/* </form> */}
+							alignContent: "center",
+							marginTop: "25px",
+						}}
+					>
+						<Typography
+							sx={{
+								width: "438px",
+								height: "18px",
+								fontSize: "14px",
+								fontWeight: "500",
+								lineHeight: "17.5px",
+								fontFamily: "Inter",
+								color: "#57595A",
+							}}
+						>
+							Text
+						</Typography>
+						<Box
+							sx={{
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: "438px",
+								height: "117px",
+								display: "flex",
+								flexDirection: "col",
+								alignContent: "center",
+								justifyContent: "center",
+								paddingTop: "30px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+
+							}}
+						>
+
+							<Box
+								sx={{
+									marginLeft: '5px'
+								}}
+							>
+								<FormatUnderlinedIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+									}}
+								/>
+							</Box>
+							<Input
+								disableUnderline
+								id="text"
+								placeholder="Placeholder"
+								sx={{
+									width: "366px",
+									height: "24px",
+									marginTop: "8px",
+									fontSize: "16px",
+								}}
+								name="text"
+								value={formField.text}
+								onChange={handleChange}
+								required={true}
+							/>
+							<Box>
+								<ClearIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginLeft: "10px",
+										height: "20px",
+										width: "20px",
+										cursor: "pointer",
+									}}
+								/>
+							</Box>
+						</Box>
+					</Box>
+					{/* third */}
+
+					<Box
+						variant="div"
+						sx={{
+							alignContent: "center",
+							marginTop: "25px",
+						}}
+					>
+						<Typography
+							sx={{
+								width: "438px",
+								height: "18px",
+								fontSize: "14px",
+								fontWeight: "500",
+								lineHeight: "17.5px",
+								fontFamily: "Inter",
+								color: "#57595A",
+							}}
+						>
+							School Brochure
+						</Typography>
+						<Box
+							sx={{
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: "438px",
+								height: "48px",
+								display: "flex",
+								flexDirection: "col",
+								paddingTop: "4px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+
+							}}
+						>
+
+							<Box
+								sx={{
+									marginLeft: '5px'
+								}}
+							>
+								<DescriptionOutlinedIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginRight: '5px'
+									}}
+								/>
+							</Box>
+							<input
+								id="file"
+								name="file"
+								type="file"
+								accept=".pdf, .doc, .docx"
+								style={{ display: 'none' }}
+								ref={input => (fileRef.current = input)}
+								onInput={handleFileInput}
+							/>
+							<Typography
+								sx={{
+									width: "260px",
+									height: "24px",
+									marginTop: "8px",
+									fontSize: "16px",
+									color: '#B1B2B2',
+									marginRight: '15px'
+								}}
+							>{fileRef.current?.files[0]?.name || "Placeholder"}</Typography>
+							<Box
+								sx={{
+									width: "88px",
+									height: "36px",
+									backgroundColor: "#3B4744",
+									alignItems: "center",
+									justifyContent: "center",
+									display: "flex",
+									borderRadius: "4px",
+									padding: "0px 10px",
+									cursor: "pointer",
+								}}
+							>
+								<Button
+									disableElevation
+									disableTouchRipple
+									onClick={handleFileModal}
+
+								>
+									<IosShareOutlinedIcon
+										sx={{
+											// width:"48px",
+											// height:"48px",
+											weight: "200",
+											color: "white"
+										}}
+									/>
+									<Typography
+										sx={{
+											color: "white",
+											textTransform: 'none'
+										}}
+
+									>
+										Upload
+									</Typography>
+								</Button>
+							</Box>
+							<Box>
+								<ClearIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginLeft: "10px",
+										height: "20px",
+										width: "20px",
+										cursor: "pointer",
+									}}
+								/>
+							</Box>
+						</Box>
+					</Box>
+
+					{/* fourth */}
+					<Box
+						variant="div"
+						sx={{
+							alignContent: "center",
+							marginTop: "25px",
+						}}
+					>
+						<Typography
+							sx={{
+								width: "438px",
+								height: "18px",
+								fontSize: "14px",
+								fontWeight: "500",
+								lineHeight: "17.5px",
+								fontFamily: "Inter",
+								color: "#57595A",
+							}}
+						>
+							Phone Number
+						</Typography>
+						<Box
+							sx={{
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: "438px",
+								height: "48px",
+								display: "flex",
+								flexDirection: "col",
+								paddingTop: "4px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+
+							}}
+						>
+
+							<Box
+								sx={{
+									marginLeft: '5px'
+								}}
+							>
+								<CallIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginRight: '5px'
+									}}
+								/>
+							</Box>
+							<Input
+								disableUnderline
+								placeholder="Placeholder"
+								id="phoneNumber"
+								sx={{
+									width: "366px",
+									height: "24px",
+									marginTop: "8px",
+									fontSize: "16px",
+								}}
+								name="phoneNumber"
+								value={formField.phoneNumber}
+								onChange={handleChange}
+								required={true}
+							/>
+							<Box>
+								<ClearIcon
+									sx={{
+										color: "#B1B2B2",
+										marginTop: "8px",
+										marginLeft: "10px",
+										height: "20px",
+										width: "20px",
+										cursor: "pointer",
+									}}
+								/>
+							</Box>
+						</Box>
+					</Box>
+
+					<Button
+						disableElevation={true}
+						disabled={loading}
+						type="submit"
+						sx={{
+							marginTop: '25px',
+							backgroundColor: "#FFE393",
+							width: '253px',
+							height: '48px',
+							":hover": { backgroundColor: "#ffe8a8" },
+							textColor: "#363939",
+							borderRadius: '6px'
+						}}
+						variant="contained"
+
+					>
+						<Typography
+							variant="h4"
+							sx={{
+								color: "#363939",
+								fontSize: "18px",
+								fontWeight: "600",
+								lineHeight: "22.5px",
+								textAlign: "center",
+								cursor: "pointer",
+								textTransform: "none",
+								width: "100%",
+								fontFamily: "Lora",
+							}}>
+							Update
+						</Typography>
+					</Button>
+				</form>
 			</Box>
 
 
@@ -646,14 +648,14 @@ const LinkGenerator = () => {
 					}}
 				>
 					<img
-						fill="true"
-						src={imageFile || "/images/profile.svg"}
-						alt='profile'
+						fill={true}
+						src={imageFile || user?.profile_img || "/images/profile.svg"}
+						alt="profile"
 						style={{
 							width: "284px",
 							height: "284px",
 							borderRadius: '50%',
-							border: imageFile && '4px solid #F9D262'
+							border: (user?.profile_img || imageFile) && '4px solid #F9D262'
 						}}
 					/>
 				</Box>
@@ -746,7 +748,9 @@ const LinkGenerator = () => {
 
 			{openImageModal && <UploadImageModal openModalOrNot={openImageModal} setOpenModalOrNot={setOpenImageModal} fileRef={imageRef} />}
 			{openFileModal && <UploadImageModal openModalOrNot={openFileModal} setOpenModalOrNot={setOpenFileModal} fileRef={fileRef} />}
-
+			{/* <object data={fileInp} type="application/pdf" width="100%" height="500px">
+				<p>Unable to display PDF file. <a href="/uploads/media/default/0001/01/540cb75550adf33f281f29132dddd14fded85bfc.pdf">Download</a> instead.</p>
+			</object> */}
 		</Box>
 	);
 };

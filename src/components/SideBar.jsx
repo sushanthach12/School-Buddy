@@ -3,6 +3,7 @@ import React from 'react'
 import { Box, Button, Typography } from '@mui/material'
 import ArrowForwardOutlinedIcon from "@mui/icons-material/ArrowForwardOutlined";
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 const navLinks = [
     { link: '/analytics', name: 'Analytics' },
@@ -13,6 +14,7 @@ const navLinks = [
 
 
 const SideBar = ({ handleDrawerClose }) => {
+    const dispatch = useDispatch()
 
     return (
         <Box
@@ -239,6 +241,7 @@ const SideBar = ({ handleDrawerClose }) => {
                     marginLeft: "20px",
                     marginTop: "200px",
                 }}
+                onClick={() => dispatch({type: 'RESET'})}
             >
                 <Typography
                     variant="h4 "

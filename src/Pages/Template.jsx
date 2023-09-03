@@ -943,13 +943,14 @@ const Template = () => {
 				>
 					<img
 						fill={true}
-						src={imageFile || "/images/profile.svg"}
+						src={imageFile || user?.profile_img || "/images/profile.svg"}
 						alt="profile"
 						style={{
 							width: "284px",
 							height: "284px",
 							borderRadius: '50%',
-							border: imageFile && '4px solid #F9D262'
+							border: (user?.profile_img || imageFile) && '4px solid #F9D262',
+							objectFit: 'cover',
 						}}
 					/>
 				</Box>
