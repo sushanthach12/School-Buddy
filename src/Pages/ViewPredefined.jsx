@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Box,
     Button,
@@ -15,12 +15,15 @@ import Paper from '@mui/material/Paper';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useGetAllUserPredefinedQuery } from '../store/api/predefinedApi';
+import { addPredefines } from '../store/slices/predefinedSlice';
 
 function createData(name, description, itemId, deleteId, selectId) {
     return { name, description, itemId, deleteId, selectId };
 }
 
-const rows = [
+const eles = [
     createData('Query', 'Query', 'itemId', 'deleteId', 'selectId'),
     createData('Query', 'Query', 'itemId', 'deleteId', 'selectId'),
     createData('Query', 'Query', 'itemId', 'deleteId', 'selectId'),
@@ -33,6 +36,11 @@ const tableHeads = ["Description", "Edit", "Delete", "Select"]
 
 
 const ViewPredefined = () => {
+    const user = useSelector((state) => state.users.user);
+
+    const predefined = useSelector(state => state.predefined.predefines)
+    const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id })
+
     return (
         <Container
             maxWidth='lg'
@@ -97,9 +105,10 @@ const ViewPredefined = () => {
                         </TableHead>
 
                         <TableBody>
-                            {rows.map((row) => (
+                            {isLoading && "Loading..."}
+                            {isSuccess && predefined.map((ele) => (
                                 <TableRow
-                                    key={row.name}
+                                    key={ele._id}
                                     sx={{
                                         '&:last-child td, &:last-child th': {
                                             border: 0
@@ -107,15 +116,15 @@ const ViewPredefined = () => {
                                         padding: '8px 24px',
                                     }}
                                 >
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
+                                    <TableCell component="th" scope="ele">
+                                        {ele.title}
                                     </TableCell>
 
-                                    <TableCell align="center">{row.description}</TableCell>
+                                    <TableCell align="center">{ele.description}</TableCell>
 
                                     <TableCell align="center">
                                         <Link
-                                            // to={`/edit-predefined/${row.itemId}`}
+                                            // to={`/edit-predefined/${ele.itemId}`}
                                             to={`/edit-predefined`}
                                         >
                                             <BorderColorIcon
