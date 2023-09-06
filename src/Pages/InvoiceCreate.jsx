@@ -1,19 +1,11 @@
 import React from "react";
-import AuthBox from "../components/AuthBox";
-import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
-import TextField from "@mui/material/TextField";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
-import FormatUnderlinedIcon from "@mui/icons-material/FormatUnderlined";
-import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
-import CallIcon from "@mui/icons-material/Call";
-import Button from "@mui/material/Button";
-import { Padding } from "@mui/icons-material";
+
 
 const InvoiceCreate = () => {
   return (

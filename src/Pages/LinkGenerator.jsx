@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-hot-toast";
 import { onDetailFailed, onDetailSuccess } from "../store/slices/detailSlice";
 import UploadImageModal from "../components/UploadImageModal";
+import LinkGeneratedModal from "../components/LinkGeneratedModal";
 
 const LinkGenerator = () => {
 
@@ -39,8 +40,12 @@ const LinkGenerator = () => {
 	const fileRef = useRef();
 	const [fileInp, setFileInp] = useState(null)
 
+	const [linkGenerated, setLinkGenerated] = useState('')
+
 	const [openImageModal, setOpenImageModal] = useState(false)
 	const [openFileModal, setOpenFileModal] = useState(false)
+
+	const [openLinkModal, setOpenLinkModal] = useState(false)
 
 	const handleChange = (e) => {
 		setFormField({ ...formField, [e.target.name]: e.target.value })
@@ -57,6 +62,10 @@ const LinkGenerator = () => {
 	}
 
 	const handleImageModal = () => {
+		setOpenImageModal(!openImageModal);
+	}
+
+	const handleLinkModal = () => {
 		setOpenImageModal(!openImageModal);
 	}
 	const handleImageInput = (e) => {
@@ -118,7 +127,10 @@ const LinkGenerator = () => {
 			}
 
 			const data = await createDetail({ body, token: user.token }).unwrap()
-			console.log(data)
+			setLinkGenerated('brovearvbaeorfvaei;rv;f')
+			setTimeout(() => {
+				setOpenLinkModal(true)
+			}, 200);
 			dispatch(onDetailSuccess(data))
 		} catch (error) {
 			toast.error("Something went Wrong", { duration: 900, position: 'top-center' })
@@ -748,6 +760,10 @@ const LinkGenerator = () => {
 
 			{openImageModal && <UploadImageModal openModalOrNot={openImageModal} setOpenModalOrNot={setOpenImageModal} fileRef={imageRef} />}
 			{openFileModal && <UploadImageModal openModalOrNot={openFileModal} setOpenModalOrNot={setOpenFileModal} fileRef={fileRef} />}
+
+
+			{openLinkModal && <LinkGeneratedModal openModalOrNot={openLinkModal} setOpenModalOrNot={setOpenLinkModal} link={linkGenerated}/>}
+
 			{/* <object data={fileInp} type="application/pdf" width="100%" height="500px">
 				<p>Unable to display PDF file. <a href="/uploads/media/default/0001/01/540cb75550adf33f281f29132dddd14fded85bfc.pdf">Download</a> instead.</p>
 			</object> */}
