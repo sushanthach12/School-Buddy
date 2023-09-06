@@ -65,9 +65,6 @@ const LinkGenerator = () => {
 		setOpenImageModal(!openImageModal);
 	}
 
-	const handleLinkModal = () => {
-		setOpenImageModal(!openImageModal);
-	}
 	const handleImageInput = (e) => {
 		const reader = new FileReader();
 
@@ -127,7 +124,7 @@ const LinkGenerator = () => {
 			}
 
 			const data = await createDetail({ body, token: user.token }).unwrap()
-			setLinkGenerated('brovearvbaeorfvaei;rv;f')
+			setLinkGenerated(data)
 			setTimeout(() => {
 				setOpenLinkModal(true)
 			}, 200);

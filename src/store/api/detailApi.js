@@ -14,7 +14,10 @@ export const detailApi = createApi({
                     'Authorization': `Bearer ${token}`
                 },
                 body
-            })
+            }),
+            transformResponse: (response) => {
+                return response?.Detail
+            }
         }),
     })
 })
