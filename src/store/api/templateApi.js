@@ -31,6 +31,13 @@ export const templateApi = createApi({
                 method: 'GET',
                 headers: { 'Content-type': 'application/json' },
             })
+        }),
+        getTemplateByTagline: builder.query({
+            query: ({ tagId }) => ({
+                url: `/gettemplatebytag/${tagId} `,
+                method: 'GET',
+                headers: { 'Content-type': 'application/json' },
+            })
         })
     })
 })
@@ -38,5 +45,7 @@ export const templateApi = createApi({
 export const {
     useCreateTemplateMutation,
     useGetTemplateQuery,
-    useGetUserTemplatesQuery
+    useGetUserTemplatesQuery,
+    useGetTemplateByTaglineQuery,
+    useLazyGetTemplateByTaglineQuery
 } = templateApi

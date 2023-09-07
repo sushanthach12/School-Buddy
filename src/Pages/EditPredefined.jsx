@@ -27,7 +27,6 @@ const EditPredefined = () => {
         e.preventDefault()
 
         const formData = new FormData(e.target)
-        console.log(formData)
     }
 
 

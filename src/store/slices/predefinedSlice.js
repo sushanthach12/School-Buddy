@@ -23,7 +23,6 @@ const predefinedSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addMatcher(predefinedApi.endpoints.getAllUserPredefined.matchFulfilled, (state, { payload }) => {
-            console.log(payload)
             state.predefines = payload
         })
     }

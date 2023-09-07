@@ -38,7 +38,7 @@ const Template = () => {
 	const handleTagsChange = (e) => {
 		setTags(e.target.value)
 	}
-	console.log(tags)
+
 
 	const handleImageModal = () => {
 		setOpenImageModal(!openImageModal);
@@ -58,11 +58,10 @@ const Template = () => {
 
 		reader.onload = (e) => {
 			setImageFile(e.target.result);
-			console.log(e.target.result);
 		}
 
 		reader.onerror = (e) => {
-			console.log(e.target.error)
+			toast.error(e.target.error.message, {duration: 1000, position: 'top-center'})
 		}
 
 		reader.readAsDataURL(imageRef.current?.files[0])
@@ -76,7 +75,7 @@ const Template = () => {
 		e.preventDefault();
 		try {
 			setLoading(true)
-			console.log(e.target)
+			
 			const templateData = await prepareTemplateData(e.target, user._id)
 			const data = await createTemplate(templateData).unwrap();
 			dispatch(addUserTemplates(data))
@@ -244,7 +243,7 @@ const Template = () => {
 									}}
 									labelId="demo-simple-select-helper-label"
 									id="demo-simple-select-helper"
-									label="Sleect"
+									label="Select"
 								>
 									{predefined.map((ele) => (
 										<MenuItem key={ele._id} value={ele._id}>{ele.title}</MenuItem>

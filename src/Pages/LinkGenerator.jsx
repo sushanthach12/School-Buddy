@@ -70,11 +70,10 @@ const LinkGenerator = () => {
 
 		reader.onload = (e) => {
 			setImageFile(e.target.result);
-			console.log(e.target.result);
 		}
 
 		reader.onerror = (e) => {
-			console.log(e.target.error)
+			toast.error(e.target.error.message, { duration: 1000, position: 'top-center' })
 		}
 
 		reader.readAsDataURL(imageRef.current?.files[0])
@@ -93,11 +92,10 @@ const LinkGenerator = () => {
 		const reader = new FileReader();
 		reader.onload = (e) => {
 			setFileInp(e.target.result)
-			console.log(e.target.result)
 		}
 
 		reader.onerror = (e) => {
-			console.log(e.target.error);
+			toast.error(e.target.error.message, {duration: 1000, position: 'top-center'})
 		}
 
 		reader.readAsDataURL(fileRef.current?.files[0]);
@@ -106,13 +104,11 @@ const LinkGenerator = () => {
 		}, 200)
 	}
 
-	console.log(typeof imageFile)
 	const handleFormSubmit = async (e) => {
 		try {
 			e.preventDefault();
 			setLoading(true)
-			// const form = new FormData(e.target);
-			// console.log(form)
+			
 			const body = {
 				user: user?._id,
 				school_name: user?.name,
@@ -759,7 +755,7 @@ const LinkGenerator = () => {
 			{openFileModal && <UploadImageModal openModalOrNot={openFileModal} setOpenModalOrNot={setOpenFileModal} fileRef={fileRef} />}
 
 
-			{openLinkModal && <LinkGeneratedModal openModalOrNot={openLinkModal} setOpenModalOrNot={setOpenLinkModal} link={linkGenerated}/>}
+			{openLinkModal && <LinkGeneratedModal openModalOrNot={openLinkModal} setOpenModalOrNot={setOpenLinkModal} link={linkGenerated} />}
 
 			{/* <object data={fileInp} type="application/pdf" width="100%" height="500px">
 				<p>Unable to display PDF file. <a href="/uploads/media/default/0001/01/540cb75550adf33f281f29132dddd14fded85bfc.pdf">Download</a> instead.</p>
