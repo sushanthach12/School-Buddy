@@ -2,13 +2,21 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const authApi = createApi({
     reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `https://school-buddy-backend.vercel.app/api/auth` }),
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: `https://school-buddy-backend.vercel.app/api/auth`,
+        mode: 'cors',
+        prepareHeaders: (headers) => {
+            headers.set("Content-Type", "application/json");
+
+            return headers;
+        },
+
+    }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (credentials) => ({
                 url: '/register',
                 method: 'POST',
-                headers: { 'content-type': 'application/json' },
                 body: { name: credentials.name, email: credentials.email, password: credentials.password }
             }),
             transformResponse: (response) => {
@@ -22,7 +30,6 @@ export const authApi = createApi({
             query: (credentials) => ({
                 url: '/login',
                 method: 'POST',
-                headers: { 'content-type': 'application/json' },
                 body: { email: credentials.email, password: credentials.password }
             }),
             transformResponse: (response) => {
