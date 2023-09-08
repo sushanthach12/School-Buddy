@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const detailApi = createApi({
     reducerPath: "detailApi",
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/detail' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/detail` }),
     endpoints: (builder) => ({
         createDetail: builder.mutation({
             query: ({ body, token }) => ({
@@ -14,7 +14,10 @@ export const detailApi = createApi({
                     'Authorization': `Bearer ${token}`
                 },
                 body
-            })
+            }),
+            transformResponse: (response) => {
+                return response?.Detail
+            }
         }),
     })
 })

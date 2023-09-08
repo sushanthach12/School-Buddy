@@ -3,7 +3,7 @@ export const prepareTemplateData = async (data, userId) => {
 
     const dataToSend = {
         userId,
-        tagline: 'tution fee',
+        tagline: form.get('tagline'),
         emailId: form.get('email'),
         schoolName: form.get('schoolName'),
         address: [form.get('address')],

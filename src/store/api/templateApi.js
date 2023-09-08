@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const templateApi = createApi({
     reducerPath: "userApi",
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/template' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/template` }),
     endpoints: (builder) => ({
         createTemplate: builder.mutation({
             query: (template) => ({
@@ -31,6 +31,13 @@ export const templateApi = createApi({
                 method: 'GET',
                 headers: { 'Content-type': 'application/json' },
             })
+        }),
+        getTemplateByTagline: builder.query({
+            query: ({ tagId }) => ({
+                url: `/gettemplatebytag/${tagId} `,
+                method: 'GET',
+                headers: { 'Content-type': 'application/json' },
+            })
         })
     })
 })
@@ -38,5 +45,7 @@ export const templateApi = createApi({
 export const {
     useCreateTemplateMutation,
     useGetTemplateQuery,
-    useGetUserTemplatesQuery
+    useGetUserTemplatesQuery,
+    useGetTemplateByTaglineQuery,
+    useLazyGetTemplateByTaglineQuery
 } = templateApi

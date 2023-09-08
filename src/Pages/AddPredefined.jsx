@@ -9,8 +9,19 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 import ClearIcon from "@mui/icons-material/Clear";
+import { useDispatch, useSelector } from 'react-redux';
+import { useAddPredefinedMutation } from '../store/api/predefinedApi';
+import { toast } from 'react-hot-toast';
+import { addPredefines } from '../store/slices/predefinedSlice';
 
 const AddPredefined = () => {
+
+    const user = useSelector((state) => state.users.user);
+    const dispatch = useDispatch()
+
+    const [addPredefined] = useAddPredefinedMutation()
+
+    const [loading, setLoading] = useState(false);
 
     const [formField, setFormField] = useState({
         title: "",
@@ -18,14 +29,22 @@ const AddPredefined = () => {
     })
 
     const handleChange = (e) => {
-        setFormField({...formField, [e.target.name]: e.target.value})
+        setFormField({ ...formField, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        
-        const formData = new FormData(e.target)
-        console.log(formData)
+        try {
+            setLoading(true)
+            const formData = new FormData(e.target);
+            await addPredefined({ userId: user._id, title: formData.get('title'), description: formData.get('description') }).unwrap()
+
+            toast.success("Success", { duration: 1500, position: 'top-center' });
+        } catch (error) {
+            toast.error("Something Went Wrong", { duration: 1000, position: 'top-center' })
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -165,6 +184,7 @@ const AddPredefined = () => {
                     <Button
                         type='submit'
                         variant="contained"
+                        disabled={loading}
                         sx={{
                             backgroundColor: "#FFE393",
                             ":hover": { backgroundColor: "#ffe8a8" },

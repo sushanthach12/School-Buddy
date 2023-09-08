@@ -74,14 +74,14 @@ export default function Navbar({ hideNav }) {
 	};
 
 	const handleLogOut = () => {
-		dispatch(logout())
+		dispatch({ type: 'RESET' })
 		navigate('/login')
 	}
 
 	return (
 		<Box
 			sx={{
-				display: hideNav? "none" : "flex",
+				display: hideNav ? "none" : "flex",
 			}}
 		>
 			<AppBar

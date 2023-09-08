@@ -2,13 +2,23 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const authApi = createApi({
     reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/auth' }),
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: `http://64.227.150.164:8080/api/auth`,
+        // mode: 'cors',
+        // credentials: 'same-origin',
+        // prepareHeaders: (headers) => {
+        //     headers.set("Content-Type", "application/json");
+        //     headers.set('Access-Control-Allow-Origin', '*');
+
+        //     return headers;
+        // },
+
+    }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({
             query: (credentials) => ({
                 url: '/register',
                 method: 'POST',
-                headers: { 'Content-type': 'application/json' },
                 body: { name: credentials.name, email: credentials.email, password: credentials.password }
             }),
             transformResponse: (response) => {
@@ -22,7 +32,6 @@ export const authApi = createApi({
             query: (credentials) => ({
                 url: '/login',
                 method: 'POST',
-                headers: { 'Content-type': 'application/json' },
                 body: { email: credentials.email, password: credentials.password }
             }),
             transformResponse: (response) => {

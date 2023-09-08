@@ -13,6 +13,7 @@ import ClearIcon from "@mui/icons-material/Clear";
 
 const EditPredefined = () => {
 
+
     const [formField, setFormField] = useState({
         title: "",
         description: ""
@@ -26,8 +27,8 @@ const EditPredefined = () => {
         e.preventDefault()
 
         const formData = new FormData(e.target)
-        console.log(formData)
     }
+
 
     return (
         <Container

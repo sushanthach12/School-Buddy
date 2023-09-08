@@ -5,7 +5,12 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import { Container } from '@mui/material';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+import DoneIcon from '@mui/icons-material/Done';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ShareIcon from '@mui/icons-material/Share';
+import { toast } from 'react-hot-toast';
 
 const style = {
     position: 'absolute',
@@ -16,16 +21,21 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '740px',
+    width: '360px',
     height: '480px',
     bgcolor: '#FEF7FF',
     boxShadow: 24,
     borderRadius: '12px',
-    p: 4,
+    padding: 0
 };
 
-const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
+const LinkGeneratedModal = ({ openModalOrNot, setOpenModalOrNot, link }) => {
     const handleClose = () => setOpenModalOrNot(!openModalOrNot);
+
+    const handleCopy = async() => {
+        await navigator.clipboard.writeText(link)
+        toast.success("Link Copied to clipboard", { duration: 1000, position: 'top-center'})
+    }
 
     return (
         <div>
@@ -34,8 +44,10 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                disableAutoFocus
+                disableRestoreFocus
             >
-                <Container sx={style}>
+                <Container sx={style} maxWidth='xl' xs='12' disableGutters={true}>
                     <Button
                         disableElevation
                         disableTouchRipple
@@ -59,18 +71,21 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
                     </Button>
                     <Box
                         style={{
-                            width: '148px',
+                            width: '160px',
+                            height: '160px',
+                            borderRadius: '50px',
                             display: 'flex',
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            backgroundColor: '#48C300'
                         }}
                     >
-                        <DriveFolderUploadOutlinedIcon
+                        <DoneIcon
                             fontSize='inherit'
                             style={{
-                                width: "123.33px",
-                                height: '98.67px',
-                                color: '#1C1B1F'
+                                width: "88.26px",
+                                height: '69.32px',
+                                color: 'white',
                             }}
                         />
                     </Box>
@@ -81,14 +96,48 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
                         }}
                     >
                         <Typography id="modal-modal-title" variant='h2' sx={{ fontWeight: 600, fontSize: '24px', lineHeight: '30px', color: '#363939' }}>
-                            Select a picture file to upload
+                            Link Generated successfully
                         </Typography>
                         <Typography id="modal-modal-description" sx={{ mt: 1 }}>
-                            JPEG/IMG/SVG
+                            Copy and share the links
                         </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 1 }}>
-                            max limit 10 MB
-                        </Typography>
+
+                        <Box
+                            style={{
+                                margin: '8px 0',
+                                width: 'inherit',
+                                display: 'flex',
+                                justifyContent: 'space-evenly',
+                                alignItems: 'center'
+                            }}
+                        >
+                            <Button
+                                disableElevation
+                                disableTouchRipple
+                                onClick={handleCopy}
+                                style={{
+                                    backgroundColor: 'inherit'
+                                }}
+                            >
+
+                                <ContentCopyIcon
+                                    fontSize='inherit'
+                                    style={{
+                                        width: "48px",
+                                        height: '48px',
+                                        color: '#1C1B1F',
+                                    }}
+                                />
+                            </Button>
+                            <ShareIcon
+                                fontSize='inherit'
+                                style={{
+                                    width: "48px",
+                                    height: '48px',
+                                    color: '#1C1B1F',
+                                }}
+                            />
+                        </Box>
 
                         <Button
                             disableElevation
@@ -102,7 +151,7 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
                                 borderRadius: '6px',
                                 backgroundColor: '#FFE393'
                             }}
-                            onClick={() => fileRef.current.click()}
+                            onClick={handleClose}
                         >
                             <Typography
                                 variant="h4"
@@ -117,7 +166,7 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
                                     width: "100%",
                                     fontFamily: "Lora",
                                 }}>
-                                Select
+                                Great
                             </Typography>
                         </Button>
                     </Box>
@@ -127,4 +176,4 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
     );
 }
 
-export default UploadImageModal;
+export default LinkGeneratedModal;

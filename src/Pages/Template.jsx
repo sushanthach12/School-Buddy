@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
-import { Typography } from "@mui/material";
+import { MenuItem, Select, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
 import IosShareOutlinedIcon from "@mui/icons-material/IosShareOutlined";
@@ -15,10 +15,14 @@ import { toast } from "react-hot-toast";
 import { useCreateTemplateMutation } from "../store/api/templateApi";
 import { prepareTemplateData } from "../utils/prepareTemplateData";
 import { addUserTemplates } from "../store/slices/templateSlice";
+import { useGetAllUserPredefinedQuery } from "../store/api/predefinedApi";
 
 const Template = () => {
 	const user = useSelector((state) => state.users.user);
 	const dispatch = useDispatch();
+
+	const predefined = useSelector(state => state.predefined.predefines)
+	const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id })
 
 	const [createTemplate] = useCreateTemplateMutation();
 
@@ -28,6 +32,13 @@ const Template = () => {
 	const [loading, setLoading] = useState(false);
 
 	const [openImageModal, setOpenImageModal] = useState(false)
+
+	const [tags, setTags] = useState('')
+
+	const handleTagsChange = (e) => {
+		setTags(e.target.value)
+	}
+
 
 	const handleImageModal = () => {
 		setOpenImageModal(!openImageModal);
@@ -47,11 +58,10 @@ const Template = () => {
 
 		reader.onload = (e) => {
 			setImageFile(e.target.result);
-			console.log(e.target.result);
 		}
 
 		reader.onerror = (e) => {
-			console.log(e.target.error)
+			toast.error(e.target.error.message, {duration: 1000, position: 'top-center'})
 		}
 
 		reader.readAsDataURL(imageRef.current?.files[0])
@@ -65,8 +75,8 @@ const Template = () => {
 		e.preventDefault();
 		try {
 			setLoading(true)
+			
 			const templateData = await prepareTemplateData(e.target, user._id)
-
 			const data = await createTemplate(templateData).unwrap();
 			dispatch(addUserTemplates(data))
 			toast.success("Template Created Successfully!", { duration: 1000, position: 'top-center' })
@@ -101,74 +111,159 @@ const Template = () => {
 					}}
 				>
 
-
 					<Box
-						variant="div"
 						sx={{
-							alignContent: "center",
-							width: "254px",
+							display: "flex",
+							width: "533px",
 						}}
 					>
-						<Typography
-							sx={{
-								width: "254px",
-								height: "18px",
-								fontSize: "14px",
-								fontWeight: "500",
-								lineHeight: "17.5px",
-								fontFamily: "Inter",
-								color: "#57595A",
-							}}
-						>
-							Email Id
-						</Typography>
+
 						<Box
+							variant="div"
 							sx={{
-								border: "2px solid #D2D3D3",
-								borderRadius: "6px",
+								alignContent: "center",
 								width: "254px",
-								height: "48px",
-								display: "flex",
-								justifyContent: 'space-between',
-								alignItems: 'center',
-								padding: "0 4px",
-								gap: '2px'
-								//   ":hover": {border: "2px solid "},
-								//   transition:'all 0.2s ease-in-out',
-								//   ":hover":{borderColor:"#8E9090"},
+								marginRight: "25px",
 							}}
 						>
-							<Box>
-								<LocationOnOutlinedIcon
-									sx={{
-										color: "#B1B2B2",
-									}}
-								/>
-							</Box>
-							<Input
-								disableUnderline
-								placeholder={user.email || "email"}
+							<Typography
 								sx={{
-									width: "366px",
-									height: "24px",
-									fontSize: "16px",
+									width: "254px",
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
 								}}
-								type="email"
-								name="email"
-							/>
-							<Box>
-								<ClearIcon
+							>
+								Email Id
+							</Typography>
+							<Box
+								sx={{
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: "254px",
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
+							>
+								<Box>
+									<LocationOnOutlinedIcon
+										sx={{
+											color: "#B1B2B2",
+										}}
+									/>
+								</Box>
+								<Input
+									disableUnderline
+									placeholder={user.email || "email"}
 									sx={{
-										color: "#B1B2B2",
-										height: "20px",
-										width: "20px",
-										cursor: "pointer",
+										width: "366px",
+										height: "24px",
+										fontSize: "16px",
 									}}
+									type="email"
+									name="email"
 								/>
+								<Box>
+									<ClearIcon
+										sx={{
+											color: "#B1B2B2",
+											height: "20px",
+											width: "20px",
+											cursor: "pointer",
+										}}
+									/>
+								</Box>
 							</Box>
 						</Box>
-					</Box>
 
+						<Box
+							variant="div"
+							sx={{
+								alignContent: "center",
+								width: "254px",
+							}}
+						>
+							<Typography
+								sx={{
+									width: "254px",
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
+							>
+								Tag /Predefined
+							</Typography>
+							<Box
+								sx={{
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: "254px",
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-around',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
+							>
+								<Box>
+									<LocationOnOutlinedIcon
+										sx={{
+											color: "#B1B2B2",
+										}}
+									/>
+								</Box>
+								<Select
+									variant='standard'
+									name="tagline"
+									value={tags}
+									onChange={handleTagsChange}
+									disableUnderline
+									style={{
+										width: 'inherit',
+										height: 'inherit',
+										backgroundColor: 'inherit',
+										color: 'black'
+									}}
+									labelId="demo-simple-select-helper-label"
+									id="demo-simple-select-helper"
+									label="Select"
+								>
+									{predefined.map((ele) => (
+										<MenuItem key={ele._id} value={ele._id}>{ele.title}</MenuItem>
+									))}
+
+								</Select>
+								{/* <Box>
+									<ClearIcon
+										sx={{
+											color: "#B1B2B2",
+											height: "20px",
+											width: "20px",
+											cursor: "pointer",
+										}}
+									/>
+								</Box> */}
+							</Box>
+						</Box>
+
+					</Box>
 					{/* first input done */}
 					<Box
 						sx={{

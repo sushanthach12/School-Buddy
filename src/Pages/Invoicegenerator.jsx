@@ -118,7 +118,7 @@ const Invoicegenerator = () => {
               </Typography>
             </Box>
 
-            <Link to={"/invoice-history"} style={{ textDecoration: 'none'}}>
+            <Link to={"/create-invoice"} style={{ textDecoration: 'none'}}>
               <Box
                 // varient = "div"
                 sx={{
@@ -228,7 +228,7 @@ const Invoicegenerator = () => {
                 Add Predefined details of the bill
               </Typography>
             </Box>
-            <Link to={"/template"} style={{ textDecoration: 'none'}}>
+            <Link to={"/predefined"} style={{ textDecoration: 'none'}}>
               <Box
                 // varient = "div"
                 sx={{
