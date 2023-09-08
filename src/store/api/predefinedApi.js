@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const predefinedApi = createApi({
     reducerPath: "predefinedApi",
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api/predefined' }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/predefined` }),
     tagTypes: ['Predefined'],
     endpoints: (builder) => ({
         getAllUserPredefined: builder.query({
