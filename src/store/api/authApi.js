@@ -8,7 +8,7 @@ export const authApi = createApi({
             query: (credentials) => ({
                 url: '/register',
                 method: 'POST',
-                headers: { 'Content-type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+                headers: { 'Content-type': 'application/json'},
                 body: { name: credentials.name, email: credentials.email, password: credentials.password }
             }),
     transformResponse: (response) => {
@@ -22,7 +22,7 @@ export const authApi = createApi({
         query: (credentials) => ({
             url: '/login',
             method: 'POST',
-            headers: { 'Content-type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            headers: { 'Content-type': 'application/json'},
             body: { email: credentials.email, password: credentials.password }
         }),
         transformResponse: (response) => {
