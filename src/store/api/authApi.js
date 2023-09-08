@@ -5,8 +5,10 @@ export const authApi = createApi({
     baseQuery: fetchBaseQuery({ 
         baseUrl: `https://school-buddy-backend.vercel.app/api/auth`,
         mode: 'cors',
+        credentials: 'same-origin',
         prepareHeaders: (headers) => {
             headers.set("Content-Type", "application/json");
+            headers.set('Access-Control-Allow-Origin', '*');
 
             return headers;
         },
