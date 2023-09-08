@@ -8,7 +8,7 @@ export const authApi = createApi({
             query: (credentials) => ({
                 url: '/register',
                 method: 'POST',
-                headers: { 'Content-type': 'application/json'},
+                headers: { 'content-type': 'application/json'},
                 body: { name: credentials.name, email: credentials.email, password: credentials.password }
             }),
     transformResponse: (response) => {
