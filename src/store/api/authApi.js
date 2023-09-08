@@ -8,31 +8,31 @@ export const authApi = createApi({
             query: (credentials) => ({
                 url: '/register',
                 method: 'POST',
-                headers: { 'Content-type': 'application/json' },
+                headers: { 'Content-type': 'application/json', 'Access-Control-Allow-Origin': '*' },
                 body: { name: credentials.name, email: credentials.email, password: credentials.password }
             }),
-            transformResponse: (response) => {
-                return {
-                    ...response?.user,
-                    token: response?.token,
-                }
-            }
+    transformResponse: (response) => {
+        return {
+            ...response?.user,
+            token: response?.token,
+        }
+    }
+}),
+    loginUser: builder.mutation({
+        query: (credentials) => ({
+            url: '/login',
+            method: 'POST',
+            headers: { 'Content-type': 'application/json', 'Access-Control-Allow-Origin': '*' },
+            body: { email: credentials.email, password: credentials.password }
         }),
-        loginUser: builder.mutation({
-            query: (credentials) => ({
-                url: '/login',
-                method: 'POST',
-                headers: { 'Content-type': 'application/json' },
-                body: { email: credentials.email, password: credentials.password }
-            }),
-            transformResponse: (response) => {
-                return {
-                    ...response?.user,
-                    ...response?.upload,
-                    token: response?.token
-                }
+        transformResponse: (response) => {
+            return {
+                ...response?.user,
+                ...response?.upload,
+                token: response?.token
             }
-        })
+        }
+    })
     })
 })
 
