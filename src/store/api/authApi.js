@@ -4,14 +4,14 @@ export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({ 
         baseUrl: `http://64.227.150.164:8080/api/auth`,
-        mode: 'cors',
-        credentials: 'same-origin',
-        prepareHeaders: (headers) => {
-            headers.set("Content-Type", "application/json");
-            headers.set('Access-Control-Allow-Origin', '*');
+        // mode: 'cors',
+        // credentials: 'same-origin',
+        // prepareHeaders: (headers) => {
+        //     headers.set("Content-Type", "application/json");
+        //     headers.set('Access-Control-Allow-Origin', '*');
 
-            return headers;
-        },
+        //     return headers;
+        // },
 
     }),
     endpoints: (builder) => ({
