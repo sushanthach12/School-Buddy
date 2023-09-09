@@ -127,7 +127,7 @@ const ViewPredefined = () => {
                                     <TableCell align="center">
                                         <Link
                                             // to={`/edit-predefined/${ele.itemId}`}
-                                            to={`/edit-predefined`}
+                                            to={`/edit-predefined/${ele._id}`}
                                         >
                                             <BorderColorIcon
                                                 fontSize='medium'

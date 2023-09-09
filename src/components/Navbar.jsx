@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, matchPath, useLocation, useNavigate, useRoutes } from "react-router-dom";
 import { Button } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SideBar from "./SideBar";
@@ -25,7 +25,7 @@ const PathNames = new Map([
 	["/invoice-generator", "Invoice Generator"],
 	["/invoice-history", "Invoice History"],
 	["/add-predefined", "Add Predefined"],
-	["/edit-predefined", "Edit Predefined"],
+	["/edit-predefined/:id/", "Edit Predefined"],
 	["/view-predefined", "View Predefined"],
 	["/predefined", "Predefined"],
 	["/template", "Template"],
@@ -48,6 +48,7 @@ export default function Navbar({ hideNav }) {
 
 	const location = useLocation();
 	const navigate = useNavigate()
+	const match = /edit-predefined/.test(window.location.href)
 
 	// const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -126,7 +127,7 @@ export default function Navbar({ hideNav }) {
 								}}
 							>
 								<span style={{ color: "#1F2223", fontFamily: 'Lora' }}>
-									{PathNames.get(location.pathname)}
+									{match? "Edit Predefined" : PathNames.get(location.pathname)}
 								</span>
 							</div>
 

@@ -34,7 +34,7 @@ const AllRoutes = () => {
 
             <Route exact path='/add-predefined' element={<AddPredefined />}></Route>
             <Route exact path='/view-predefined' element={<ViewPredefined />}></Route>
-            <Route exact path='/edit-predefined' element={<EditPredefined />}></Route>
+            <Route exact path='/edit-predefined/:id' element={<EditPredefined />}></Route>
             <Route exact path='/create-invoice' element={<InvoiceCreate />}></Route>
             <Route exact path='/navolib' element={<Navolib />}></Route>
         </Routes>
