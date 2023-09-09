@@ -37,7 +37,7 @@ export const templateApi = createApi({
                 url: `/gettemplatebytag/${tagId} `,
                 method: 'GET',
                 headers: { 'Content-type': 'application/json' },
-            })
+            }),
         })
     })
 })

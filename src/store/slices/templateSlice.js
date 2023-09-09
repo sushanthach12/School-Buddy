@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { templateApi } from "../api/templateApi";
 
 
 const initialState = {
@@ -27,6 +28,11 @@ const templateSlice = createSlice({
             state = initialState
         }
     },
+    extraReducers: (builder) => {
+        builder.addMatcher(templateApi.endpoints.getTemplateByTagline.matchFulfilled, (state, { payload }) => {
+            state.template = payload
+        })
+    }
 })
 
 export const { addTemplate, addUserTemplates, onTemplateFailed, resetTemplate } = templateSlice.actions;
