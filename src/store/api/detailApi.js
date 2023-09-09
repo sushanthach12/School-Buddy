@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const detailApi = createApi({
     reducerPath: "detailApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/detail` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `https://school-buddy-backend.vercel.app/api/detail` }),
     endpoints: (builder) => ({
         createDetail: builder.mutation({
             query: ({ body, token }) => ({

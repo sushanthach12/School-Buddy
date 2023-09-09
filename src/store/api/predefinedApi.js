@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const predefinedApi = createApi({
     reducerPath: "predefinedApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/predefined` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `https://school-buddy-backend.vercel.app/api/predefined` }),
     tagTypes: ['Predefined'],
     endpoints: (builder) => ({
         getAllUserPredefined: builder.query({
