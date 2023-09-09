@@ -39,7 +39,9 @@ const ViewPredefined = () => {
     const user = useSelector((state) => state.users.user);
 
     const predefined = useSelector(state => state.predefined.predefines)
-    const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id })
+    const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id }, {
+        refetchOnMountOrArgChange: true
+    })
 
     return (
         <Container
