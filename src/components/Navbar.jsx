@@ -286,7 +286,13 @@ export default function Navbar({ hideNav }) {
 				sx={{
 					flexShrink: 0,
 					"& .MuiDrawer-paper": {
-						width: "494px",
+						width: {
+							xs: "70%",
+							sm: "50%",
+							md: "50%",
+							lg: "40%",
+							xl: "30%",
+						},
 						boxSizing: "border-box",
 					},
 				}}

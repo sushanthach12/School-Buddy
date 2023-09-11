@@ -19,7 +19,7 @@ const SideBar = ({ handleDrawerClose }) => {
     return (
         <Box
             sx={{
-                width: "456px",
+                width: "100%",
                 display: 'flex',
                 marginTop: '12px',
                 flexDirection: 'column',
@@ -42,16 +42,27 @@ const SideBar = ({ handleDrawerClose }) => {
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                justifyContent: 'space-evenly',
+                                justifyContent: 'center',
                                 alignItems: 'center',
-                                padding: '12px 24px'
+                                padding: '12px 24px',
+                                width: {
+                                    xs: '250px',
+                                    sm: '250px',
+                                    md: '408px',
+                                    lg: '408px',
+                                    xl: '408px',
+                                },
+                                // marginLeft: '20px',
+                                // marginRight: '20px',
                             }}
                         >
 
                             <Box
                                 sx={{
                                     height: "48px",
-                                    width: "408px",
+                                    width: "100%",
+                                    marginLeft: '20px',
+                                    marginRight: '20px',
                                     border: "1px solid #363939",
                                     borderRadius: "6px",
                                     display: "flex",
@@ -233,7 +244,13 @@ const SideBar = ({ handleDrawerClose }) => {
 
             <Button
                 sx={{
-                    width: "253px",
+                    width: {
+                        xs: '200px',
+                        sm: '200px',
+                        md: '408px',
+                        lg: '408px',
+                        xl: '408px',
+                    },
                     height: "48px",
                     backgroundColor: "#FFE393",
                     ":hover": { backgroundColor: "#ffe8a8" },

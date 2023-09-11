@@ -44,12 +44,19 @@ const ViewPredefined = () => {
     return (
         <Container
             maxWidth='lg'
-            style={{
+            sx={{
                 minHeight: '80vh',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '8px',
+                overflow:{
+                    xs:'scroll',
+                    sm:'scroll',
+                    md:'scroll',
+                    lg:'scroll',
+                    xl:'visible',
+                }
             }}
         >
             <Box
@@ -60,6 +67,10 @@ const ViewPredefined = () => {
                     justifyContent: 'space-evenly',
                     gap: '8px',
                     padding: '16px 0',
+                    overflow:'visible',
+                    // marginLeft: {
+                    //     xs: '0px',
+                    // },                    
                 }}
             >
 
@@ -196,10 +207,19 @@ const ViewPredefined = () => {
                     sx={{
                         backgroundColor: "#FFE393",
                         ":hover": { backgroundColor: "#ffe8a8" },
-                        width: "253px",
+                        width: {
+                            xs: "40%",
+                        },
                         height: "48px",
                         padding: '0px 16px',
-                        borderRadius: '6px'
+                        borderRadius: '6px',
+                        marginLeft: {
+                            xs: '200px',
+                            sm: '200px',
+                            md: '200px',
+                            lg: '200px',
+                            xl: '200px',
+                        }, 
                     }}
                     disableElevation
                 >

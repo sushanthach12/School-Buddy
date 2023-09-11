@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 export const authApi = createApi({
     reducerPath: "authApi",
     baseQuery: fetchBaseQuery({ 
-        baseUrl: `http://64.227.150.164:8080/api/auth`,
+        baseUrl: `http://64.227.150.164/api/auth`,
         // mode: 'cors',
         // credentials: 'same-origin',
         // prepareHeaders: (headers) => {

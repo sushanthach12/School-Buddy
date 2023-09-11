@@ -1,9 +1,9 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import { Link } from "react-router-dom";
 const Predefined = () => {
   return (
@@ -20,19 +20,40 @@ const Predefined = () => {
         marginTop: "50px",
       }}
     >
-      {/* first */}
       <Box
         sx={{
           display: "flex",
           marginBottom: "20px",
-        }}
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+            xl: "row",
+          },
+          justifyContent: "center",
+          alignItems: "center",
+        }}  
       >
         <Box
           // varient="div"
           sx={{
             width: "349px",
             height: "355px",
-            marginRight: "20px",
+            marginRight: {
+              xs: "0px",
+              sm: "0px",
+              md: "20px",
+              lg: "20px",
+              xl: "20px",
+            },
+            marginBottom: {
+              xs: "20px",
+              sm: "20px",
+              md: "0px",
+              lg: "0px",
+              xl: "0px",
+            },  
           }}
         >
           <Box
@@ -103,10 +124,10 @@ const Predefined = () => {
             </Box>
             <Box
               sx={{
-                display: "flex"
+                display: "flex",
               }}
             >
-              <Link to={"/add-predefined"} style={{ textDecoration: 'none'}}>
+              <Link to={"/add-predefined"} style={{ textDecoration: "none" }}>
                 <Box
                   // varient = "div"
                   sx={{
@@ -153,7 +174,13 @@ const Predefined = () => {
           sx={{
             width: "349px",
             height: "355px",
-            marginRight: "20px",
+            marginRight: {
+              xs: "0px",
+              sm: "0px",
+              md: "20px",
+              lg: "20px",
+              xl: "20px",
+            },
           }}
         >
           <Box
@@ -220,10 +247,10 @@ const Predefined = () => {
             </Box>
             <Box
               sx={{
-                display: "flex"
+                display: "flex",
               }}
             >
-              <Link to={"/view-predefined"} style={{ textDecoration: 'none'}}>
+              <Link to={"/view-predefined"} style={{ textDecoration: "none" }}>
                 <Box
                   // varient = "div"
                   sx={{
@@ -259,15 +286,11 @@ const Predefined = () => {
                   />
                 </Box>
               </Link>
-
             </Box>
           </Box>
         </Box>
-
-        {/* third */}
-
-
       </Box>
+      
     </Box>
   );
 };
