@@ -39,7 +39,9 @@ const ViewPredefined = () => {
     const user = useSelector((state) => state.users.user);
 
     const predefined = useSelector(state => state.predefined.predefines)
-    const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id })
+    const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id }, {
+        refetchOnMountOrArgChange: true
+    })
 
     return (
         <Container
@@ -136,7 +138,7 @@ const ViewPredefined = () => {
                                     <TableCell align="center">
                                         <Link
                                             // to={`/edit-predefined/${ele.itemId}`}
-                                            to={`/edit-predefined`}
+                                            to={`/edit-predefined/${ele._id}`}
                                         >
                                             <BorderColorIcon
                                                 fontSize='medium'

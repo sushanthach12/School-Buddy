@@ -68,8 +68,8 @@ const InvoiceCreate = () => {
 			{result?.isUninitialized && "Select a predefined"}
 			{result?.isLoading && "Loading..."}
 			{result?.isError && "Something went wrong! try again..."}
-			{result?.data?.length === 0 && "No Templates Found"}
-			{result?.data?.length !== 0 && result?.isSuccess &&
+			{result?.data === null && "No Templates Found"}
+			{result?.data && result?.isSuccess &&
 				<Box>
 					<Box style={{ marginTop: '8px' }}>
 						<Box
@@ -104,7 +104,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Lora"
 								}}
 							>
-								{result.data[0].schoolName}
+								{result.data.schoolName}
 							</Typography>
 							<Typography
 								sx={{
@@ -117,7 +117,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								{result.data[0].address[0]},
+								{result.data.address[0]},
 							</Typography>
 							<Typography
 								sx={{
@@ -144,7 +144,7 @@ const InvoiceCreate = () => {
 								}}
 							>
 
-								{result.data[0].emailId}
+								{result.data.emailId}
 							</Typography>
 							<Typography
 								sx={{
@@ -157,7 +157,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								{result.data[0].phoneNo.map((value) => (value))}
+								{result.data.phoneNo.map((value) => (<span key={value} style={{margin: "0 3px"}}>{value}</span>))}
 							</Typography>
 							<Typography
 								sx={{
@@ -170,7 +170,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								GST Number : {result.data[0].schoolName}
+								GST Number : {result.data.schoolName}
 							</Typography>
 
 							<Typography
@@ -261,7 +261,7 @@ const InvoiceCreate = () => {
 											padding: "0 3px",
 											color: 'black'
 										}}
-										value={result.data[0].schoolName}
+										value={result.data.schoolName}
 									/>
 									<Box>
 										<ClearIcon
@@ -348,7 +348,7 @@ const InvoiceCreate = () => {
 											marginRight: "15px",
 											padding: "0 3px",
 										}}
-										value={result.data[0].emailId}
+										value={result.data.emailId}
 									/>
 									<Box>
 										<ClearIcon
@@ -433,7 +433,7 @@ const InvoiceCreate = () => {
 											color: "black",
 											padding: "3px",
 										}}
-										value={result.data[0].address[0]}
+										value={result.data.address[0]}
 									/>
 									<Box>
 										<ClearIcon
@@ -519,7 +519,7 @@ const InvoiceCreate = () => {
 											padding: "3px",
 										}}
 										name="state"
-										value={result.data[0]?.state || details?.state}
+										value={result.data?.state || details?.state}
 										onChange={handleDetails}
 									/>
 									<Box>
@@ -595,7 +595,7 @@ const InvoiceCreate = () => {
 											color: 'black'
 										}}
 										name="pincode"
-										value={result.data[0]?.pincode || details?.pincode}
+										value={result.data?.pincode || details?.pincode}
 										onChange={handleDetails}
 									/>
 									<Box>
@@ -670,7 +670,7 @@ const InvoiceCreate = () => {
 											fontSize: "16px",
 										}}
 										name="phonenumber"
-										value={result.data[0].phoneNo}
+										value={result.data.phoneNo}
 									/>
 									<Box>
 										<ClearIcon
@@ -744,7 +744,7 @@ const InvoiceCreate = () => {
 											color: 'black',
 											fontSize: "16px",
 										}}
-										value={result.data[0]?.gstNo}
+										value={result.data?.gstNo}
 									/>
 									<Box>
 										<ClearIcon
