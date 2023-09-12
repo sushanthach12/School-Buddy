@@ -72,6 +72,7 @@ const Analytics = () => {
             alignItems: "center",
             padding: "0px 16px",
             backgroundColor: "#3B4744",
+            ":hover": { backgroundColor: "#4b5a57" },
             marginBottom: "8px",
           }}
         >
@@ -130,6 +131,7 @@ const Analytics = () => {
             alignItems: "center",
             padding: "0px 16px",
             backgroundColor: "#3B4744",
+            ":hover": { backgroundColor: "#4b5a57" },
             marginBottom: "8px",
           }}
         >
@@ -188,6 +190,7 @@ const Analytics = () => {
             alignItems: "center",
             padding: "0px 16px",
             backgroundColor: "#3B4744",
+            ":hover": { backgroundColor: "#4b5a57" },
           }}
         >
           <Box

@@ -69,39 +69,39 @@ const Signup = () => {
 
   return (
     <Container
-      maxWidth="lg"
+      // maxWidth="lg"
       sx={{
-        height: "84vh",
-        display: "flex",
-        justifyContent: "space-evenly",
-        alignItems: "center",
-        flexDirection: {
-          xs: "column",
-          sm: "column",
-          md: "row",
-          lg: "row",
-          xl: "row",
-        },
-        gap: "10px",
-        margionTop: "50px"
-      }}
+        height: "auto",
+				display: "flex",
+				alignItems: "center",
+				flexDirection: {
+					xs: "column",
+					sm: "column",
+					md: "row",
+					lg: "row",
+					xl: "row",
+				},
+				marginTop: "50px",
+				width: "auto",
+				marginBottom: "50px",
+			}}
     >
       <Box
         sx={{
           width: {
-            xs: "250px",
-            sm: "300px",
-            md: "400px",
-            lg: "400px",
-            xl: "400px",
-          },
-          marginRight: {
-            xs: "0px",
-            sm: "0px",
-            md: "50px",
-            lg: "50px",
-            xl: "50px",
-          },
+						xs: "250px",
+						sm: "500px",
+						md: "400px",
+						lg: "400px",
+						xl: "400px",
+					},
+					marginRight: {
+						xs: "0px",
+						sm: "0px",
+						md: "50px",
+						lg: "50px",
+						xl: "50px",
+					},
         }}
       >
         <img
@@ -116,9 +116,8 @@ const Signup = () => {
       <form
         style={{
           display: "flex",
-          flexDirection: "column",
-          width: "40%",
-          gap: "30px",
+					flexDirection: "column",
+					gap: "30px",
         }}
         onSubmit={handleFormSubmit}
       >
@@ -130,16 +129,16 @@ const Signup = () => {
             htmlFor="names"
             style={{
               fontSize: "14px",
-              fontWeight: "500",
-              lineHeight: "17.5px",
-              width: {
-                xs: "auto",
-                sm: "auto",
-                md: "100%",
-                lg: "100%",
-                xl: "100%",
-              },
-              color: "#57595A",
+							fontWeight: "500",
+							lineHeight: "17.5px",
+							color: "#57595A",
+							width: {
+								xs: "auto",
+								sm: "auto",
+								md: "100%",
+								lg: "100%",
+								xl: "100%",
+							},
             }}
           >
             Name
