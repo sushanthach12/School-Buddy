@@ -1,25 +1,30 @@
 import React, { useState } from "react";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
-import { FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
+import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import ClearIcon from "@mui/icons-material/Clear";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useSelector } from "react-redux";
 import { useGetAllUserPredefinedQuery } from "../store/api/predefinedApi";
 import { useLazyGetTemplateByTaglineQuery } from "../store/api/templateApi";
+import { useCreateInvoiceMutation } from "../store/api/invoiceApi";
+import toast from "react-hot-toast";
 
 const InvoiceCreate = () => {
 
 	const [tagSelected, setTagSelected] = useState('');
+	const [isLoading, setIsLoading] = useState(false)
 
 	const user = useSelector((state) => state.users.user)
+	const template = useSelector((state) => state.templates.template);
 	const predefined = useSelector((state) => state.predefined.predefines);
 	const { } = useGetAllUserPredefinedQuery({ userId: user._id }, { refetchOnMountOrArgChange: true, skip: false });
 
 	const [details, setDetails] = useState({})
 
 	const [trigger, result] = useLazyGetTemplateByTaglineQuery();
+	const [createInvoice] = useCreateInvoiceMutation();
 
 	const handleChange = (e) => {
 		setTagSelected(e.target.value)
@@ -28,6 +33,24 @@ const InvoiceCreate = () => {
 
 	const handleDetails = (e) => {
 		setDetails({ ...details, [e.target.name]: e.target.value })
+	}
+
+	const handleSubmit = async() => {
+		try {
+			setIsLoading(true);
+
+			const body = {userId: user._id, templateId: template?._id, invoiceDate: details?.invoiceDate, terms: details?.terms, modeOfPayment: details?.modeOfPayment };
+
+			await createInvoice(body).unwrap();
+
+			toast.success("Invoice Created Successfully!", { duration: 1000, position:'top-center'});
+
+		} catch (error) {
+			toast.error(error.message, { duration: 1000, position:'top-center'});
+			console.log(error)
+		}finally {
+			setIsLoading(false)
+		}
 	}
 
 	return (
@@ -71,6 +94,7 @@ const InvoiceCreate = () => {
 			{result?.data === null && "No Templates Found"}
 			{result?.data && result?.isSuccess &&
 				<Box>
+
 					<Box style={{ marginTop: '8px' }}>
 						<Box
 							sx={{
@@ -81,7 +105,7 @@ const InvoiceCreate = () => {
 								// alignItems:'center',
 							}}
 						>
-							<Typography
+							{/* <Typography
 								sx={{
 									width: "430px",
 									fontSize: "18px",
@@ -92,7 +116,7 @@ const InvoiceCreate = () => {
 								}}
 							>
 								#Pre filled data from template
-							</Typography>
+							</Typography> */}
 							<Typography
 								variant="h3"
 								sx={{
@@ -157,7 +181,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								{result.data.phoneNo.map((value) => (<span key={value} style={{margin: "0 3px"}}>{value}</span>))}
+								{result.data.phoneNo.map((value) => (<span key={value} style={{ margin: "0 3px" }}>{value}</span>))}
 							</Typography>
 							<Typography
 								sx={{
@@ -173,7 +197,7 @@ const InvoiceCreate = () => {
 								GST Number : {result.data.schoolName}
 							</Typography>
 
-							<Typography
+							{/* <Typography
 								sx={{
 									marginTop: "50px",
 									marginBottom: "20px",
@@ -186,9 +210,9 @@ const InvoiceCreate = () => {
 								}}
 							>
 								#Pre filled data from template
-							</Typography>
+							</Typography> */}
 						</Box>
-						<Box
+						{/* <Box
 							variant="div"
 							sx={{
 								marginBottom: "10px",
@@ -201,8 +225,6 @@ const InvoiceCreate = () => {
 								sx={{
 									alignContent: "center",
 									marginTop: "20px",
-									// border: "1px 0px 0px 0px",
-									// borderTop: "1px solid #EAEAEA",
 									paddingTop: "20px",
 								}}
 							>
@@ -228,20 +250,11 @@ const InvoiceCreate = () => {
 										display: "flex",
 										justifyContent: 'space-evenly',
 										alignItems: 'center',
-										// paddingTop: "4px",
 										padding: "8px",
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
 									}}
 								>
 									<Box
-										sx={
-											{
-												// marginLeft: '5px',
-												// Padding: '8px'
-											}
-										}
+
 									>
 										<DescriptionOutlinedIcon
 											sx={{
@@ -277,15 +290,12 @@ const InvoiceCreate = () => {
 								</Box>
 							</Box>
 
-							{/* fourth */}
 
 							<Box
 								variant="div"
 								sx={{
 									alignContent: "center",
 									marginTop: "15px",
-									// border: "1px 0px 0px 0px",
-									// borderTop: "1px solid #EAEAEA",
 									paddingTop: "20px",
 								}}
 							>
@@ -311,26 +321,15 @@ const InvoiceCreate = () => {
 										display: "flex",
 										justifyContent: 'space-evenly',
 										alignItems: 'center',
-										// paddingTop: "4px",
 										padding: "8px",
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
 									}}
 								>
 									<Box
-										sx={
-											{
-												// marginLeft: '5px',
-												// Padding: '8px'
-											}
-										}
+
 									>
 										<DescriptionOutlinedIcon
 											sx={{
 												color: "#B1B2B2",
-												// marginTop: "8px",
-												// marginRight: '5px'
 												margin: "0 5px",
 												padding: "0px",
 											}}
@@ -342,7 +341,6 @@ const InvoiceCreate = () => {
 										sx={{
 											width: "490px",
 											height: "24px",
-											// marginTop: "8px",
 											fontSize: "16px",
 											color: "black",
 											marginRight: "15px",
@@ -364,14 +362,12 @@ const InvoiceCreate = () => {
 								</Box>
 							</Box>
 
-							{/* fifth */}
+
 							<Box
 								variant="div"
 								sx={{
 									alignContent: "center",
 									marginTop: "15px",
-									// border: "1px 0px 0px 0px",
-									// borderTop: "1px solid #EAEAEA",
 									paddingTop: "15px",
 								}}
 							>
@@ -397,26 +393,15 @@ const InvoiceCreate = () => {
 										display: "flex",
 										justifyContent: 'space-evenly',
 										alignItems: 'center',
-										// paddingTop: "4px",
 										padding: "8px",
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
 									}}
 								>
 									<Box
-										sx={
-											{
-												// marginLeft: '5px',
-												// Padding: '8px'
-											}
-										}
+
 									>
 										<DescriptionOutlinedIcon
 											sx={{
 												color: "#B1B2B2",
-												// marginTop: "8px",
-												// marginRight: '5px'
 												margin: "0 5px",
 												padding: "0px",
 											}}
@@ -428,7 +413,6 @@ const InvoiceCreate = () => {
 										sx={{
 											width: "490px",
 											height: "24px",
-											// marginTop: "8px",
 											fontSize: "16px",
 											color: "black",
 											padding: "3px",
@@ -454,8 +438,6 @@ const InvoiceCreate = () => {
 								sx={{
 									alignContent: "center",
 									marginTop: "15px",
-									// border: "1px 0px 0px 0px",
-									// borderTop: "1px solid #EAEAEA",
 									paddingTop: "15px",
 								}}
 							>
@@ -481,25 +463,15 @@ const InvoiceCreate = () => {
 										display: "flex",
 										justifyContent: 'space-evenly',
 										alignItems: 'center',
-										// paddingTop: "4px",
 										padding: "8px",
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
 									}}
 								>
 									<Box
-										sx={
-											{
-												// marginLeft: '5px',
-												// Padding: '8px'
-											}
-										}
+
 									>
 										<DescriptionOutlinedIcon
 											sx={{
 												color: "#B1B2B2",
-												// marginTop: "8px",
 												// marginRight: '5px'
 												margin: "0 5px",
 												padding: "0px",
@@ -512,7 +484,6 @@ const InvoiceCreate = () => {
 										sx={{
 											width: "490px",
 											height: "24px",
-											// marginTop: "8px",
 											fontSize: "16px",
 											color: "black",
 											marginRight: "15px",
@@ -568,15 +539,11 @@ const InvoiceCreate = () => {
 										justifyContent: 'space-evenly',
 										alignItems: 'center',
 										paddingTop: "4px",
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
+
 									}}
 								>
 									<Box
-									// sx={{
-									// 	marginLeft: "5px",
-									// }}
+
 									>
 										<AddLinkIcon
 											sx={{
@@ -643,15 +610,11 @@ const InvoiceCreate = () => {
 										justifyContent: 'space-evenly',
 										alignItems: 'center',
 										paddingTop: "4px",
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
+
 									}}
 								>
 									<Box
-									// sx={{
-									// 	marginLeft: "5px",
-									// }}
+
 									>
 										<AddLinkIcon
 											sx={{
@@ -718,15 +681,10 @@ const InvoiceCreate = () => {
 										alignItems: 'center',
 										paddingTop: "4px",
 										gap: '2px'
-										//   ":hover": {border: "2px solid "},
-										//   transition:'all 0.2s ease-in-out',
-										//   ":hover":{borderColor:"#8E9090"},
 									}}
 								>
 									<Box
-									// sx={{
-									// 	marginLeft: "5px",
-									// }}
+
 									>
 										<AddLinkIcon
 											sx={{
@@ -761,11 +719,11 @@ const InvoiceCreate = () => {
 								</Box>
 							</Box>
 
-						</Box>
+						</Box> */}
 					</Box>
 
 					<Box>
-						<Box
+						{/* <Box
 							variant="div"
 							sx={{
 								alignContent: "center",
@@ -850,7 +808,7 @@ const InvoiceCreate = () => {
 									/>
 								</Box>
 							</Box>
-						</Box>
+						</Box> */}
 						<Box
 							variant="div"
 							sx={{
@@ -909,7 +867,7 @@ const InvoiceCreate = () => {
 									/>
 								</Box>
 								<Input
-								type='date'
+									type='date'
 									disableUnderline
 									placeholder="Placeholder"
 									sx={{
@@ -921,11 +879,11 @@ const InvoiceCreate = () => {
 										marginRight: "15px",
 										padding: "3px",
 									}}
-									name="date"
+									name="invoiceDate"
 									value={details?.value}
 									onChange={handleDetails}
 								/>
-								
+
 								{/* <Box>
 									<ClearIcon
 										sx={{
@@ -1094,8 +1052,8 @@ const InvoiceCreate = () => {
 										marginRight: "15px",
 										padding: "3px",
 									}}
-									name="modeofpayment"
-									value={details?.modeofpayment}
+									name="modeOfPayment"
+									value={details?.modeOfPayment}
 									onChange={handleDetails}
 								/>
 								<Box>
@@ -1112,6 +1070,41 @@ const InvoiceCreate = () => {
 							</Box>
 						</Box>
 					</Box>
+
+					<Button
+						type="button"
+						sx={{
+							marginTop: "25px",
+							backgroundColor: "#FFE393",
+							width: "253px",
+							height: "48px",
+							borderRadius: '6px',
+							":hover": { backgroundColor: "#ffe8a8" },
+							textColor: "#363939",
+						}}
+						variant="contained"
+						disableElevation
+						disabled={isLoading}
+						onClick={handleSubmit}
+					>
+						<Typography
+							variant="h4"
+							sx={{
+								color: "#363939",
+								fontSize: "18px",
+								fontWeight: "600",
+								lineHeight: "22.5px",
+								textAlign: "center",
+								cursor: "pointer",
+								textTransform: "none",
+								width: "100%",
+								fontFamily: "Lora",
+							}}
+						>
+							Create
+						</Typography>
+					</Button>
+
 				</Box>
 			}
 		</Box>

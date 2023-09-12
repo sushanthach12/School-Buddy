@@ -3,7 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const predefinedApi = createApi({
     reducerPath: "predefinedApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `https://school-buddy-backend.vercel.app/api/predefined` }),
+    // baseQuery: fetchBaseQuery({ baseUrl: `https://school-buddy-backend.vercel.app/api/predefined` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:8080/api/predefined` }),
     tagTypes: ['Predefined', 'GetPredefined'],
     endpoints: (builder) => ({
         getAllUserPredefined: builder.query({
@@ -31,7 +32,7 @@ export const predefinedApi = createApi({
             invalidatesTags: ['Predefined']
         }),
         getPredefined: builder.query({
-            query: ({id}) => ({
+            query: ({ id }) => ({
                 url: `/getpredefinedbyid/${id}`,
                 method: 'GET',
             }),
@@ -47,12 +48,19 @@ export const predefinedApi = createApi({
             providesTags: ['GetPredefined']
         }),
         editPredefined: builder.mutation({
-            query: ({body, id}) => ({
+            query: ({ body, id }) => ({
                 url: `/updatepredefined/${id}`,
                 method: 'PUT',
                 body
             }),
             invalidatesTags: ['GetPredefined']
+        }),
+        deletePredefinedById: builder.query({
+            query: ({ id, userId }) => ({
+                url: `/deletepredefined?id=${id}&userId=${userId}`,
+                method: 'DELETE'
+            }),
+            invalidatesTags: ['Predefined']
         })
 
     })
@@ -62,5 +70,7 @@ export const {
     useAddPredefinedMutation,
     useGetAllUserPredefinedQuery,
     useGetPredefinedQuery,
-    useEditPredefinedMutation
+    useEditPredefinedMutation,
+    useDeletePredefinedByIdQuery,
+    useLazyDeletePredefinedByIdQuery
 } = predefinedApi
