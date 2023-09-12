@@ -19,9 +19,19 @@ export const detailApi = createApi({
                 return response?.Detail
             }
         }),
+        getDetails: builder.query({
+            query: (id) => ({
+                url: `/${id}`,
+                method: 'GET'
+            })
+        }),
+        transformResponse: (response) => {
+            return response["Detail"]
+        }
     })
 })
 
 export const {
     useCreateDetailMutation,
+    useGetDetailsQuery
 } = detailApi

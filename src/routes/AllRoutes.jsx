@@ -23,7 +23,7 @@ const AllRoutes = () => {
             <Route exact path='/' element={<Homepage />}></Route>
             <Route exact path='/login' element={<Login />}></Route>
             <Route exact path='/signup' element={<Signup />}></Route>
-            <Route exact path='/dashboard' element={<Profile />}></Route>
+            <Route exact path='/dashboard/link/profile/:id' element={<Profile />}></Route>
             <Route exact path='/analytics' element={<Analytics />}></Route>
             <Route exact path='/link-generator' element={<LinkGenerator />}></Route>
             <Route exact path='/invoice-generator' element={<Invoicegenerator />}></Route>

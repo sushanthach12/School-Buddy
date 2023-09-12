@@ -14,12 +14,10 @@ import { Button } from "@mui/material";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import SideBar from "./SideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../store/slices/userSlice";
 
 
 const PathNames = new Map([
 	["/", "Home"],
-	["/dashboard", "Your Profile"],
 	["/analytics", "Analytics"],
 	["/link-generator", "Link Generator"],
 	["/invoice-generator", "Invoice Generator"],
@@ -48,7 +46,7 @@ export default function Navbar({ hideNav }) {
 
 	const location = useLocation();
 	const navigate = useNavigate()
-	const match = /edit-predefined/.test(window.location.href)
+	const editMatch = /edit-predefined/.test(window.location.href);
 
 	// const theme = useTheme();
 	const [open, setOpen] = React.useState(false);
@@ -79,10 +77,14 @@ export default function Navbar({ hideNav }) {
 		navigate('/login')
 	}
 
+	if(hideNav) {
+		return null;
+	}
+
 	return (
 		<Box
 			sx={{
-				display: hideNav ? "none" : "flex",
+				display: "flex",
 			}}
 		>
 			<AppBar
@@ -127,7 +129,8 @@ export default function Navbar({ hideNav }) {
 								}}
 							>
 								<span style={{ color: "#1F2223", fontFamily: 'Lora' }}>
-									{match? "Edit Predefined" : PathNames.get(location.pathname)}
+									{editMatch && "Edit Predefined"}
+									{!editMatch && PathNames.get(location.pathname)}
 								</span>
 							</div>
 

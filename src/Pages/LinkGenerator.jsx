@@ -138,11 +138,14 @@ const LinkGenerator = () => {
 			variant="div"
 			sx={{
 				display: "flex",
-				justifyContent: "center",
+				justifyContent: "space-evenly",
 				alignItems: "center",
-				flexDirection: "row",
-				marginTop: "50px",
-
+				flexDirection: {
+					sm: 'column-reverse',
+					xs: 'column-reverse',
+					md: 'row'
+				},
+				margin: '3rem 0'
 			}}
 		>
 			<Box
@@ -639,8 +642,12 @@ const LinkGenerator = () => {
 					flexDirection: 'column',
 					alignItems: 'center',
 					gap: '8px',
-					marginLeft: '100px',
 					// width: '530px'
+					marginBottom: {
+						sm: '8rem',
+						xs: '8rem'
+					}
+
 				}}
 			>
 				<Box
@@ -657,8 +664,8 @@ const LinkGenerator = () => {
 						src={imageFile || user?.profile_img || "/images/profile.svg"}
 						alt="profile"
 						style={{
-							width: "284px",
-							height: "284px",
+							width: "248px",
+							height: "248px",
 							borderRadius: '50%',
 							border: (user?.profile_img || imageFile) && '4px solid #F9D262'
 						}}
