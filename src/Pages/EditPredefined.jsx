@@ -9,24 +9,49 @@ import {
 } from '@mui/material'
 import React, { useState } from 'react'
 import ClearIcon from "@mui/icons-material/Clear";
+import { useEditPredefinedMutation, useGetPredefinedQuery } from '../store/api/predefinedApi';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 
 const EditPredefined = () => {
 
+    const { id } = useParams();
+
+    const user = useSelector((state) => state.users.user)
+    const predefined = useSelector((state) => state.predefined.predefined)
+    const { isSuccess, isLoading } = useGetPredefinedQuery({ id: id }, {
+        refetchOnFocus: true,  
+    })
+
+    const [editPredefined] = useEditPredefinedMutation()
 
     const [formField, setFormField] = useState({
-        title: "",
-        description: ""
+        title: predefined.title,
+        description: predefined.description
     })
+    const [loading, setLoading] = useState(false)
 
     const handleChange = (e) => {
         setFormField({ ...formField, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async(e) => {
         e.preventDefault()
 
-        const formData = new FormData(e.target)
+        try {
+            setLoading(true);
+            const data = await editPredefined({body: {userId: user._id, ...formField}, id}).unwrap()
+			toast.success("Updated Successfully!", { duration: 1000, position: 'top-center' })
+            
+        } catch (error) {
+            toast.error("Something Went Wrong!", { duration: 1000, position: 'top-center' })
+        } finally {
+            setLoading(false)
+        }
+
     }
 
 
@@ -165,7 +190,7 @@ const EditPredefined = () => {
 
 
                     <Button
-                        href='/analytics'
+                        type='submit'
                         variant="contained"
                         sx={{
                             backgroundColor: "#FFE393",
@@ -176,6 +201,7 @@ const EditPredefined = () => {
                             borderRadius: '6px'
                         }}
                         disableElevation
+                        disabled={loading}
                     >
                         <Typography
                             variant="h4"

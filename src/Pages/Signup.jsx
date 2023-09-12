@@ -54,7 +54,7 @@ const Signup = () => {
       }, 1000);
 
     } catch (error) {
-      toast.error("Something went wrong" + error, { duration: 1000 })
+      toast.error("Something went wrong" + error.message, { duration: 1000 })
       dispatch(loggedInFailed());
     } finally {
       setLoading(false)

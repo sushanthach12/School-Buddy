@@ -11,10 +11,12 @@ function App() {
   const location = useLocation();
   const user = useSelector((state) => state.users)
   const hideNav = user !== undefined && !user.loggedIn && location.pathname === '/'
+  
+	const profileMatch = /dashboard\/link\/profile/.test(window.location.href);
 
   return (
     <>
-      <Navbar hideNav={hideNav} />
+      <Navbar hideNav={profileMatch || hideNav} />
       <Toaster />
       <div>
         <AllRoutes />

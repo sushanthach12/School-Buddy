@@ -2,17 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const authApi = createApi({
     reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({ 
-        baseUrl: `http://64.227.150.164/api/auth`,
-        // mode: 'cors',
-        // credentials: 'same-origin',
-        // prepareHeaders: (headers) => {
-        //     headers.set("Content-Type", "application/json");
-        //     headers.set('Access-Control-Allow-Origin', '*');
-
-        //     return headers;
-        // },
-
+    baseQuery: fetchBaseQuery({
+        baseUrl: `https://school-buddy-backend.vercel.app/api/auth`,
     }),
     endpoints: (builder) => ({
         registerUser: builder.mutation({

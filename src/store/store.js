@@ -14,6 +14,7 @@ import { templateApi } from "./api/templateApi";
 import templateReducer from "./slices/templateSlice";
 import { predefinedApi } from "./api/predefinedApi";
 import predefinedReducer from "./slices/predefinedSlice";
+import { invoiceApi } from "./api/invoiceApi";
 
 const persistConfig = {
     key: 'root',
@@ -29,7 +30,8 @@ const appReducer = combineReducers({
     [authApi.reducerPath]: authApi.reducer,
     [detailApi.reducerPath]: detailApi.reducer,
     [templateApi.reducerPath]: templateApi.reducer,
-    [predefinedApi.reducerPath]: predefinedApi.reducer
+    [predefinedApi.reducerPath]: predefinedApi.reducer,
+    [invoiceApi.reducerPath]: invoiceApi.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, appReducer);
@@ -48,7 +50,7 @@ export const store = configureStore({
             serializableCheck: {
                 ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
             },
-        }).concat(authApi.middleware, detailApi.middleware, templateApi.middleware, predefinedApi.middleware)
+        }).concat(authApi.middleware, detailApi.middleware, templateApi.middleware, predefinedApi.middleware, invoiceApi.middleware)
 })
 
 setupListeners(store.dispatch)

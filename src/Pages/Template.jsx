@@ -21,7 +21,7 @@ const Template = () => {
 	const user = useSelector((state) => state.users.user);
 	const dispatch = useDispatch();
 
-	const predefined = useSelector(state => state.predefined.predefines)
+	const predefined = [] = useSelector(state => state.predefined.predefines)
 	const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id })
 
 	const [createTemplate] = useCreateTemplateMutation();
@@ -61,7 +61,7 @@ const Template = () => {
 		}
 
 		reader.onerror = (e) => {
-			toast.error(e.target.error.message, {duration: 1000, position: 'top-center'})
+			toast.error(e.target.error.message, { duration: 1000, position: 'top-center' })
 		}
 
 		reader.readAsDataURL(imageRef.current?.files[0])
@@ -75,7 +75,7 @@ const Template = () => {
 		e.preventDefault();
 		try {
 			setLoading(true)
-			
+
 			const templateData = await prepareTemplateData(e.target, user._id)
 			const data = await createTemplate(templateData).unwrap();
 			dispatch(addUserTemplates(data))
@@ -197,7 +197,7 @@ const Template = () => {
 								width: "254px",
 							}}
 						>
-							<Typography
+							{(predefined.length === 0) ? <Typography
 								sx={{
 									width: "254px",
 									height: "18px",
@@ -205,11 +205,27 @@ const Template = () => {
 									fontWeight: "500",
 									lineHeight: "17.5px",
 									fontFamily: "Inter",
-									color: "#57595A",
+									color: "red",
+									fontStyle: 'italic'
 								}}
 							>
-								Tag /Predefined
+								Please add predefined first
 							</Typography>
+								:
+								<Typography
+									sx={{
+										width: "254px",
+										height: "18px",
+										fontSize: "14px",
+										fontWeight: "500",
+										lineHeight: "17.5px",
+										fontFamily: "Inter",
+										color: "#57595A",
+									}}
+								>
+									Tag /Predefined
+								</Typography>
+							}
 							<Box
 								sx={{
 									border: "2px solid #D2D3D3",
@@ -239,11 +255,12 @@ const Template = () => {
 									value={tags}
 									onChange={handleTagsChange}
 									disableUnderline
+									disabled={predefined.length === 0}
 									style={{
 										width: 'inherit',
 										height: 'inherit',
 										backgroundColor: 'inherit',
-										color: 'black'
+										color: 'black',
 									}}
 									labelId="demo-simple-select-helper-label"
 									id="demo-simple-select-helper"
@@ -1007,7 +1024,7 @@ const Template = () => {
 						</Typography>
 					</Button>
 				</Box>
-			</form>
+			</form >
 
 			<Box
 				variant="div"
