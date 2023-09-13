@@ -35,8 +35,6 @@ const InvoiceHistory = () => {
 		}, 200)
 	}
 
-	console.log(pdfData)
-
 	if (isLoading) {
 		return (
 			<>

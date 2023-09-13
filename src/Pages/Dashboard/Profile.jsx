@@ -7,11 +7,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 
 const Profile = () => {
     const { id } = useParams();
-    console.log(id)
 
     const { data = {}, isSuccess, isLoading, isError } = useGetDetailsQuery(id);
 
-    console.log(data?.Detail, isSuccess);
 
     if (isLoading) {
         return (

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
@@ -21,8 +21,12 @@ const Template = () => {
 	const user = useSelector((state) => state.users.user);
 	const dispatch = useDispatch();
 
-	const predefined = [] = useSelector(state => state.predefined.predefines)
-	const { isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id })
+	const predefined = [] = useSelector(state => state.predefined.predefinedWithNoTemplate)
+	const { refetch, isSuccess, isLoading } = useGetAllUserPredefinedQuery({ userId: user._id }, { refetchOnMountOrArgChange: true });
+
+	useEffect(() => {
+		refetch()
+	}, [refetch])
 
 	const [createTemplate] = useCreateTemplateMutation();
 

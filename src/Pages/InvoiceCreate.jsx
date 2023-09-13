@@ -47,7 +47,6 @@ const InvoiceCreate = () => {
 
 		} catch (error) {
 			toast.error(error.message, { duration: 1000, position:'top-center'});
-			console.log(error)
 		}finally {
 			setIsLoading(false)
 		}

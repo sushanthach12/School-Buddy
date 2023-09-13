@@ -4,6 +4,7 @@ import { predefinedApi } from "../api/predefinedApi";
 
 const initialState = {
     predefines: [],
+    predefinedWithNoTemplate: null,
     predefined: null
 }
 
@@ -24,8 +25,8 @@ const predefinedSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addMatcher(predefinedApi.endpoints.getAllUserPredefined.matchFulfilled, (state, { payload }) => {
-            console.log(payload)
             state.predefines = payload
+            state.predefinedWithNoTemplate = [] = payload.filter(item => (item.templateId === null))
         })
         builder.addMatcher(predefinedApi.endpoints.getPredefined.matchFulfilled, (state, { payload }) => {
             state.predefined = payload

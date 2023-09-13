@@ -45,6 +45,11 @@ const ViewPredefined = () => {
         refetchOnMountOrArgChange: true,
     })
 
+    useEffect(()=>{
+        refetch()
+    }, [])
+
+
     const [trigger, result] = useLazyDeletePredefinedByIdQuery();
 
     const handleDelete = (id) => {
