@@ -19,14 +19,14 @@ const InvoiceHistory = () => {
 		refetchOnMountOrArgChange: true
 	});
 
-	const { data: invoiceUploads = [], isSuccess: success, isLoading: loading } = useGetInvoiceUploadsQuery(user._id, {
+	const { data: invoiceUploads = [], isSuccess: success, isLoading: loading, refetch } = useGetInvoiceUploadsQuery(user._id, {
 		refetchOnMountOrArgChange: true
 	});
 	
 
 
 	const fetchpdf = async ({invoiceId}) => {
-		
+		refetch()
 		const pdfValue = invoiceUploads.filter(item => item.invoice_id === invoiceId);
 		setPdfData(`${pdfValue[0].data}`);
 
