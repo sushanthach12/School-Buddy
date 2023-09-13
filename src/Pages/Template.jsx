@@ -97,7 +97,11 @@ const Template = () => {
 				display: "flex",
 				justifyContent: "center",
 				alignItems: "center",
-				flexDirection: "row",
+				flexDirection: {
+					xs: "column-reverse",
+					md: "row",
+
+				},
 				marginTop: "50px",
 			}}
 		>

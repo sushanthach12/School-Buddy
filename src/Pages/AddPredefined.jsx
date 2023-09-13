@@ -50,13 +50,14 @@ const AddPredefined = () => {
     return (
         <Container
             maxWidth='lg'
-            style={{
+            sx={{
                 display: 'flex',
                 height: '80vh',
                 justifyContent: 'center',
                 alignItems: 'center',
                 padding: '10px 0',
                 gap: '8px',
+                width: '100%'
             }}
         >
             <Box>
@@ -65,19 +66,21 @@ const AddPredefined = () => {
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        gap: '30px'
+                        gap: '30px',
+                        width: '100%',
                     }}
                 >
                     <FormControl>
                         <FormLabel
                             shrink="true"
                             htmlFor="title"
-                            style={{
+                            sx={{
                                 fontSize: "14px",
                                 fontWeight: '500',
                                 lineHeight: '17.5px',
                                 color: '#57595A',
-                                marginBottom: '4px'
+                                marginBottom: '4px',
+                                // width: '100%'
                             }}
                         >
                             Title
@@ -86,7 +89,14 @@ const AddPredefined = () => {
                             sx={{
                                 border: "1px solid #D2D3D3",
                                 borderRadius: "6px",
-                                width: "533px",
+                                width: {
+                                    xs: 'auto',
+                                    sm: '100%',
+                                    md:"533px",
+                                    lg: "533px",
+                                    xl: "533px",
+
+                                },
                                 height: "48px",
                                 display: "flex",
                                 justifyContent: "space-between",
@@ -100,7 +110,7 @@ const AddPredefined = () => {
                                 id="title"
                                 placeholder="title"
                                 sx={{
-                                    width: "485px",
+                                    width: "100%",
                                     height: "24px",
                                     lineHeight: '24px',
                                     fontSize: "16px",
@@ -142,7 +152,13 @@ const AddPredefined = () => {
                             sx={{
                                 border: "1px solid #D2D3D3",
                                 borderRadius: "6px",
-                                width: "718px",
+                                width: {
+                                    xs: 'auto',
+                                    sm: '100%',
+                                    md:"533px",
+                                    lg:"718px",
+                                    xl:"718px"
+                                },
                                 height: "133px",
                                 display: "flex",
                                 justifyContent: 'space-between',
@@ -156,7 +172,13 @@ const AddPredefined = () => {
                                 placeholder="description"
                                 id="description"
                                 sx={{
-                                    width: "485px",
+                                    width: {
+                                        xs: 'auto',
+                                        sm: '100%',
+                                        md:"533px",
+                                        lg:"718px",
+                                        xl:"718px"
+                                    },
                                     height: "24px",
                                     lineHeight: '24px',
                                     fontSize: "16px",
