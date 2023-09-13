@@ -20,10 +20,18 @@ export const invoiceApi = createApi({
                 url: `/getallinvoice/${userId}`,
                 method: 'GET'
             })
+        }),
+        getInvoiceUploads: builder.query({
+            query: (userId) => ({
+                url: `/getinvoiceupload/${userId}`,
+                method: 'GET'
+            })
         })
     })
 })
 
 export const {
     useCreateInvoiceMutation,
+    useGetAllInvoicesByUserIdQuery,
+    useGetInvoiceUploadsQuery
 } = invoiceApi

@@ -38,6 +38,7 @@ const persistedReducer = persistReducer(persistConfig, appReducer);
 
 const rootReducer = (state, action) => {
     if(action.type === 'RESET') {
+        localStorage.removeItem('persist:root')
         return appReducer(undefined, action)
     }
     return persistedReducer(state, action)
