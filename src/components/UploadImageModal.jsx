@@ -27,6 +27,10 @@ const style = {
 const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
     const handleClose = () => setOpenModalOrNot(!openModalOrNot);
 
+    const handleFileSelect = () => {
+        fileRef.current.click();
+    }
+
     return (
         <div>
             <Modal
@@ -102,7 +106,7 @@ const UploadImageModal = ({ openModalOrNot, setOpenModalOrNot, fileRef }) => {
                                 borderRadius: '6px',
                                 backgroundColor: '#FFE393'
                             }}
-                            onClick={() => fileRef.current.click()}
+                            onClick={handleFileSelect}
                         >
                             <Typography
                                 variant="h4"

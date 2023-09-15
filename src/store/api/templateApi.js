@@ -38,6 +38,13 @@ export const templateApi = createApi({
                 method: 'GET',
                 headers: { 'Content-type': 'application/json' },
             }),
+        }),
+        updateTemplate: builder.mutation({
+            query: ({ id, body }) => ({
+                url: `/updatetemplate/${id}`,
+                method: 'PUT',
+                body
+            })
         })
     })
 })
@@ -47,5 +54,6 @@ export const {
     useGetTemplateQuery,
     useGetUserTemplatesQuery,
     useGetTemplateByTaglineQuery,
-    useLazyGetTemplateByTaglineQuery
+    useLazyGetTemplateByTaglineQuery,
+    useUpdateTemplateMutation
 } = templateApi

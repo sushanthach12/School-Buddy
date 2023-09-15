@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
 import { Button, FormControl, InputLabel, MenuItem, Select, Typography } from "@mui/material";
@@ -7,47 +7,70 @@ import ClearIcon from "@mui/icons-material/Clear";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import { useSelector } from "react-redux";
 import { useGetAllUserPredefinedQuery } from "../store/api/predefinedApi";
-import { useLazyGetTemplateByTaglineQuery } from "../store/api/templateApi";
+import { useGetUserTemplatesQuery, useLazyGetTemplateByTaglineQuery } from "../store/api/templateApi";
 import { useCreateInvoiceMutation } from "../store/api/invoiceApi";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const InvoiceCreate = () => {
 
 	const [tagSelected, setTagSelected] = useState('');
 	const [isLoading, setIsLoading] = useState(false)
+	const [details, setDetails] = useState({})
+	const [pdfData, setPdfData] = useState("")
+
+	const pdfOpenRef = useRef()
 
 	const user = useSelector((state) => state.users.user)
-	const template = useSelector((state) => state.templates.template);
 	const predefined = useSelector((state) => state.predefined.predefines);
+
+
 	const { } = useGetAllUserPredefinedQuery({ userId: user._id }, { refetchOnMountOrArgChange: true, skip: false });
+	const { refetch, data: template = {}, isSuccess, isError, isLoading: queryLoading, error } = useGetUserTemplatesQuery(user._id, {
+		refetchOnMountOrArgChange: true
+	})
 
-	const [details, setDetails] = useState({})
-
-	const [trigger, result] = useLazyGetTemplateByTaglineQuery();
 	const [createInvoice] = useCreateInvoiceMutation();
+
+
+	useEffect(() => {
+		refetch()
+	}, [refetch])
+
 
 	const handleChange = (e) => {
 		setTagSelected(e.target.value)
-		trigger({ tagId: e.target.value })
 	}
 
 	const handleDetails = (e) => {
 		setDetails({ ...details, [e.target.name]: e.target.value })
 	}
 
-	const handleSubmit = async() => {
+	const handleSubmit = async () => {
 		try {
 			setIsLoading(true);
 
-			const body = {userId: user._id, templateId: template?._id, invoiceDate: details?.invoiceDate, terms: details?.terms, modeOfPayment: details?.modeOfPayment };
+			if (tagSelected === '') {
+				toast.error('Please select a predefined', { duration: 1000, position: 'top-center' });
+				return;
+			} else if (!details?.invoiceDate || !details?.terms || !details?.modeOfPayment) {
+				toast.error('All the fields are required', { duration: 1000, position: 'top-center' });
+				return;
+			}
 
-			await createInvoice(body).unwrap();
+			const body = { userId: user._id, templateId: template?._id, tagId: tagSelected, invoiceDate: details?.invoiceDate, terms: details?.terms, modeOfPayment: details?.modeOfPayment };
 
-			toast.success("Invoice Created Successfully!", { duration: 1000, position:'top-center'});
+			const data = await createInvoice(body).unwrap();
+			setPdfData(data?.PDF)
+			toast.success("Invoice Created Successfully!", { duration: 1000, position: 'top-center' });
+
+			setTimeout(() => {
+				pdfOpenRef.current.click()
+			}, 200);
 
 		} catch (error) {
-			toast.error(error.message, { duration: 1000, position:'top-center'});
-		}finally {
+			toast.error(error.message, { duration: 1000, position: 'top-center' });
+		} finally {
 			setIsLoading(false)
 		}
 	}
@@ -64,34 +87,11 @@ const InvoiceCreate = () => {
 				marginBottom: "50px",
 			}}
 		>
-			<Box
-				style={{
-					width: '282px',
-					height: '56px',
-					margin: '10px 0'
-				}}
-			>
-				<FormControl fullWidth>
-					<InputLabel id="demo-simple-select-label">Predefined</InputLabel>
-					<Select
-						labelId="demo-simple-select-label"
-						id="demo-simple-select"
-						value={tagSelected}
-						label="Predefined"
-						onChange={handleChange}
-					>
-						{predefined.map((ele) => (
-							<MenuItem key={ele._id} value={ele._id}>{ele.title}</MenuItem>
-						))}
-					</Select>
-				</FormControl>
-			</Box>
-
-			{result?.isUninitialized && "Select a predefined"}
-			{result?.isLoading && "Loading..."}
-			{result?.isError && "Something went wrong! try again..."}
-			{result?.data === null && "No Templates Found"}
-			{result?.data && result?.isSuccess &&
+			<Link to={`data:application/pdf;base64,${pdfData}`} target="_blank" style={{ display: "none" }} ref={pdfOpenRef} />
+			{queryLoading && "Loading..."}
+			{isError && "Something went wrong! try again..."}
+			{template === null && "No Templates Found"}
+			{template && isSuccess &&
 				<Box>
 
 					<Box style={{ marginTop: '8px' }}>
@@ -127,7 +127,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Lora"
 								}}
 							>
-								{result.data.schoolName}
+								{template?.schoolName}
 							</Typography>
 							<Typography
 								sx={{
@@ -140,9 +140,9 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								{result.data.address[0]},
+								{template?.address},
 							</Typography>
-							<Typography
+							{/* <Typography
 								sx={{
 									marginTop: "10px",
 									width: "430px",
@@ -154,7 +154,7 @@ const InvoiceCreate = () => {
 								}}
 							>
 								Udupi, Karnataka 576103
-							</Typography>
+							</Typography> */}
 							<Typography
 								sx={{
 									marginTop: "10px",
@@ -167,7 +167,7 @@ const InvoiceCreate = () => {
 								}}
 							>
 
-								{result.data.emailId}
+								{template?.emailId}
 							</Typography>
 							<Typography
 								sx={{
@@ -180,7 +180,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								{result.data.phoneNo.map((value) => (<span key={value} style={{ margin: "0 3px" }}>{value}</span>))}
+								Phone Number: {template?.phoneNo.map((value) => (<span key={value} style={{ margin: "0 3px" }}>{value} |</span>))}
 							</Typography>
 							<Typography
 								sx={{
@@ -193,7 +193,7 @@ const InvoiceCreate = () => {
 									fontFamily: "Inter"
 								}}
 							>
-								GST Number : {result.data.schoolName}
+								GST Number : {template?.gstNo}
 							</Typography>
 
 							{/* <Typography
@@ -211,603 +211,44 @@ const InvoiceCreate = () => {
 								#Pre filled data from template
 							</Typography> */}
 						</Box>
-						{/* <Box
-							variant="div"
-							sx={{
-								marginBottom: "10px",
-								width: "533px",
-							}}
-						>
 
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "20px",
-									paddingTop: "20px",
+					</Box>
+
+					<Box
+						style={{
+							width: '282px',
+							height: '56px',
+							margin: '15px 0'
+						}}
+					>
+						<FormControl fullWidth>
+							{predefined.length === 0 ?
+								<InputLabel id="demo-simple-select-label" style={{ color: 'red', fontStyle: 'italic' }}>No Predefines</InputLabel>
+								:
+								<InputLabel id="demo-simple-select-label">Predefined</InputLabel>
+							}
+							<Select
+								labelId="demo-simple-select-label"
+								id="demo-simple-select"
+								value={tagSelected}
+								label="Predefined"
+								onChange={handleChange}
+								disabled={predefined.length === 0}
+								style={{
+									':disabled': {
+										color: 'red'
+									}
 								}}
 							>
-								<Typography
-									sx={{
-										width: "438px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									Name
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "533px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										padding: "8px",
-									}}
-								>
-									<Box
-
-									>
-										<DescriptionOutlinedIcon
-											sx={{
-												color: "#B1B2B2",
-												margin: '0 5px'
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "490px",
-											height: "24px",
-											fontSize: "16px",
-											marginRight: "15px",
-											padding: "0 3px",
-											color: 'black'
-										}}
-										value={result.data.schoolName}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-
-
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "15px",
-									paddingTop: "20px",
-								}}
-							>
-								<Typography
-									sx={{
-										width: "438px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									Email
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "533px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										padding: "8px",
-									}}
-								>
-									<Box
-
-									>
-										<DescriptionOutlinedIcon
-											sx={{
-												color: "#B1B2B2",
-												margin: "0 5px",
-												padding: "0px",
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "490px",
-											height: "24px",
-											fontSize: "16px",
-											color: "black",
-											marginRight: "15px",
-											padding: "0 3px",
-										}}
-										value={result.data.emailId}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-
-
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "15px",
-									paddingTop: "15px",
-								}}
-							>
-								<Typography
-									sx={{
-										width: "438px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									Address
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "533px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										padding: "8px",
-									}}
-								>
-									<Box
-
-									>
-										<DescriptionOutlinedIcon
-											sx={{
-												color: "#B1B2B2",
-												margin: "0 5px",
-												padding: "0px",
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "490px",
-											height: "24px",
-											fontSize: "16px",
-											color: "black",
-											padding: "3px",
-										}}
-										value={result.data.address[0]}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "15px",
-									paddingTop: "15px",
-								}}
-							>
-								<Typography
-									sx={{
-										width: "438px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									State/City
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "533px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										padding: "8px",
-									}}
-								>
-									<Box
-
-									>
-										<DescriptionOutlinedIcon
-											sx={{
-												color: "#B1B2B2",
-												// marginRight: '5px'
-												margin: "0 5px",
-												padding: "0px",
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "490px",
-											height: "24px",
-											fontSize: "16px",
-											color: "black",
-											marginRight: "15px",
-											padding: "3px",
-										}}
-										name="state"
-										value={result.data?.state || details?.state}
-										onChange={handleDetails}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "25px",
-									width: "254px",
-									marginRight: "25px",
-								}}
-							>
-								<Typography
-									sx={{
-										width: "254px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									Pin Code
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "254px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										paddingTop: "4px",
-
-									}}
-								>
-									<Box
-
-									>
-										<AddLinkIcon
-											sx={{
-												color: "#B1B2B2",
-												marginRight: "0 5px",
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "366px",
-											height: "24px",
-											fontSize: "16px",
-											color: 'black'
-										}}
-										name="pincode"
-										value={result.data?.pincode || details?.pincode}
-										onChange={handleDetails}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "25px",
-									width: "254px",
-									marginRight: "25px",
-								}}
-							>
-								<Typography
-									sx={{
-										width: "254px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									Phone Number
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "254px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										paddingTop: "4px",
-
-									}}
-								>
-									<Box
-
-									>
-										<AddLinkIcon
-											sx={{
-												color: "#B1B2B2",
-												marginRight: "0 5px",
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "366px",
-											height: "24px",
-											color: 'black',
-											fontSize: "16px",
-										}}
-										name="phonenumber"
-										value={result.data.phoneNo}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-							<Box
-								variant="div"
-								sx={{
-									alignContent: "center",
-									marginTop: "25px",
-									width: "254px",
-									marginRight: "25px",
-								}}
-							>
-								<Typography
-									sx={{
-										width: "254px",
-										height: "18px",
-										fontSize: "14px",
-										fontWeight: "500",
-										lineHeight: "17.5px",
-										fontFamily: "Inter",
-										color: "#57595A",
-									}}
-								>
-									GST Number
-								</Typography>
-								<Box
-									sx={{
-										border: "2px solid #D2D3D3",
-										borderRadius: "6px",
-										width: "254px",
-										height: "48px",
-										display: "flex",
-										justifyContent: 'space-evenly',
-										alignItems: 'center',
-										paddingTop: "4px",
-										gap: '2px'
-									}}
-								>
-									<Box
-
-									>
-										<AddLinkIcon
-											sx={{
-												color: "#B1B2B2",
-												marginRight: "0 5px",
-											}}
-										/>
-									</Box>
-									<Input
-										disableUnderline
-										placeholder="Placeholder"
-										sx={{
-											width: "366px",
-											height: "24px",
-											color: 'black',
-											fontSize: "16px",
-										}}
-										value={result.data?.gstNo}
-									/>
-									<Box>
-										<ClearIcon
-											sx={{
-												color: "#B1B2B2",
-												marginTop: "8px",
-												marginLeft: "10px",
-												height: "20px",
-												width: "20px",
-												cursor: "pointer",
-											}}
-										/>
-									</Box>
-								</Box>
-							</Box>
-
-						</Box> */}
+								{predefined.map((ele) => (
+									<MenuItem key={ele._id} value={ele._id}>{ele.title}</MenuItem>
+								))}
+							</Select>
+						</FormControl>
 					</Box>
 
 					<Box>
-						{/* <Box
-							variant="div"
-							sx={{
-								alignContent: "center",
-								marginTop: "15px",
-								// border: "1px 0px 0px 0px",
-								// borderTop: "1px solid #EAEAEA",
-								paddingTop: "15px",
-							}}
-						>
-							<Typography
-								sx={{
-									width: "438px",
-									height: "18px",
-									fontSize: "14px",
-									fontWeight: "500",
-									lineHeight: "17.5px",
-									fontFamily: "Inter",
-									color: "#57595A",
-								}}
-							>
-								Invoice Number
-							</Typography>
-							<Box
-								sx={{
-									border: "2px solid #D2D3D3",
-									borderRadius: "6px",
-									width: "533px",
-									height: "48px",
-									display: "flex",
-									justifyContent: 'space-evenly',
-									alignItems: 'center',
-									// paddingTop: "4px",
-									padding: "8px",
-									//   ":hover": {border: "2px solid "},
-									//   transition:'all 0.2s ease-in-out',
-									//   ":hover":{borderColor:"#8E9090"},
-								}}
-							>
-								<Box
-									sx={
-										{
-											// marginLeft: '5px',
-											// Padding: '8px'
-										}
-									}
-								>
-									<DescriptionOutlinedIcon
-										sx={{
-											color: "#B1B2B2",
-											// marginTop: "8px",
-											// marginRight: '5px'
-											margin: "0 5px",
-											padding: "0px",
-										}}
-									/>
-								</Box>
-								<Input
-									disableUnderline
-									placeholder="Placeholder"
-									sx={{
-										width: "490px",
-										height: "24px",
-										fontSize: "16px",
-										color: "black",
-										marginRight: "15px",
-										padding: "3px",
-									}}
-									name="invoicenumber"
-									value={details.invoicenumber}
-									onChange={handleDetails}
-								/>
-								<Box>
-									<ClearIcon
-										sx={{
-											color: "#B1B2B2",
-											marginTop: "8px",
-											marginLeft: "10px",
-											height: "20px",
-											width: "20px",
-											cursor: "pointer",
-										}}
-									/>
-								</Box>
-							</Box>
-						</Box> */}
+
 						<Box
 							variant="div"
 							sx={{

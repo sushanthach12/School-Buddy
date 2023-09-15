@@ -1,9 +1,9 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Box from "@mui/material/Box";
 import { Button, Container, Typography } from "@mui/material";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
-import { useGetAllInvoicesByUserIdQuery, useGetInvoiceUploadsQuery } from "../store/api/invoiceApi";
+import { useGetAllInvoicesByUserIdQuery, useLazyGetInvoiceUploadQuery } from "../store/api/invoiceApi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -19,21 +19,27 @@ const InvoiceHistory = () => {
 		refetchOnMountOrArgChange: true
 	});
 
-	const { data: invoiceUploads = [], isSuccess: success, isLoading: loading, refetch } = useGetInvoiceUploadsQuery(user._id, {
-		refetchOnMountOrArgChange: true
-	});
-	
+	const [trigger, result] = useLazyGetInvoiceUploadQuery();
 
 
-	const fetchpdf = async ({invoiceId}) => {
-		refetch()
-		const pdfValue = invoiceUploads.filter(item => item.invoice_id === invoiceId);
-		setPdfData(`${pdfValue[0].data}`);
+	const fetchpdf = async ({ invoiceId }) => {
+		trigger({ userId: user._id, invoiceId })
 
 		setTimeout(() => {
-			pdfOpenRef.current.click()
-		}, 200)
-	}
+			// const pdfValue = result.data.invoice_pdf["data"]
+
+			// setPdfData(`${pdfValue.data}`);
+			pdfOpenRef.current.click();
+
+		}, 1000);
+	};
+
+	useEffect(() => {
+		if (result && result.status === 'fulfilled' && result.data !== undefined) {
+			setPdfData(result.data.invoice_pdf.data);
+		}
+	}, [result])
+
 
 	if (isLoading) {
 		return (
@@ -76,7 +82,7 @@ const InvoiceHistory = () => {
 			padding: '3rem 0',
 			flexGrow: 'initial'
 		}}>
-			<Link to={`data:application/pdf;base64,${pdfData}`} target="_blank" style={{ display: "none" }} ref={pdfOpenRef} />
+			<Link to={`data:application/pdf;base64,${pdfData}`} target="_blank" style={{ display: "none" }} ref={pdfOpenRef} about="invoice.pdf" title="invoice.pdf" />
 			{
 				data?.map((ele) => (
 					<Box
@@ -185,7 +191,7 @@ const InvoiceHistory = () => {
 										textTransform: 'none'
 									}}
 									disableElevation
-									onClick={() => fetchpdf({invoiceId: ele._id})}
+									onClick={() => fetchpdf({ invoiceId: ele._id })}
 								>
 									<Typography
 										sx={{
@@ -221,7 +227,7 @@ const InvoiceHistory = () => {
 									}}
 									disableElevation
 									disableTouchRipple
-									onClick={() => fetchpdf({invoiceId: ele._id})}
+									onClick={() => fetchpdf({ invoiceId: ele._id })}
 								>
 									<Typography
 										sx={{

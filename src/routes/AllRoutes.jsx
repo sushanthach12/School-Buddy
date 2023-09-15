@@ -16,6 +16,8 @@ import Predefined from '../Pages/Predefined'
 import ViewPredefined from '../Pages/ViewPredefined'
 import Navolib from '../Pages/Navolib'
 import { Route, Routes } from 'react-router-dom'
+import CreateTemplate from '../Pages/CreateTemplate'
+import UpdateTemplate from '../Pages/UpdateTemplate'
 
 const AllRoutes = () => {
     return (
@@ -30,6 +32,8 @@ const AllRoutes = () => {
             <Route exact path='/invoice-history' element={<InvoiceHistory />}></Route>
 
             <Route exact path='/template' element={<Template />}></Route>
+            <Route exact path='/create-template' element={<CreateTemplate/>}></Route>
+            <Route exact path='/update-template' element={<UpdateTemplate/>}></Route>
             <Route exact path='/predefined' element={<Predefined />}></Route>
 
             <Route exact path='/add-predefined' element={<AddPredefined />}></Route>

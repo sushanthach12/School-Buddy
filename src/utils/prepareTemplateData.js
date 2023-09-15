@@ -3,16 +3,15 @@ export const prepareTemplateData = async (data, userId) => {
 
     const dataToSend = {
         userId,
-        tagline: form.get('tagline'),
-        emailId: form.get('email'),
+        emailId: form.get('emailId'),
         schoolName: form.get('schoolName'),
-        address: [form.get('address')],
-        phoneNo: [Number(form.get('phoneNumber1')), Number(form.get('phoneNumber2'))],
-        gstNo: Number(form.get('gstnumber')),
-        accountNo: Number(form.get('accountNumber')),
+        address: form.get('address'),
+        phoneNo: [Number(form.get('phoneNo1')), Number(form.get('phoneNo2'))],
+        gstNo: Number(form.get('gstNo')),
+        accountNo: Number(form.get('accountNo')),
         benificiaryName: form.get('benificiaryName'),
         ifscCode: form.get('ifscCode'),
-        upiId: form.get('upiid')
+        upiId: form.get('upiId')
     }
 
     return dataToSend;

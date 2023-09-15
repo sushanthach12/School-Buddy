@@ -27,6 +27,8 @@ const PathNames = new Map([
 	["/view-predefined", "View Predefined"],
 	["/predefined", "Predefined"],
 	["/template", "Template"],
+	["/create-template", "Create Template"],
+	["/update-template", "Update Template"],
 	["/create-invoice", "Invoice Gen Create"],
 ])
 
