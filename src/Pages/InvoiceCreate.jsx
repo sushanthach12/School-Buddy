@@ -61,7 +61,10 @@ const InvoiceCreate = () => {
 			const body = { userId: user._id, templateId: template?._id, tagId: tagSelected, invoiceDate: details?.invoiceDate, terms: details?.terms, modeOfPayment: details?.modeOfPayment };
 
 			const data = await createInvoice(body).unwrap();
-			setPdfData(data?.PDF)
+			const base64 = btoa(String.fromCharCode(...new Uint8Array(data.data)));
+
+			setPdfData(base64)
+			
 			toast.success("Invoice Created Successfully!", { duration: 1000, position: 'top-center' });
 
 			setTimeout(() => {
@@ -69,7 +72,7 @@ const InvoiceCreate = () => {
 			}, 200);
 
 		} catch (error) {
-			toast.error(error.message, { duration: 1000, position: 'top-center' });
+			toast.error("Error: "+error.message, { duration: 1000, position: 'top-center' });
 		} finally {
 			setIsLoading(false)
 		}
