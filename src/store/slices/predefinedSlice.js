@@ -29,6 +29,7 @@ const predefinedSlice = createSlice({
             state.predefinedWithNoTemplate = [] = payload.filter(item => (item.templateId === null))
         })
         builder.addMatcher(predefinedApi.endpoints.getPredefined.matchFulfilled, (state, { payload }) => {
+            console.log(payload)
             state.predefined = payload
         })
     }

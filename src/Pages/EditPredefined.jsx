@@ -7,9 +7,9 @@ import {
     Input,
     Typography
 } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import ClearIcon from "@mui/icons-material/Clear";
-import { useEditPredefinedMutation, useGetPredefinedQuery } from '../store/api/predefinedApi';
+import { useEditPredefinedMutation, useGetPredefinedQuery, useLazyGetPredefinedQuery } from '../store/api/predefinedApi';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
@@ -20,18 +20,20 @@ const EditPredefined = () => {
     const { id } = useParams();
 
     const user = useSelector((state) => state.users.user)
-    const predefined = useSelector((state) => state.predefined.predefined)
-    const { isSuccess, isLoading } = useGetPredefinedQuery({ id: id }, {
-        refetchOnFocus: true,  
-    })
+    const predefines = useSelector((state) => state.predefined.predefines)
+
+    useEffect(() => {
+        const item = predefines.find((item) => item._id === id)
+        setFormField({title: item.title, description: item.description})
+    }, [predefines, id])
 
     const [editPredefined] = useEditPredefinedMutation()
 
     const [formField, setFormField] = useState({
-        title: predefined.title,
-        description: predefined.description
+        title: "",
+        description: ""
     })
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e) => {
         setFormField({ ...formField, [e.target.name]: e.target.value })

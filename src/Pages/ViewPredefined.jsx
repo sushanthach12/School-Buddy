@@ -139,7 +139,7 @@ const ViewPredefined = () => {
                         {isLoading && "Loading..."}
                         <TableBody >
                             {
-                                (predefined.length !== 0 && isSuccess) ? predefined.map((ele) => (
+                                (predefined.length !== 0 && isSuccess) && predefined.map((ele) => (
                                     <TableRow
                                         key={ele._id}
                                         sx={{
@@ -220,8 +220,9 @@ const ViewPredefined = () => {
                                             </Button>
                                         </TableCell>
                                     </TableRow>
-                                )) :
-                                    <TableRow
+                                ))
+                            }
+                                    {predefined.length ===0 && <TableRow
                                         sx={{
                                             padding: '8px 24px',
                                             textAlign: 'center'
@@ -229,8 +230,7 @@ const ViewPredefined = () => {
                                         
                                     >
                                         <TableCell align="center" colSpan={5} style={{fontStyle: 'italic'}}>No Predefines...</TableCell>
-                                    </TableRow>
-                            }
+                                    </TableRow>}
                         </TableBody>
 
                     </Table>

@@ -69,6 +69,7 @@ export const {
     useAddPredefinedMutation,
     useGetAllUserPredefinedQuery,
     useGetPredefinedQuery,
+    useLazyGetPredefinedQuery,
     useEditPredefinedMutation,
     useDeletePredefinedByIdQuery,
     useLazyDeletePredefinedByIdQuery
