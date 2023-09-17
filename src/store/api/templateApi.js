@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const templateApi = createApi({
     reducerPath: "userApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `https://school-buddy-backend.vercel.app/api/template` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:8080/api/template` }),
     endpoints: (builder) => ({
         createTemplate: builder.mutation({
             query: (template) => ({

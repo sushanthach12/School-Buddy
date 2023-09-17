@@ -62,25 +62,20 @@ const InvoiceCreate = () => {
 			const body = { userId: user._id, templateId: template?._id, tagId: tagSelected, invoiceDate: details?.invoiceDate, terms: details?.terms, modeOfPayment: details?.modeOfPayment };
 
 			const data = await createInvoice(body).unwrap();
-			const base64 = btoa(String.fromCharCode(...new Uint8Array(data.data)));
-			// const res =  JSON.stringify(data);
-			console.log(base64)
+
 			toast.success("Invoice Created Successfully!", { duration: 1000, position: 'top-center' });
 
-			// const blob = new Blob([data], { type: 'application/pdf', encoding: 'utf-8'});
-			const link = document.createElement('a');
-			link.href = `data:application/pdf;base64,${base64}`;
-			link.download = 'invoice.pdf';
-			link.click();
-
-			link.remove()
-
 			setTimeout(() => {
-				pdfOpenRef.current.click()
-			}, 200);
+				const link = document.createElement('a');
+				link.href = data?.URL;
+				link.target ='_blank'
+				link.click();
+	
+				link.remove();
+			}, 600);
 
 		} catch (error) {
-			toast.error("Error: "+ error, { duration: 1000, position: 'top-center' });
+			toast.error("Error: "+ error, { duration: 500, position: 'top-center' });
 			console.log(error)
 		} finally {
 			setIsLoading(false)

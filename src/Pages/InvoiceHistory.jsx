@@ -13,7 +13,7 @@ const InvoiceHistory = () => {
 	const pdfOpenRef = useRef();
 
 	const user = useSelector(state => state.users.user);
-	const [pdfData, setPdfData] = useState("")
+	const [pdfLink, setPdfLink] = useState("")
 
 	const { data = [], isSuccess, isLoading, isError } = useGetAllInvoicesByUserIdQuery(user._id, {
 		refetchOnMountOrArgChange: true
@@ -26,9 +26,10 @@ const InvoiceHistory = () => {
 		trigger({ userId: user._id, invoiceId })
 
 		setTimeout(() => {
+			// console.log(result)
 			// const pdfValue = result.data.invoice_pdf["data"]
+			// setPdfLink(`${pdfValue.data}`);
 
-			// setPdfData(`${pdfValue.data}`);
 			pdfOpenRef.current.click();
 
 		}, 1000);
@@ -36,7 +37,7 @@ const InvoiceHistory = () => {
 
 	useEffect(() => {
 		if (result && result.status === 'fulfilled' && result.data !== undefined) {
-			setPdfData(result.data.invoice_pdf.data);
+			setPdfLink(result.data.invoice_pdf.data);
 		}
 	}, [result])
 
@@ -82,7 +83,7 @@ const InvoiceHistory = () => {
 			padding: '3rem 0',
 			flexGrow: 'initial'
 		}}>
-			<Link to={`data:application/pdf;base64,${pdfData}`} target="_blank" style={{ display: "none" }} ref={pdfOpenRef} about="invoice.pdf" title="invoice.pdf" />
+			<Link to={`${pdfLink}`} target="_blank" style={{ display: "none" }} ref={pdfOpenRef} about="invoice.pdf" title="invoice.pdf" />
 			{
 				data?.map((ele) => (
 					<Box
