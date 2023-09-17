@@ -11,6 +11,7 @@ export const invoiceApi = createApi({
                 url: '/createinvoice',
                 method: 'POST',
                 headers: {
+                    'Content-type' : 'application/json',
                     'Accept': 'application/pdf'
                 },
                 body
