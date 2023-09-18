@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
 export const invoiceApi = createApi({
     reducerPath: "invoiceApi",
-    baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:8080/api/invoice` }),
+    baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:5000/api/invoice` }),
     // baseQuery: fetchBaseQuery({ baseUrl: `http://localhost:8080/api/invoice` }),
     endpoints: (builder) => ({
         createInvoice: builder.mutation({

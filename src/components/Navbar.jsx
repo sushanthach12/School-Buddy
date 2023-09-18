@@ -104,6 +104,20 @@ export default function Navbar({ hideNav }) {
 						display: "flex",
 						justifyContent: "space-between",
 						padding: "30px 57px 30px 57px",
+						paddingLeft:{
+							xs: "20px",
+							sm: "20px",
+							md: "57px",
+							lg: "57px",
+							xl: "57px",
+						},
+						paddingRight:{
+							xs: "20px",
+							sm: "20px",
+							md: "57px",
+							lg: "57px",
+							xl: "57px",
+						},
 					}}
 				>
 					{user.loggedIn ?
@@ -119,22 +133,30 @@ export default function Navbar({ hideNav }) {
 								<MenuIcon sx={{ color: "#1F2223" }} />
 							</IconButton>
 
-							<div
-								style={{
+							<Box
+								sx={{
 									display: "flex",
 									alignItems: "center",
 									flexGrow: 1,
 									justifyContent: "center",
-									fontSize: "40px",
+									fontSize: {
+										xs: "18px",
+										sm: "32px",
+										md: "32px",
+										lg: "32px",
+										xl: "44px ",
+									},
 									lineHeight: '50px',
-									fontWeight: '600'
+									fontWeight: '600',
+									fontFamily: 'Lora',
+									color: "#1F2223"
 								}}
 							>
-								<span style={{ color: "#1F2223", fontFamily: 'Lora' }}>
+								{/* <span style={{ color: "#1F2223", fontFamily: 'Lora',fontSize:'inherit' }}> */}
 									{editMatch && "Edit Predefined"}
 									{!editMatch && PathNames.get(location.pathname)}
-								</span>
-							</div>
+								{/* </span> */}
+							</Box>
 
 							<div>
 								<IconButton

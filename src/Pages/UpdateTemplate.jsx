@@ -102,54 +102,129 @@ const UpdateTemplate = () => {
                 <Box
                     variant="div"
                     sx={{
-                        marginBottom: "10px",
-                        width: "533px",
-                    }}
+						marginBottom: "10px",
+						width: {
+							xs:"auto",
+							sm: "auto",
+							md: "533px",
+							lg:"533px",
+							xl:"533px"
+						},
+						marginRight: {
+							xs:"10px",
+							sm: "10px",
+							md: "0px",
+							lg:"0px",
+							xl:"0px"
+						},
+						marginLeft: {
+							xs:"10px",
+							sm: "10px",
+							md: "0px",
+							lg:"0px",
+							xl:"0px"
+						},
+						justifyContent: "space-between",
+						alignItems: "center",
+					}}
                 >
 
                     <Box
                         sx={{
-                            display: "flex",
-                            width: "533px",
-                        }}
+							display: "flex",
+							width:{
+								xs:"100%",
+								sm: "100%",
+								md: "100%",
+								lg:"533px",
+								xl:"533px"
+							},
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+							justifyContent: "space-between",
+							alignItems: "center",
+						}}
                     >
 
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                width: "254px",
-                                marginRight: "25px",
-                            }}
+								alignContent: "center",
+								width: {
+									xs: "auto",
+									sm: "auto",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+								marginRight: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginLeft: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginBottom:{
+									xs: "25px",
+									sm: "25px",
+									md: "25px",
+									lg: "0px",
+									xl: "0px",
+								}
+							}}
                         >
                             <Typography
                                 sx={{
-                                    width: "254px",
-                                    height: "18px",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    lineHeight: "17.5px",
-                                    fontFamily: "Inter",
-                                    color: "#57595A",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
                             >
                                 Email Id
                             </Typography>
                             <Box
                                 sx={{
-                                    border: "2px solid #D2D3D3",
-                                    borderRadius: "6px",
-                                    width: "254px",
-                                    height: "48px",
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: "0 4px",
-                                    gap: '2px'
-                                    //   ":hover": {border: "2px solid "},
-                                    //   transition:'all 0.2s ease-in-out',
-                                    //   ":hover":{borderColor:"#8E9090"},
-                                }}
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
                             >
                                 <Box>
                                     <LocationOnOutlinedIcon
@@ -162,10 +237,16 @@ const UpdateTemplate = () => {
                                     disableUnderline
                                     placeholder={"email"}
                                     sx={{
-                                        width: "366px",
-                                        height: "24px",
-                                        fontSize: "16px",
-                                    }}
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
+										height: "24px",
+										fontSize: "16px",
+									}}
                                     type="email"
                                     name="emailId"
                                     value={fields?.emailId}
@@ -189,18 +270,62 @@ const UpdateTemplate = () => {
                     {/* first input done */}
                     <Box
                         sx={{
-                            display: "flex",
-                            width: "533px",
-                        }}
+							display: "flex",
+							width:{
+								xs:"100%",
+								sm: "100%",
+								md: "100%",
+								lg:"533px",
+								xl:"533px"
+							},
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+							justifyContent: "space-between",
+							alignItems: "center",
+							marginTop: "25px",
+						}}
                     >
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                marginTop: "25px",
-                                width: "254px",
-                                marginRight: "25px",
-                            }}
+								alignContent: "center",
+								
+								// width: "254px",
+								marginRight: "25px",
+								width: {
+									xs: "auto",
+									sm: "auto",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+								marginRight: {
+									xs: "10px",
+									sm: "10px",
+									md: "25px",
+									lg: "25px",
+									xl: "25px",
+								},
+								marginLeft: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginBottom:{
+									xs: "25px",
+									sm: "25px",
+									md: "25px",
+									lg: "0px",
+									xl: "0px",
+								}
+							}}
                         >
                             <Typography
                                 sx={{
@@ -267,39 +392,80 @@ const UpdateTemplate = () => {
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                marginTop: "25px",
-                                width: "254px",
-                            }}
+								alignContent: "center",
+								
+								// width: "254px",
+								marginRight: "25px",
+								width: {
+									xs: "auto",
+									sm: "auto",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+								marginRight: {
+									xs: "10px",
+									sm: "10px",
+									md: "25px",
+									lg: "25px",
+									xl: "25px",
+								},
+								marginLeft: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginBottom:{
+									xs: "25px",
+									sm: "25px",
+									md: "25px",
+									lg: "0px",
+									xl: "0px",
+								}
+							}}
                         >
                             <Typography
                                 sx={{
-                                    width: "254px",
-                                    height: "18px",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    lineHeight: "17.5px",
-                                    fontFamily: "Inter",
-                                    color: "#57595A",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
                             >
                                 Phone Number
                             </Typography>
                             <Box
                                 sx={{
-                                    border: "2px solid #D2D3D3",
-                                    borderRadius: "6px",
-                                    width: "254px",
-                                    height: "48px",
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: "0 4px",
-                                    gap: '2px'
-                                    //   ":hover": {border: "2px solid "},
-                                    //   transition:'all 0.2s ease-in-out',
-                                    //   ":hover":{borderColor:"#8E9090"},
-                                }}
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: {
+										xs: "auto",
+										sm: "auto",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
                             >
                                 <Box
                                     sx={{
@@ -316,10 +482,16 @@ const UpdateTemplate = () => {
                                     disableUnderline
                                     placeholder="Placeholder"
                                     sx={{
-                                        width: "366px",
-                                        height: "24px",
-                                        fontSize: "16px",
-                                    }}
+										width: {
+											xs: "auto",
+											sm: "auto",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
+										height: "24px",
+										fontSize: "16px",
+									}}
                                     type='tel'
                                     name="phoneNo2"
                                     value={fields?.phoneNo2}
@@ -346,40 +518,95 @@ const UpdateTemplate = () => {
                     <Box
                         variant="div"
                         sx={{
-                            alignContent: "center",
-                            marginTop: "25px",
-                            border: "1px 0px 0px 0px",
-                            borderTop: "1px solid #EAEAEA",
-                            paddingTop: "25px",
-                        }}
+							alignContent: "center",
+							marginTop: {
+								xs: "0px",
+								sm: "0px",
+								md: "25px",
+								lg: "25px",
+								xl: "25px",
+							},
+							border: "1px 0px 0px 0px",
+							borderTop: "1px solid #EAEAEA",
+							paddingTop: "25px",
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+
+						}}
                     >
                         <Typography
-                            sx={{
-                                width: "438px",
-                                height: "18px",
-                                fontSize: "14px",
-                                fontWeight: "500",
-                                lineHeight: "17.5px",
-                                fontFamily: "Inter",
-                                color: "#57595A",
-                            }}
+                           sx={{
+                            width: {
+                                xs: "100%",
+                                sm: "100%",
+                                md: "438px",
+                                lg: "438px",
+                                xl: "438px",
+                            },
+                            height: "18px",
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "17.5px",
+                            fontFamily: "Inter",
+                            color: "#57595A",
+                        }}
                         >
                             School Name
                         </Typography>
                         <Box
                             sx={{
-                                border: "2px solid #D2D3D3",
-                                borderRadius: "6px",
-                                width: "533px",
-                                height: "48px",
-                                display: "flex",
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                padding: "0 5px",
-                                //   ":hover": {border: "2px solid "},
-                                //   transition:'all 0.2s ease-in-out',
-                                //   ":hover":{borderColor:"#8E9090"},
-                            }}
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "533px",
+									lg: "533px",
+									xl: "533px",
+								},
+								height: "48px",
+								display: "flex",
+								justifyContent: 'space-between',
+								alignItems: 'center',
+								padding: "0 5px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+							}}
                         >
                             <Box
                                 sx={{
@@ -401,12 +628,18 @@ const UpdateTemplate = () => {
                                 disableUnderline
                                 placeholder="Placeholder"
                                 sx={{
-                                    width: "490px",
-                                    height: "24px",
-                                    // marginTop: "8px",
-                                    fontSize: "16px",
-                                    padding: "3px",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "490px",
+										lg: "490px",
+										xl: "490px",
+									},
+									height: "24px",
+									// marginTop: "8px",
+									fontSize: "16px",
+									padding: "3px",
+								}}
                                 type="text"
                                 name="schoolName"
                                 value={fields?.schoolName}
@@ -430,37 +663,88 @@ const UpdateTemplate = () => {
                     <Box
                         variant="div"
                         sx={{
-                            alignContent: "center",
-                            marginTop: "25px",
-                        }}
+							alignContent: "center",
+							marginTop: "25px",
+							border: "1px 0px 0px 0px",
+							borderTop: "1px solid #EAEAEA",
+							paddingTop: "25px",
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+						}}
                     >
                         <Typography
                             sx={{
-                                width: "438px",
-                                height: "18px",
-                                fontSize: "14px",
-                                fontWeight: "500",
-                                lineHeight: "17.5px",
-                                fontFamily: "Inter",
-                                color: "#57595A",
-                            }}
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "438px",
+									lg: "438px",
+									xl: "438px",
+								},
+								height: "18px",
+								fontSize: "14px",
+								fontWeight: "500",
+								lineHeight: "17.5px",
+								fontFamily: "Inter",
+								color: "#57595A",
+							}}
                         >
                             Address
                         </Typography>
                         <Box
                             sx={{
-                                border: "2px solid #D2D3D3",
-                                borderRadius: "6px",
-                                width: "533px",
-                                height: "48px",
-                                display: "flex",
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                padding: "0 5px",
-                                //   ":hover": {border: "2px solid "},
-                                //   transition:'all 0.2s ease-in-out',
-                                //   ":hover":{borderColor:"#8E9090"},
-                            }}
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "533px",
+									lg: "533px",
+									xl: "533px",
+								},
+								height: "48px",
+								display: "flex",
+								justifyContent: 'space-between',
+								alignItems: 'center',
+								padding: "0 5px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+							}}
                         >
                             <Box
                                 sx={{
@@ -482,12 +766,18 @@ const UpdateTemplate = () => {
                                 disableUnderline
                                 placeholder="Placeholder"
                                 sx={{
-                                    width: "490px",
-                                    height: "24px",
-                                    // marginTop: "8px",
-                                    fontSize: "16px",
-                                    padding: "3px",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "490px",
+										lg: "490px",
+										xl: "490px",
+									},
+									height: "24px",
+									// marginTop: "8px",
+									fontSize: "16px",
+									padding: "3px",
+								}}
                                 type="text"
                                 name="address"
                                 value={fields?.address}
@@ -512,40 +802,89 @@ const UpdateTemplate = () => {
                     <Box
                         variant="div"
                         sx={{
-                            alignContent: "center",
-                            marginTop: "25px",
-                            border: "1px 0px 0px 0px",
-                            borderTop: "1px solid #EAEAEA",
-                            paddingTop: "25px",
-                        }}
+							alignContent: "center",
+							marginTop: "25px",
+							border: "1px 0px 0px 0px",
+							borderTop: "1px solid #EAEAEA",
+							paddingTop: "25px",
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+							
+						}}
                     >
                         <Typography
-                            sx={{
-                                width: "438px",
-                                height: "18px",
-                                fontSize: "14px",
-                                fontWeight: "500",
-                                lineHeight: "17.5px",
-                                fontFamily: "Inter",
-                                color: "#57595A",
-                            }}
+                           sx={{
+                            width: {
+                                xs: "100%",
+                                sm: "100%",
+                                md: "438px",
+                                lg: "438px",
+                                xl: "438px",
+                            },
+                            height: "18px",
+                            fontSize: "14px",
+                            fontWeight: "500",
+                            lineHeight: "17.5px",
+                            fontFamily: "Inter",
+                            color: "#57595A",
+                        }}
                         >
                             Account Number
                         </Typography>
                         <Box
                             sx={{
-                                border: "2px solid #D2D3D3",
-                                borderRadius: "6px",
-                                width: "533px",
-                                height: "48px",
-                                display: "flex",
-                                justifyContent: 'space-between',
-                                alignItems: 'center',
-                                padding: "0 5px",
-                                //   ":hover": {border: "2px solid "},
-                                //   transition:'all 0.2s ease-in-out',
-                                //   ":hover":{borderColor:"#8E9090"},
-                            }}
+								border: "2px solid #D2D3D3",
+								borderRadius: "6px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "533px",
+									lg: "533px",
+									xl: "533px",
+								},
+								height: "48px",
+								display: "flex",
+								justifyContent: 'space-between',
+								alignItems: 'center',
+								padding: "0 5px",
+								//   ":hover": {border: "2px solid "},
+								//   transition:'all 0.2s ease-in-out',
+								//   ":hover":{borderColor:"#8E9090"},
+							}}
                         >
                             <Box
                                 sx={{
@@ -567,12 +906,18 @@ const UpdateTemplate = () => {
                                 disableUnderline
                                 placeholder="Placeholder"
                                 sx={{
-                                    width: "490px",
-                                    height: "24px",
-                                    // marginTop: "8px",
-                                    fontSize: "16px",
-                                    padding: "3px",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "490px",
+										lg: "490px",
+										xl: "490px",
+									},
+									height: "24px",
+									// marginTop: "8px",
+									fontSize: "16px",
+									padding: "3px",
+								}}
                                 type="text"
                                 name="accountNo"
                                 value={fields?.accountNo}
@@ -596,48 +941,117 @@ const UpdateTemplate = () => {
 
                     <Box
                         sx={{
-                            display: "flex",
-                            width: "533px",
-                            justifyContent: "space-between",
-                            alignItems: 'center'
-                        }}
+							display: "flex",
+							alignContent: "center",
+							marginTop: "25px",
+							border: "1px 0px 0px 0px",
+							borderTop: "1px solid #EAEAEA",
+							paddingTop: {
+								xs: "0px",
+								sm: "0px",
+								md: "25px",
+								lg: "25px",
+								xl: "25px",
+							},
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+						}}
                     >
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                marginTop: "25px",
-                                width: "254px",
-                            }}
+								alignContent: "center",
+								marginTop: "25px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+							}}
                         >
                             <Typography
                                 sx={{
-                                    width: "254px",
-                                    height: "18px",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    lineHeight: "17.5px",
-                                    fontFamily: "Inter",
-                                    color: "#57595A",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
                             >
                                 Benificiary Name
                             </Typography>
                             <Box
                                 sx={{
-                                    border: "2px solid #D2D3D3",
-                                    borderRadius: "6px",
-                                    width: "254px",
-                                    height: "48px",
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: "0 4px",
-                                    gap: '2px'
-                                    //   ":hover": {border: "2px solid "},
-                                    //   transition:'all 0.2s ease-in-out',
-                                    //   ":hover":{borderColor:"#8E9090"},
-                                }}
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
                             >
                                 <Box
                                     sx={{
@@ -654,10 +1068,16 @@ const UpdateTemplate = () => {
                                     disableUnderline
                                     placeholder="Placeholder"
                                     sx={{
-                                        width: "366px",
-                                        height: "24px",
-                                        fontSize: "16px",
-                                    }}
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
+										height: "24px",
+										fontSize: "16px",
+									}}
                                     type="text"
                                     name="benificiaryName"
                                     value={fields?.benificiaryName}
@@ -679,39 +1099,57 @@ const UpdateTemplate = () => {
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                marginTop: "25px",
-                                width: "254px",
-                            }}
+								alignContent: "center",
+								marginTop: "25px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+							}}
                         >
                             <Typography
                                 sx={{
-                                    width: "254px",
-                                    height: "18px",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    lineHeight: "17.5px",
-                                    fontFamily: "Inter",
-                                    color: "#57595A",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
                             >
                                 IFSC Code
                             </Typography>
                             <Box
                                 sx={{
-                                    border: "2px solid #D2D3D3",
-                                    borderRadius: "6px",
-                                    width: "254px",
-                                    height: "48px",
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: "0 4px",
-                                    gap: '2px'
-                                    //   ":hover": {border: "2px solid "},
-                                    //   transition:'all 0.2s ease-in-out',
-                                    //   ":hover":{borderColor:"#8E9090"},
-                                }}
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
                             >
                                 <Box
                                     sx={{
@@ -728,10 +1166,16 @@ const UpdateTemplate = () => {
                                     disableUnderline
                                     placeholder="Placeholder"
                                     sx={{
-                                        width: "366px",
-                                        height: "24px",
-                                        fontSize: "16px",
-                                    }}
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
+										height: "24px",
+										fontSize: "16px",
+									}}
                                     type="text"
                                     name="ifscCode"
                                     value={fields?.ifscCode}
@@ -755,48 +1199,107 @@ const UpdateTemplate = () => {
 
                     <Box
                         sx={{
-                            display: "flex",
-                            width: "533px",
-                            justifyContent: "space-between",
-                            alignItems: 'center'
-                        }}
+							display: "flex",
+							width: {
+								xs: "auto",
+								sm: "auto",
+								md: "533px",
+								lg: "533px",
+								xl: "533px",
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+							alignItems: 'center',
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+						}}
                     >
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                marginTop: "25px",
-                                width: "254px",
-                            }}
+								alignContent: "center",
+								marginTop: "25px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+							}}
                         >
                             <Typography
                                 sx={{
-                                    width: "254px",
-                                    height: "18px",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    lineHeight: "17.5px",
-                                    fontFamily: "Inter",
-                                    color: "#57595A",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
                             >
                                 UPI ID
                             </Typography>
                             <Box
                                 sx={{
-                                    border: "2px solid #D2D3D3",
-                                    borderRadius: "6px",
-                                    width: "254px",
-                                    height: "48px",
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: "0 4px",
-                                    gap: '2px'
-                                    //   ":hover": {border: "2px solid "},
-                                    //   transition:'all 0.2s ease-in-out',
-                                    //   ":hover":{borderColor:"#8E9090"},
-                                }}
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
                             >
                                 <Box
                                     sx={{
@@ -813,10 +1316,16 @@ const UpdateTemplate = () => {
                                     disableUnderline
                                     placeholder="Placeholder"
                                     sx={{
-                                        width: "366px",
-                                        height: "24px",
-                                        fontSize: "16px",
-                                    }}
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
+										height: "24px",
+										fontSize: "16px",
+									}}
                                     type="text"
                                     name="upiId"
                                     value={fields?.upiId}
@@ -838,39 +1347,57 @@ const UpdateTemplate = () => {
                         <Box
                             variant="div"
                             sx={{
-                                alignContent: "center",
-                                marginTop: "25px",
-                                width: "254px",
-                            }}
+								alignContent: "center",
+								marginTop: "25px",
+								width:{
+									xs:"100%",
+									sm: "100%",
+									md: "100%",
+									lg:"254px",
+									xl:"254px"
+								},
+							}}
                         >
                             <Typography
                                 sx={{
-                                    width: "254px",
-                                    height: "18px",
-                                    fontSize: "14px",
-                                    fontWeight: "500",
-                                    lineHeight: "17.5px",
-                                    fontFamily: "Inter",
-                                    color: "#57595A",
-                                }}
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "18px",
+									fontSize: "14px",
+									fontWeight: "500",
+									lineHeight: "17.5px",
+									fontFamily: "Inter",
+									color: "#57595A",
+								}}
                             >
                                 GST Number
                             </Typography>
                             <Box
                                 sx={{
-                                    border: "2px solid #D2D3D3",
-                                    borderRadius: "6px",
-                                    width: "254px",
-                                    height: "48px",
-                                    display: "flex",
-                                    justifyContent: 'space-between',
-                                    alignItems: 'center',
-                                    padding: "0 4px",
-                                    gap: '2px'
-                                    //   ":hover": {border: "2px solid "},
-                                    //   transition:'all 0.2s ease-in-out',
-                                    //   ":hover":{borderColor:"#8E9090"},
-                                }}
+									border: "2px solid #D2D3D3",
+									borderRadius: "6px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
+									height: "48px",
+									display: "flex",
+									justifyContent: 'space-between',
+									alignItems: 'center',
+									padding: "0 4px",
+									gap: '2px'
+									//   ":hover": {border: "2px solid "},
+									//   transition:'all 0.2s ease-in-out',
+									//   ":hover":{borderColor:"#8E9090"},
+								}}
                             >
                                 <Box
                                     sx={{
@@ -887,10 +1414,16 @@ const UpdateTemplate = () => {
                                     disableUnderline
                                     placeholder="Placeholder"
                                     sx={{
-                                        width: "366px",
-                                        height: "24px",
-                                        fontSize: "16px",
-                                    }}
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
+										height: "24px",
+										fontSize: "16px",
+									}}
                                     type="number"
                                     name="gstNo"
                                     value={fields?.gstNo}
@@ -913,14 +1446,20 @@ const UpdateTemplate = () => {
                     <Button
                         type="submit"
                         sx={{
-                            marginTop: "25px",
-                            backgroundColor: "#FFE393",
-                            width: "253px",
-                            height: "48px",
-                            borderRadius: '6px',
-                            ":hover": { backgroundColor: "#ffe8a8" },
-                            textColor: "#363939",
-                        }}
+							marginTop: "25px",
+							backgroundColor: "#FFE393",
+							width: {
+								xs: "100%",
+								sm: "100%",
+								md: "100%",
+								lg: "533px",
+								xl: "533px",
+							},
+							height: "48px",
+							borderRadius: '6px',
+							":hover": { backgroundColor: "#ffe8a8" },
+							textColor: "#363939",
+						}}
                         variant="contained"
                         disableElevation
                         disabled={loading}
