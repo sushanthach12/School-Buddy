@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+	import React, { useRef, useState } from "react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import AddLinkIcon from "@mui/icons-material/AddLink";
 import Input from "@mui/material/Input";
@@ -106,14 +106,51 @@ const CreateTemplate = () => {
 					variant="div"
 					sx={{
 						marginBottom: "10px",
-						width: "533px",
+						width: {
+							xs:"auto",
+							sm: "auto",
+							md: "533px",
+							lg:"533px",
+							xl:"533px"
+						},
+						marginRight: {
+							xs:"10px",
+							sm: "10px",
+							md: "0px",
+							lg:"0px",
+							xl:"0px"
+						},
+						marginLeft: {
+							xs:"10px",
+							sm: "10px",
+							md: "0px",
+							lg:"0px",
+							xl:"0px"
+						},
+						justifyContent: "space-between",
+						alignItems: "center",
 					}}
 				>
 
 					<Box
 						sx={{
 							display: "flex",
-							width: "533px",
+							width:{
+								xs:"100%",
+								sm: "100%",
+								md: "100%",
+								lg:"533px",
+								xl:"533px"
+							},
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+							justifyContent: "space-between",
+							alignItems: "center",
 						}}
 					>
 
@@ -121,13 +158,45 @@ const CreateTemplate = () => {
 							variant="div"
 							sx={{
 								alignContent: "center",
-								width: "254px",
-								marginRight: "25px",
+								width: {
+									xs: "auto",
+									sm: "auto",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+								marginRight: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginLeft: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginBottom:{
+									xs: "25px",
+									sm: "25px",
+									md: "25px",
+									lg: "0px",
+									xl: "0px",
+								}
 							}}
 						>
 							<Typography
 								sx={{
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "18px",
 									fontSize: "14px",
 									fontWeight: "500",
@@ -142,7 +211,13 @@ const CreateTemplate = () => {
 								sx={{
 									border: "2px solid #D2D3D3",
 									borderRadius: "6px",
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "48px",
 									display: "flex",
 									justifyContent: 'space-between',
@@ -165,7 +240,13 @@ const CreateTemplate = () => {
 									disableUnderline
 									placeholder={"email"}
 									sx={{
-										width: "366px",
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
 										height: "24px",
 										fontSize: "16px",
 									}}
@@ -191,16 +272,60 @@ const CreateTemplate = () => {
 					<Box
 						sx={{
 							display: "flex",
-							width: "533px",
+							width:{
+								xs:"100%",
+								sm: "100%",
+								md: "100%",
+								lg:"533px",
+								xl:"533px"
+							},
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+							justifyContent: "space-between",
+							alignItems: "center",
+							marginTop: "25px",
 						}}
 					>
 						<Box
 							variant="div"
 							sx={{
 								alignContent: "center",
-								marginTop: "25px",
-								width: "254px",
+								
+								// width: "254px",
 								marginRight: "25px",
+								width: {
+									xs: "auto",
+									sm: "auto",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+								marginRight: {
+									xs: "10px",
+									sm: "10px",
+									md: "25px",
+									lg: "25px",
+									xl: "25px",
+								},
+								marginLeft: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginBottom:{
+									xs: "25px",
+									sm: "25px",
+									md: "25px",
+									lg: "0px",
+									xl: "0px",
+								}
 							}}
 						>
 							<Typography
@@ -267,13 +392,48 @@ const CreateTemplate = () => {
 							variant="div"
 							sx={{
 								alignContent: "center",
-								marginTop: "25px",
-								width: "254px",
+								
+								// width: "254px",
+								marginRight: "25px",
+								width: {
+									xs: "auto",
+									sm: "auto",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
+								marginRight: {
+									xs: "10px",
+									sm: "10px",
+									md: "25px",
+									lg: "25px",
+									xl: "25px",
+								},
+								marginLeft: {
+									xs: "10px",
+									sm: "10px",
+									md: "0px",
+									lg: "0px",
+									xl: "0px",
+								},
+								marginBottom:{
+									xs: "25px",
+									sm: "25px",
+									md: "25px",
+									lg: "0px",
+									xl: "0px",
+								}
 							}}
 						>
 							<Typography
 								sx={{
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "18px",
 									fontSize: "14px",
 									fontWeight: "500",
@@ -288,7 +448,13 @@ const CreateTemplate = () => {
 								sx={{
 									border: "2px solid #D2D3D3",
 									borderRadius: "6px",
-									width: "254px",
+									width: {
+										xs: "auto",
+										sm: "auto",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "48px",
 									display: "flex",
 									justifyContent: 'space-between',
@@ -315,7 +481,13 @@ const CreateTemplate = () => {
 									disableUnderline
 									placeholder="Placeholder"
 									sx={{
-										width: "366px",
+										width: {
+											xs: "auto",
+											sm: "auto",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
 										height: "24px",
 										fontSize: "16px",
 									}}
@@ -344,15 +516,64 @@ const CreateTemplate = () => {
 						variant="div"
 						sx={{
 							alignContent: "center",
-							marginTop: "25px",
+							marginTop: {
+								xs: "0px",
+								sm: "0px",
+								md: "25px",
+								lg: "25px",
+								xl: "25px",
+							},
 							border: "1px 0px 0px 0px",
 							borderTop: "1px solid #EAEAEA",
 							paddingTop: "25px",
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+
 						}}
 					>
 						<Typography
 							sx={{
-								width: "438px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "438px",
+									lg: "438px",
+									xl: "438px",
+								},
 								height: "18px",
 								fontSize: "14px",
 								fontWeight: "500",
@@ -367,7 +588,13 @@ const CreateTemplate = () => {
 							sx={{
 								border: "2px solid #D2D3D3",
 								borderRadius: "6px",
-								width: "533px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "533px",
+									lg: "533px",
+									xl: "533px",
+								},
 								height: "48px",
 								display: "flex",
 								justifyContent: 'space-between',
@@ -398,7 +625,13 @@ const CreateTemplate = () => {
 								disableUnderline
 								placeholder="Placeholder"
 								sx={{
-									width: "490px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "490px",
+										lg: "490px",
+										xl: "490px",
+									},
 									height: "24px",
 									// marginTop: "8px",
 									fontSize: "16px",
@@ -427,11 +660,56 @@ const CreateTemplate = () => {
 						sx={{
 							alignContent: "center",
 							marginTop: "25px",
+							border: "1px 0px 0px 0px",
+							borderTop: "1px solid #EAEAEA",
+							paddingTop: "25px",
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
 						}}
 					>
 						<Typography
 							sx={{
-								width: "438px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "438px",
+									lg: "438px",
+									xl: "438px",
+								},
 								height: "18px",
 								fontSize: "14px",
 								fontWeight: "500",
@@ -446,7 +724,13 @@ const CreateTemplate = () => {
 							sx={{
 								border: "2px solid #D2D3D3",
 								borderRadius: "6px",
-								width: "533px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "533px",
+									lg: "533px",
+									xl: "533px",
+								},
 								height: "48px",
 								display: "flex",
 								justifyContent: 'space-between',
@@ -477,7 +761,13 @@ const CreateTemplate = () => {
 								disableUnderline
 								placeholder="Placeholder"
 								sx={{
-									width: "490px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "490px",
+										lg: "490px",
+										xl: "490px",
+									},
 									height: "24px",
 									// marginTop: "8px",
 									fontSize: "16px",
@@ -510,11 +800,54 @@ const CreateTemplate = () => {
 							border: "1px 0px 0px 0px",
 							borderTop: "1px solid #EAEAEA",
 							paddingTop: "25px",
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							justifyContent: "space-between",
+							
 						}}
 					>
 						<Typography
 							sx={{
-								width: "438px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "438px",
+									lg: "438px",
+									xl: "438px",
+								},
 								height: "18px",
 								fontSize: "14px",
 								fontWeight: "500",
@@ -529,7 +862,13 @@ const CreateTemplate = () => {
 							sx={{
 								border: "2px solid #D2D3D3",
 								borderRadius: "6px",
-								width: "533px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "533px",
+									lg: "533px",
+									xl: "533px",
+								},
 								height: "48px",
 								display: "flex",
 								justifyContent: 'space-between',
@@ -560,7 +899,13 @@ const CreateTemplate = () => {
 								disableUnderline
 								placeholder="Placeholder"
 								sx={{
-									width: "490px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "490px",
+										lg: "490px",
+										xl: "490px",
+									},
 									height: "24px",
 									// marginTop: "8px",
 									fontSize: "16px",
@@ -588,9 +933,60 @@ const CreateTemplate = () => {
 					<Box
 						sx={{
 							display: "flex",
-							width: "533px",
+							alignContent: "center",
+							marginTop: "25px",
+							border: "1px 0px 0px 0px",
+							borderTop: "1px solid #EAEAEA",
+							paddingTop: {
+								xs: "0px",
+								sm: "0px",
+								md: "25px",
+								lg: "25px",
+								xl: "25px",
+							},
+							width:{
+								xs:"auto",
+								sm: "auto",
+								md: "533px",
+								lg:"533px",
+								xl:"533px"
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
 							justifyContent: "space-between",
-							alignItems: 'center'
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
 						}}
 					>
 						<Box
@@ -598,12 +994,24 @@ const CreateTemplate = () => {
 							sx={{
 								alignContent: "center",
 								marginTop: "25px",
-								width: "254px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
 							}}
 						>
 							<Typography
 								sx={{
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "18px",
 									fontSize: "14px",
 									fontWeight: "500",
@@ -618,7 +1026,13 @@ const CreateTemplate = () => {
 								sx={{
 									border: "2px solid #D2D3D3",
 									borderRadius: "6px",
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "48px",
 									display: "flex",
 									justifyContent: 'space-between',
@@ -645,7 +1059,13 @@ const CreateTemplate = () => {
 									disableUnderline
 									placeholder="Placeholder"
 									sx={{
-										width: "366px",
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
 										height: "24px",
 										fontSize: "16px",
 									}}
@@ -670,12 +1090,24 @@ const CreateTemplate = () => {
 							sx={{
 								alignContent: "center",
 								marginTop: "25px",
-								width: "254px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
 							}}
 						>
 							<Typography
 								sx={{
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "18px",
 									fontSize: "14px",
 									fontWeight: "500",
@@ -690,7 +1122,13 @@ const CreateTemplate = () => {
 								sx={{
 									border: "2px solid #D2D3D3",
 									borderRadius: "6px",
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "48px",
 									display: "flex",
 									justifyContent: 'space-between',
@@ -717,7 +1155,13 @@ const CreateTemplate = () => {
 									disableUnderline
 									placeholder="Placeholder"
 									sx={{
-										width: "366px",
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
 										height: "24px",
 										fontSize: "16px",
 									}}
@@ -743,9 +1187,50 @@ const CreateTemplate = () => {
 					<Box
 						sx={{
 							display: "flex",
-							width: "533px",
+							width: {
+								xs: "auto",
+								sm: "auto",
+								md: "533px",
+								lg: "533px",
+								xl: "533px",
+							},
+							marginRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							marginLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
 							justifyContent: "space-between",
-							alignItems: 'center'
+							alignItems: 'center',
+							flexDirection: {
+								xs: "column",
+								sm: "column",
+								md: "row",
+								lg: "row",
+								xl: "row",
+							},
+							paddingRight: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
+							paddingLeft: {
+								xs: "10px",
+								sm: "10px",
+								md: "0px",
+								lg: "0px",
+								xl: "0px",
+							},
 						}}
 					>
 						<Box
@@ -753,12 +1238,24 @@ const CreateTemplate = () => {
 							sx={{
 								alignContent: "center",
 								marginTop: "25px",
-								width: "254px",
+								width: {
+									xs: "100%",
+									sm: "100%",
+									md: "254px",
+									lg: "254px",
+									xl: "254px",
+								},
 							}}
 						>
 							<Typography
 								sx={{
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "18px",
 									fontSize: "14px",
 									fontWeight: "500",
@@ -773,7 +1270,13 @@ const CreateTemplate = () => {
 								sx={{
 									border: "2px solid #D2D3D3",
 									borderRadius: "6px",
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "48px",
 									display: "flex",
 									justifyContent: 'space-between',
@@ -800,7 +1303,13 @@ const CreateTemplate = () => {
 									disableUnderline
 									placeholder="Placeholder"
 									sx={{
-										width: "366px",
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
 										height: "24px",
 										fontSize: "16px",
 									}}
@@ -825,12 +1334,24 @@ const CreateTemplate = () => {
 							sx={{
 								alignContent: "center",
 								marginTop: "25px",
-								width: "254px",
+								width:{
+									xs:"100%",
+									sm: "100%",
+									md: "100%",
+									lg:"254px",
+									xl:"254px"
+								},
 							}}
 						>
 							<Typography
 								sx={{
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "18px",
 									fontSize: "14px",
 									fontWeight: "500",
@@ -845,7 +1366,13 @@ const CreateTemplate = () => {
 								sx={{
 									border: "2px solid #D2D3D3",
 									borderRadius: "6px",
-									width: "254px",
+									width: {
+										xs: "100%",
+										sm: "100%",
+										md: "254px",
+										lg: "254px",
+										xl: "254px",
+									},
 									height: "48px",
 									display: "flex",
 									justifyContent: 'space-between',
@@ -872,7 +1399,13 @@ const CreateTemplate = () => {
 									disableUnderline
 									placeholder="Placeholder"
 									sx={{
-										width: "366px",
+										width: {
+											xs: "100%",
+											sm: "100%",
+											md: "366px",
+											lg: "366px",
+											xl: "366px",
+										},
 										height: "24px",
 										fontSize: "16px",
 									}}
@@ -898,7 +1431,13 @@ const CreateTemplate = () => {
 						sx={{
 							marginTop: "25px",
 							backgroundColor: "#FFE393",
-							width: "253px",
+							width: {
+								xs: "100%",
+								sm: "100%",
+								md: "100%",
+								lg: "533px",
+								xl: "533px",
+							},
 							height: "48px",
 							borderRadius: '6px',
 							":hover": { backgroundColor: "#ffe8a8" },
@@ -936,7 +1475,20 @@ const CreateTemplate = () => {
 					flexDirection: "column",
 					alignItems: "center",
 					gap: "8px",
-					marginLeft: "100px",
+					marginLeft: {
+						xs: "0px",
+						sm: "0px",
+						md: "0px",
+						lg: "100px",
+						xl: "100px",
+					},
+					marginBottom:{
+						xs:"100px",
+						sm:"100px",
+						md:"100px",
+						lg:"0px",
+						xl:"0px",
+					}
 					// width: '530px'
 				}}
 			>
